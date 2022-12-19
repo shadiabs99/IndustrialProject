@@ -8,12 +8,12 @@ class Participant(models.Model):
         return self.Participant_Name
 
 class Campaign(models.Model):
-    Campaign_Name = models.CharField(max_length=50)
-    Description = models.TextField(max_length=250)
-    Start_Date = models.DateField()
-    End_Date = models.DateField()
-    Participants = models.ManyToManyField(Participant)
+    title = models.CharField(max_length=50)
+    description = models.TextField(max_length=250)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    participants = models.ManyToManyField(Participant)
 
     def __str__(self):
-        return self.Campaign_Name
+        return self.title
 
