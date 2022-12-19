@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 def listOfCampaigns(request):
     campaigns = Campaign.objects.all()
     context = {'campaigns': campaigns}
-    return render(request, 'campaigns/campaigns_list.html', context)
+    return render(request, 'campaigns/home.html', context)
 
 def campaign_details(request, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)

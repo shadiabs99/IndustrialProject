@@ -1,12 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import get_user_model, login, \
-                                logout, authenticate
-# Create your views here.
-
-def home(request):
-    return render(request, 'main/home.html')
-
+from django.contrib.auth import get_user_model, login, logout, authenticate
 def signup(request):
     if request.method == 'GET':
         return render(request, 'registration/signup.html',
@@ -20,7 +14,9 @@ def signup(request):
             authenticate(username=username, password=raw_password)
             user = get_user_model().objects.get(username=username)
             login(request, user)
-            return render(request,'campaigns/campaigns.html')
+            return render(request,'campaigns/home.html')
         else:
             error = form.errors
             return render(request, 'registration/signup.html', {'form':UserCreationForm(), 'error': error})
+        
+        
