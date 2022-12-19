@@ -3,7 +3,7 @@ from .models import Campaign, Participant
 from django.shortcuts import get_object_or_404
 # Create your views here.
 
-def listOfCampaigns(request):
+def list_of_campaigns(request):
     campaigns = Campaign.objects.all()
     context = {'campaigns': campaigns}
     return render(request, 'campaigns/home.html', context)
