@@ -18,12 +18,12 @@ from django.conf import settings
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from users import views as users_views
+from campaigns import views as campaign_views
 
 urlpatterns = [
-    path('', include('campaigns.urls')),
+    path('', campaign_views.list_of_campaigns, name='list_of_campaigns'),
     path('admin/', admin.site.urls),
     path('campaigns/', include('campaigns.urls')),
     path('users/', include('django.contrib.auth.urls')),
     path('users/signup/', users_views.signup, name='signup'),
-    
 ]

@@ -18,7 +18,7 @@
             {% for campaign in campaigns %}
             <li>
                 <a href={% url 'campaigns:campaign_details' campaign.id %}>
-                {{ campaign.Campaign_Name }}
+                {{ campaign.title }}
                 </a>
             </li>
             {% endfor %}
