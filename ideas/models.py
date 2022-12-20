@@ -1,16 +1,14 @@
 from django.db import models
-from campaigns.models import Campaign
-from comments.models import Comment
-from django.contrib.auth.models import User
+#import campaigns.models 
+#import comments.models 
+#import participants.models 
 
 class Idea(models.Model):
-    campaign = models.ForeignKey(Campaign)
+    #campaign = models.ForeignKey(Campaign, on_delete=models.SET_DEFAULT)
+    #auther = 
     title = models.CharField(max_length=50)
     descrption = models.TextField(max_length=250)
-    liked_by = models.ManyToManyField(User)
-    likes_number = liked_by.count()
-    disliked_by = models.ManyToManyField(User)
-    dislikes_number = disliked_by.count()
+    #liked_by = models.ManyToManyField(Participant)
     
     def __str__(self):
         return self.descrption

@@ -15,10 +15,10 @@ class Migration(migrations.Migration):
             name='Campaign',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('Campaign_Name', models.CharField(max_length=50)),
-                ('Description', models.TextField(max_length=250)),
-                ('Start_Date', models.DateField()),
-                ('End_Date', models.DateField()),
+                ('title', models.CharField(max_length=50)),
+                ('description', models.TextField(max_length=250)),
+                ('start_date', models.DateField()),
+                ('end_date', models.DateField()),
             ],
         ),
     ]

@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Campaign, Participant
+#from .models import Participant
+from .models import Campaign
 from django.shortcuts import get_object_or_404
 # Create your views here.
 
