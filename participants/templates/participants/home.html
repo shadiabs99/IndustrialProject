@@ -1,0 +1,29 @@
+
+
+{% extends "campaigns/base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang-"en" dir-"Itr">
+   <head>
+        <meta charset="utf-8">
+        <title>My participants</title>
+    </head>
+    <body>
+        
+        <h1>These are all your participants: </h1>
+
+        <ul>
+            {% for participant in participants %}
+            <li>
+                <a href={% url 'participants:participant_details' participant.id %}>
+                {{ participant.name }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+
+    </body> 
+</html>
+{% endblock %}

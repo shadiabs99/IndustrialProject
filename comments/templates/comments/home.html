@@ -1,0 +1,29 @@
+
+
+{% extends "campaigns/base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang-"en" dir-"Itr">
+   <head>
+        <meta charset="utf-8">
+        <title>My Campaigns</title>
+    </head>
+    <body>
+        
+        <h1>These are all Comments: </h1>
+
+        <ul>
+            {% for comment in comments %}
+            <li>
+                <a href={% url 'comments:comment_detail' comment.id %}>
+                {{ comment.content }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+
+    </body> 
+</html>
+{% endblock %}

@@ -7,4 +7,4 @@ class Comment(models.Model):
     #liked_by = models.ManyToManyField(Participant)
     
     def __str__(self):
-        return self.Participant_Name
+        return self.content
