@@ -8,7 +8,7 @@ class Campaign(models.Model):
     description = models.TextField(max_length=250)
     start_date = models.DateField()
     end_date = models.DateField()
-    image = models.ImageField(upload_to =f'images/')
+    image = models.ImageField(null=True, blank=True, upload_to ="images/")
     token = models.CharField(max_length=10)
     
     def __str__(self):
