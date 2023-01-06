@@ -1,10 +1,12 @@
 from django.db import models
-#from campaigns.models import Participant
+from participants.models import Participant
+from ideas.models import Idea
+
 
 class Comment(models.Model):
-    #auther = models.ForeignKey(Participant, on_delete=models.SET_DEFAULT)
+    auther = models.ForeignKey(Participant, on_delete=models.CASCADE, related_name="comment_auther")
     content = models.TextField(max_length=250)
-    #liked_by = models.ManyToManyField(Participant)
+    idea = models.ForeignKey(Idea, on_delete=models.CASCADE, related_name="comment_idea")
     
     def __str__(self):
-        return self.Participant_Name
+        return self.content

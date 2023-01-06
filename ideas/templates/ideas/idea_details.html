@@ -1,0 +1,26 @@
+{% extends "campaigns/base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang-"en" dir-"Itr">
+   <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>Details for Idea:</h1>
+        <a href={% url 'ideas:idea_delete' idea.id %}>
+            Delete this idea
+            </a>
+        <br><br><br>
+        <h1>{{ idea.title }} </h1>
+        <h2>{{ idea.description }} </h2>
+
+        <form class="" method="post">
+            {% csrf_token %} 
+           {{form.as_p}}
+           <button type="submit" name="button">Update Idea</button>
+       </form>
+       
+    </body> 
+</html>
+{% endblock %}

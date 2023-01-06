@@ -1,9 +1,7 @@
 from django.shortcuts import render
 from .forms import CampaignForm
-#from .models import Participant
 from .models import Campaign
 from django.shortcuts import get_object_or_404, redirect
-# Create your views here.
 
 def list_of_campaigns(request):
     campaigns = Campaign.objects.all()

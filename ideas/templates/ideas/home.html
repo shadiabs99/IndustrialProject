@@ -1,0 +1,29 @@
+
+
+{% extends "campaigns/base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang-"en" dir-"Itr">
+   <head>
+        <meta charset="utf-8">
+        <title>My Ideas</title>
+    </head>
+    <body>
+        
+        <h1>These are all your Ideas: </h1>
+
+        <ul>
+            {% for idea in ideas %}
+            <li>
+                <a href={% url 'ideas:idea_details' idea.id %}>
+                {{ idea.title }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+
+    </body> 
+</html>
+{% endblock %}

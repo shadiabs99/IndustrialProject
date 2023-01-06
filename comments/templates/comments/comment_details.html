@@ -1,0 +1,27 @@
+{% extends "campaigns/base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang-"en" dir-"Itr">
+   <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>Details for Comment:</h1>
+        <a href={% url 'comments:comment_delete' comment.id %}>
+            Delete this comment
+            </a>
+        <br><br><br>
+        <h1>Written by: {{ comment.auther }} </h1>
+        <h2>For Idea: {{ comment.idea }} </h2>
+        <h2>content: {{ comment.content }} </h2>
+
+        <form class="" method="post">
+            {% csrf_token %} 
+           {{form.as_p}}
+           <button type="submit" name="button">Update Comment</button>
+       </form>
+       
+    </body> 
+</html>
+{% endblock %}

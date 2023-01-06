@@ -1,14 +1,14 @@
 from django.db import models
-#import campaigns.models 
-#import comments.models 
-#import participants.models 
+from campaigns.models import Campaign
+from participants.models import Participant
+from django.contrib.auth.models import User
 
 class Idea(models.Model):
-    #campaign = models.ForeignKey(Campaign, on_delete=models.SET_DEFAULT)
-    #auther = 
+    campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name="idea_campaign")
+    auther = models.ForeignKey(Participant, on_delete=models.CASCADE, related_name="idea_auther")
     title = models.CharField(max_length=50)
     descrption = models.TextField(max_length=250)
-    #liked_by = models.ManyToManyField(Participant)
+    url = models.URLField()
     
     def __str__(self):
         return self.descrption
