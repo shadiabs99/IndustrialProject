@@ -41,3 +41,13 @@ def campaign_delete(request, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)
     campaign.delete()
     return redirect('campaigns:list_of_campaigns')
+
+def campaign_update(request, campaign_id):
+    campaign = get_object_or_404(Campaign, id=campaign_id)
+    try:    
+        form = CampaignForm(request.POST, instance=campaign)
+        form.save()
+        return redirect('campaigns:list_of_campaigns')
+    except ValueError:
+        context = {'form': CampaignForm(), 'error': 'Bad data try again'}    
+        return render(request, 'campaigns/campaign_details.html', context)

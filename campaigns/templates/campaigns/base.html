@@ -50,15 +50,11 @@
                 </ul>
               </li>
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
           </div>
         </div>
       </nav>
       {% if user.is_authenticated %}
-      Logeed in {{ user.username }} <a href={% url 'logout' %}>Logout</a>
+      Logged in {{ user.username }} <a href={% url 'logout' %}>Logout</a>
     {% else %}
       Logged Out <a href={% url 'login' %}>Login</a> or <a href={% url 'signup' %}>SignUp</a>
     {% endif %}

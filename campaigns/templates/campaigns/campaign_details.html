@@ -2,6 +2,7 @@
 {% block content %}
 <!DOCTYPE html>
 <html lang-"en" dir-"Itr">
+    <br>
    <head class="campaign_banner">
     {% load static %}
     <link rel="stylesheet" href="{% static 'campaign_details.css' %}"> 
@@ -9,7 +10,9 @@
     <meta charset="utf-8">
     {% if campaign.image %}
         
-    <img src="{{ campaign.image.url }} " >
+    <img src="{{ campaign.image.url }} "
+    width="600" 
+    height="500" >
     {% endif %}
     </head>
     <body>
@@ -21,7 +24,7 @@
         </div>
 
         <div class="roles">
-            <h3> NOT DEFINED YET </h3>
+            <h3> This Campaign is made by: {{ campaign.author.name }} </h3> <!-- why author? not working  -->
         </div>
     </div>
     <br><br>
@@ -34,11 +37,8 @@
     </div>
     <br><br><br><br><br><br><br><br>
     <!-- WE SHOULD MOVE IT TO ANOTHER LOCATION -->
-        <form class="" method="post">
-            {% csrf_token %} 
-           {{form.as_p}}
-           <button type="submit" name="button">Update Campaign</button>
-       </form>
+  <!--  <a href=        //FIX - ADD UPDATE CAMPAIGN 
+        </a>   -->
     <!-- UNTIL HERE -->
        <a href={% url 'campaigns:campaign_delete' campaign.id %}>
         Delete this campaign

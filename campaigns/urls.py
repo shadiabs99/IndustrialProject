@@ -8,4 +8,5 @@ urlpatterns = [
     path('details/<int:campaign_id>', views.campaign_details, name='campaign_details'),
     path('create/', views.campaign_create, name='campaign_create'),
     path('delete/<int:campaign_id>', views.campaign_delete, name='campaign_delete'),
+    path('update/<int:campaign_id>', views.campaign_update, name='campaign_update'),
 ]

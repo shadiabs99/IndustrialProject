@@ -1,5 +1,3 @@
-
-
 {% extends "campaigns/base.html" %}
 
 {% block content %}
@@ -7,23 +5,44 @@
 <!DOCTYPE html>
 <html lang-"en" dir-"Itr">
    <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <meta charset="utf-8">
         <title>My Campaigns</title>
     </head>
     <body>
         
         <h1>These are all your Campaigns: </h1>
-
-        <ul>
+        <div class="campiagns_layout">
             {% for campaign in campaigns %}
-            <li>
-                <a href={% url 'campaigns:campaign_details' campaign.id %}>
-                {{ campaign.title }}
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
+            <div class="campaign">
+                {% if campaign.image %}
+        
+                <img class="campaign_image" 
+                src="{{ campaign.image.url }} ">
+                {% endif %}
 
+                <div class="campaign_description">
+                {{ campaign.description }}
+                </div>
+
+                <div class="campaign_info">
+                <div>
+                    <i class="material-icons">thumb_up</i>
+                    310
+                </div>
+                     <a href={% url 'campaigns:campaign_details' campaign.id %}>
+                        {{ campaign.title }}
+                     </a>
+                    
+                </div>
+                
+                
+            </div>
+            {% endfor %}
+        </div>
+        
     </body> 
 </html>
 {% endblock %}
