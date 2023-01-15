@@ -35,15 +35,9 @@
             <span class="icon">Like</span>
           </button>
     </div>
-    <br><br><br><br><br><br><br><br>
-    <!-- WE SHOULD MOVE IT TO ANOTHER LOCATION -->
-  <!--  <a href=        //FIX - ADD UPDATE CAMPAIGN 
-        </a>   -->
-    <!-- UNTIL HERE -->
-       <a href={% url 'campaigns:campaign_delete' campaign.id %}>
-        Delete this campaign
-        </a>
-       
+    <a href="http://127.0.0.1:8000/update/{{campaign.id}}" data-role="button" data-inline="true">Update Campaign</a>
+        <br>
+    <a href={% url 'campaigns:campaign_delete' campaign.id %} data-role="button" data-inline="true">Delete Campaign</a>
     </body> 
 </html>
 {% endblock %}
