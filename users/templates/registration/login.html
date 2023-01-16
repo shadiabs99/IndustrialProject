@@ -1,8 +1,10 @@
 {% extends "campaigns/base.html" %}
 {% block content %}
 {% if form.errors %}
+<br>
 <p>Your user password didn;t match</p>
 {% endif %}
+<br>
 <form  method="post" %>
   {% csrf_token %}
   {{ form.as_p}}

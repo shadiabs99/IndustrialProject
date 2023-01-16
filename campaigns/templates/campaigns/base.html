@@ -17,14 +17,14 @@
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="">Intel Innovation</a>
+          <a class="navbar-brand" href="/">Intel Innovation</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">About us</a>
+                <a class="nav-link active" aria-current="page" href="about_us">About us</a>
               </li>
             
               <li class="nav-item dropdown">
@@ -33,31 +33,30 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="http://127.0.0.1:8000/">Show all campaigns</a></li>
-                  <li><a class="dropdown-item" href="#">Show top campaigns</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Add a new campaign</a></li>
+                  <li><a class="dropdown-item" href="add_new_campaign">Add a new campaign</a></li>
                 </ul>
               </li>
-              <li class="nav-item dropdown">
+              {% comment %} <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Ideas
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="#">Show all ideas</a></li>
-                  <li><a class="dropdown-item" href="#">Show top ideas</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="#">Add a new idea</a></li>
                 </ul>
-              </li>
+              </li> {% endcomment %}
             </ul>
+                {% if user.is_authenticated %}
+                Logged in as {{ user.username }} &nbsp;<a href={% url 'logout' %}>Logout</a>
+              {% else %}
+                Logged Out &nbsp;<a href={% url 'login' %}>Login&nbsp;</a> or &nbsp;<a href={% url 'signup' %}>SignUp</a>
+              {% endif %}
+            
           </div>
         </div>
       </nav>
-      {% if user.is_authenticated %}
-      Logged in {{ user.username }} <a href={% url 'logout' %}>Logout</a>
-    {% else %}
-      Logged Out <a href={% url 'login' %}>Login</a> or <a href={% url 'signup' %}>SignUp</a>
-    {% endif %}
 
 
     {% block content %}

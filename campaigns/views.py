@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import CampaignForm
 from .models import Campaign
 from django.shortcuts import get_object_or_404, redirect
+from participants.models import Participant
 
 def list_of_campaigns(request):
     campaigns = Campaign.objects.all()
@@ -43,11 +44,10 @@ def campaign_delete(request, campaign_id):
     return redirect('campaigns:list_of_campaigns')
 
 def campaign_update(request, campaign_id):
-    campaign = get_object_or_404(Campaign, id=campaign_id)
-    try:    
-        form = CampaignForm(request.POST, instance=campaign)
-        form.save()
-        return redirect('campaigns:list_of_campaigns')
-    except ValueError:
-        context = {'form': CampaignForm(), 'error': 'Bad data try again'}    
-        return render(request, 'campaigns/campaign_details.html', context)
+    campaign = Campaign.objects.get(id=campaign_id)
+    form = CampaignForm(instance=campaign)
+    return render(request, 'campaigns/campaign_update.html', {'form': form})
+
+def about_us(request):
+    return render(request, 'campaigns/about_us.html')
+

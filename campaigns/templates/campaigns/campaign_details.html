@@ -24,20 +24,21 @@
         </div>
 
         <div class="roles">
-            <h3> This Campaign is made by: {{ campaign.author.name }} </h3> <!-- why author? not working  -->
+            <h3> This Campaign is made by: {{ campaign.auther }} </h3>
         </div>
     </div>
     <br><br>
 
     <div class="statistics">
         <button id="like">
+
             <i class="fa fa-thumbs-up"></i>
             <span class="icon">Like</span>
           </button>
     </div>
-    <a href="http://127.0.0.1:8000/update/{{campaign.id}}" data-role="button" data-inline="true">Update Campaign</a>
+    <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update" data-role="button" data-inline="true">Update Campaign</a>
         <br>
-    <a href={% url 'campaigns:campaign_delete' campaign.id %} data-role="button" data-inline="true">Delete Campaign</a>
+    <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/delete" data-role="button" data-inline="true">Delete Campaign</a>
     </body> 
 </html>
 {% endblock %}
