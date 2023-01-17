@@ -7,9 +7,9 @@ class Idea(models.Model):
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name="idea_campaign")
     auther = models.ForeignKey(Participant, on_delete=models.CASCADE, related_name="idea_auther")
     title = models.CharField(max_length=50)
-    descrption = models.TextField(max_length=250)
+    description = models.TextField(max_length=250)
     url = models.URLField()
     
     def __str__(self):
-        return self.descrption
+        return self.description
 

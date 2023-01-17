@@ -1,0 +1,43 @@
+{% extends "campaigns/base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang-"en" dir-"Itr">
+   <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta charset="utf-8">
+        <title>Comments</title>
+    </head>
+    <body>
+        <br>
+        <h1>Comments:</h1>
+        <br>
+        <div class="comments_layout">
+            {% for comment in comments %}
+            <div class="comment">
+                <div class="comment_content">
+                {{ comment.content }}
+                </div>
+
+                <div class="comment_info">
+                <div>
+                    <i class="material-icons">thumb_up</i>
+                    {{ comment.number_of_likes}}
+                </div>
+                     <a href={% url 'comments:comment_details' comment.id %}>
+                        {{ comment.content }}
+                     </a>
+                    
+                </div>
+                
+                
+            </div>
+            {% endfor %}
+        </div>
+        
+    </body> 
+</html>
+{% endblock %}

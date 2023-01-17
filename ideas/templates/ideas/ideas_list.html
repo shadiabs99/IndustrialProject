@@ -1,0 +1,43 @@
+{% extends "campaigns/base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang-"en" dir-"Itr">
+   <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta charset="utf-8">
+        <title>My Ideas</title>
+    </head>
+    <body>
+        <br>
+        <h1>Ideas:</h1>
+        <br>
+        <div class="ideas_layout">
+            {% for idea in ideas %}
+            <div class="idea">
+                <div class="idea_description">
+                {{ idea.description }}
+                </div>
+
+                <div class="idea_info">
+                <div>
+                    <i class="material-icons">thumb_up</i>
+                    {{ idea.number_of_likes}}
+                </div>
+                     <a href={% url 'ideas:idea_details' idea.id %}>
+                        {{ idea.title }}
+                     </a>
+                    
+                </div>
+                
+                
+            </div>
+            {% endfor %}
+        </div>
+        
+    </body> 
+</html>
+{% endblock %}

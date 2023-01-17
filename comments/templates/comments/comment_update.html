@@ -1,0 +1,14 @@
+{% extends "campaigns/base.html" %}
+{% block content %}
+
+<h1> Update your comment </h1>
+
+{{ error }}
+
+<form action="" method="comment">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+ </form>
+
+{% endblock %}

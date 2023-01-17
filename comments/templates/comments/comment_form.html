@@ -1,14 +1,14 @@
 {% extends "campaigns/base.html" %}
 {% block content %}
 
-<h1> Comment on Idea </h1>
+<h1> Create a new comment </h1>
 
 {{ error }}
 
 <form class="" method="POST">
      {% csrf_token %} 
     {{form.as_p}}
-    <button type="submit" name="button">New Comment</button>
+    <button type="submit" name="button">New comment</button>
 </form>
 
 {% endblock %}

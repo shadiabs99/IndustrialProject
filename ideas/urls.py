@@ -1,11 +1,13 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.contrib.auth import views as auth_views
 app_name = 'ideas'
 
 urlpatterns = [
-    path('', views.list_of_ideas, name='list_of_campaigns'),
-    path('details/<int:idea_id>', views.idea_details, name='idea_details'),
+    path('', views.list_of_ideas, name='list_of_ideas'),
+    path('<int:idea_id>/', views.idea_details, name='idea_details'),
     path('create/', views.idea_create, name='idea_create'),
-    path('delete/<int:idea_id>', views.idea_delete, name='idea_delete'),
+    path('<int:idea_id>/delete/', views.idea_delete, name='idea_delete'),
+    path('<int:idea_id>/update/', views.idea_update, name='idea_update'),
+    path('<int:idea_id>/comments', include('comments.urls'))
 ]
