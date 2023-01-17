@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import CampaignForm
-from .models import Campaign
+from .models import Campaign, Like
 from django.shortcuts import get_object_or_404, redirect
 from participants.models import Participant
 
@@ -11,10 +11,11 @@ def list_of_campaigns(request):
 
 def campaign_details(request, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)
+    user = request.user
     
     if request.method == 'GET':
         form = CampaignForm(instance=campaign)
-        context =  {'form': form, 'campaign': campaign}
+        context =  {'form': form, 'campaign': campaign, 'user': user}
         return render(request, 'campaigns/campaign_details.html', context)
     else:
         try:
@@ -51,3 +52,22 @@ def campaign_update(request, campaign_id):
 def about_us(request):
     return render(request, 'campaigns/about_us.html')
 
+def campaign_like(request, campaign_id):
+    user = request.user
+    if request.method == 'POST':
+        
+        campaign = Campaign.objects.get(id=campaign_id)
+        
+        if user in campaign.number_of_likes.all():
+            campaign.number_of_likes.remove(user)
+        else:
+            campaign.number_of_likes.add(user)    
+        like, created = Like.objects.get_or_create(user=user, campaign_id=campaign_id)
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+        like.save()
+        
+    return redirect('campaigns:campaign_details', campaign_id)

@@ -30,11 +30,20 @@
     <br><br>
 
     <div class="statistics">
-        <button id="like">
 
-            <i class="fa fa-thumbs-up"></i>
-            <span class="icon">Like</span>
-          </button>
+        <form action="{% url 'campaigns:campaign-like' campaign.id %}" method='POST' >
+            {% csrf_token %}
+        <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
+        {% if user not in campaign.number_of_likes.all %}
+        
+        <button class="ui button positive" type= 'submit'>Like</button>
+         {% else%}
+        <button class="ui button negative" type='submit'>Unlike</button>
+
+        {% endif %}
+    </form>
+<strong>{{campaign.number_of_likes.all.count }} likes</strong>
+
     </div>
     <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update" data-role="button" data-inline="true">Update Campaign</a>
         <br>
