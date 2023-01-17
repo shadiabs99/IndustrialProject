@@ -41,8 +41,13 @@ def campaign_create(request):
         
 def campaign_delete(request, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)
-    campaign.delete()
-    return redirect('campaigns:list_of_campaigns')
+    user = request.user
+    context = {'auther': campaign.auther, 'user': user.username}
+    if user.username is campaign.auther:
+        campaign.delete()
+        return redirect('campaigns:list_of_campaigns')
+    else:
+        return render(request, 'campaigns/error.html', context)
 
 def campaign_update(request, campaign_id):
     campaign = Campaign.objects.get(id=campaign_id)
