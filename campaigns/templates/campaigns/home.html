@@ -21,7 +21,9 @@
                 {% if campaign.image %}
         
                 <a href={% url 'campaigns:campaign_details' campaign.id %}>
-                    <img class="campaign_image" 
+                    <img class="campaign_image"
+                    height="300"
+                    width="300" 
                 src="{{ campaign.image.url }} ">
             </a>
                 {% endif %}
@@ -33,7 +35,7 @@
                 <div class="campaign_info">
                 <div>
                     <i class="material-icons">thumb_up</i>
-                    {{ campaign.number_of_likes.all.count}}
+                    {{ campaign.likes.all.count}}
                 </div>
                      <a href={% url 'campaigns:campaign_details' campaign.id %}>
                         {{ campaign.title }}

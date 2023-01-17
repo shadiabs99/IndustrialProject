@@ -10,23 +10,23 @@ class Campaign(models.Model):
     end_date = models.DateField()
     image = models.ImageField(null=True, blank=True, upload_to ="images/")
     token = models.CharField(max_length=10)
-    number_of_likes = models.ManyToManyField(User, default=None, blank=True, related_name="likes")
+    likes = models.ManyToManyField(User, default=None, blank=True, related_name="likes")
     
     def __str__(self):
         return self.title
     
     @property
     def num_likes(self):
-        return self.number_of_likes.all().count()
+        return self.likes.all().count()
 
 LIKE_CHOICES = (
     ('Like', 'Like'), 
     ('Unlike', 'Unlike')
 )
 class Like (models.Model):
-    user = models. ForeignKey (User, on_delete=models.CASCADE)
-    campaign = models. ForeignKey (Campaign, on_delete=models.CASCADE)
-    value = models. CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
     
     def __str__(self):
         return str(self.campaign)

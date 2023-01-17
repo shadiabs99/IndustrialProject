@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import CampaignForm
 from .models import Campaign, Like
 from django.shortcuts import get_object_or_404, redirect
-from participants.models import Participant
+from django.contrib.auth.decorators import login_required
 
 def list_of_campaigns(request):
     campaigns = Campaign.objects.all()
@@ -26,7 +26,7 @@ def campaign_details(request, campaign_id):
             context = {'form': CampaignForm(), 'error': 'Bad data try again'}
             return render(request, 'campaigns/campaign_details.html', context)
     
-
+@login_required
 def campaign_create(request):
     if request.method == 'GET':
         return render(request, 'campaigns/campaign_form.html', {'form': CampaignForm()})
@@ -58,10 +58,10 @@ def campaign_like(request, campaign_id):
         
         campaign = Campaign.objects.get(id=campaign_id)
         
-        if user in campaign.number_of_likes.all():
-            campaign.number_of_likes.remove(user)
+        if user in campaign.likes.all():
+            campaign.likes.remove(user)
         else:
-            campaign.number_of_likes.add(user)    
+            campaign.likes.add(user)    
         like, created = Like.objects.get_or_create(user=user, campaign_id=campaign_id)
         if not created:
             if like.value == 'Like':

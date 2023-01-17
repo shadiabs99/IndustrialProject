@@ -25,7 +25,7 @@
                 <div class="comment_info">
                 <div>
                     <i class="material-icons">thumb_up</i>
-                    {{ comment.number_of_likes}}
+                    {{ comment.likes}}
                 </div>
                      <a href={% url 'comments:comment_details' comment.id %}>
                         {{ comment.content }}

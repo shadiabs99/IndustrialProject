@@ -41,7 +41,7 @@
                 <form action="{% url 'campaigns:campaign-like' campaign.id %}" method='POST' >
                     {% csrf_token %}
                 <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
-                {% if user not in campaign.number_of_likes.all %}
+                {% if user not in campaign.likes.all %}
                 
                 <button class="material-icons" type= 'submit'>thumb_up</button>
                  {% else%}
@@ -49,10 +49,16 @@
         
                 {% endif %}
             </form>
-        <strong>{{campaign.number_of_likes.all.count }} likes</strong>
+        <strong>{{ campaign.likes.all.count }} likes</strong>
              </div>
-            <div id="ideas"> ideas</div>
+            <div id="ideas">
+            <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update" data-role="button" data-inline="true">Update Campaign</a>
+         <br>
+            <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/delete" data-role="button" data-inline="true">Delete Campaign</a>
+            </div>
         </div>
+
+        
     
 
     {% endblock %}
