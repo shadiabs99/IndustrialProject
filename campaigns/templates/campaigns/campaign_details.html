@@ -3,51 +3,56 @@
 <!DOCTYPE html>
 <html lang-"en" dir-"Itr">
     <br>
-   <head class="campaign_banner">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'campaign_details.css' %}"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta charset="utf-8">
-    {% if campaign.image %}
+    <head class="campaign_banner">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'campaign_details.css' %}"> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta charset="utf-8">
+        </head>
+    
+        <div class="container">
+
+
+            <div id="campaign-banner">
+                {% if campaign.image %}
         
-    <img src="{{ campaign.image.url }} "
-    width="600" 
-    height="500" >
-    {% endif %}
-    </head>
-    <body>
-    <div class="grid-container">
-        <div class="title-and-description">
-            <strong> <h1>{{ campaign.title }} </h1> </strong>
-            <h3>{{ campaign.description }} </h3>
-            <h2>{{ campaign.start_date }} {{ campaign.end_date }}</h2> <!-- should it be here?-->
-        </div>
+                <img src="{{ campaign.image.url }} "
+                width="900" 
+                height="500" >
+                {% endif %}
+            </div>
 
-        <div class="roles">
-            <h3> This Campaign is made by: {{ campaign.auther }} </h3>
-        </div>
-    </div>
-    <br><br>
 
-    <div class="statistics">
+            <div id="title-and-description">
+                <strong> <h1>{{ campaign.title }} </h1> </strong>
+                <h3>{{ campaign.description }} </h3>
+                <h2>{{ campaign.start_date }} {{ campaign.end_date }}</h2>
+            </div>
 
-        <form action="{% url 'campaigns:campaign-like' campaign.id %}" method='POST' >
-            {% csrf_token %}
-        <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
-        {% if user not in campaign.number_of_likes.all %}
+
+            <div id="author">
+                <h3> This Campaign is made by: {{ campaign.auther }} </h3>
+            </div>
+
+
+            <div id="statistics"> 
+                <form action="{% url 'campaigns:campaign-like' campaign.id %}" method='POST' >
+                    {% csrf_token %}
+                <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
+                {% if user not in campaign.number_of_likes.all %}
+                
+                <button class="material-icons" type= 'submit'>thumb_up</button>
+                 {% else%}
+                <button class="material-icons" type='submit'>thumb_down</button>
         
-        <button class="ui button positive" type= 'submit'>Like</button>
-         {% else%}
-        <button class="ui button negative" type='submit'>Unlike</button>
+                {% endif %}
+            </form>
+        <strong>{{campaign.number_of_likes.all.count }} likes</strong>
+             </div>
+            <div id="ideas"> ideas</div>
+        </div>
+    
 
-        {% endif %}
-    </form>
-<strong>{{campaign.number_of_likes.all.count }} likes</strong>
-
-    </div>
-    <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update" data-role="button" data-inline="true">Update Campaign</a>
-        <br>
-    <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/delete" data-role="button" data-inline="true">Delete Campaign</a>
-    </body> 
-</html>
-{% endblock %}
+    {% endblock %}

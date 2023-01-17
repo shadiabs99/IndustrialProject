@@ -33,7 +33,7 @@
                 <div class="campaign_info">
                 <div>
                     <i class="material-icons">thumb_up</i>
-                    {{ campaign.number_of_likes}}
+                    {{ campaign.number_of_likes.all.count}}
                 </div>
                      <a href={% url 'campaigns:campaign_details' campaign.id %}>
                         {{ campaign.title }}
