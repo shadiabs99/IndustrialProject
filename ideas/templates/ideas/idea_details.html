@@ -12,9 +12,8 @@
             Delete this idea
             </a>
         <br><br><br>
-        <h1>{{ idea.title }} </h1>
-        <h2>{{ idea.description }} </h2>
-
+        <h1>{{ idea.idea_title }} </h1>
+        <h2>{{ idea.idea_description }} </h2>
         <form class="" method="post">
             {% csrf_token %} 
            {{form.as_p}}

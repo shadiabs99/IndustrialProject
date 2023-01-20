@@ -4,4 +4,4 @@ from .models import Idea
 class IdeaForm(ModelForm):
     class Meta:
         model = Idea
-        fields = ['title', 'description', 'url']
+        fields = ['idea_title', 'idea_description', 'idea_url']
