@@ -3,6 +3,8 @@ from .forms import CampaignForm
 from .models import Campaign, Like, Participant
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+import ideas.views
+from ideas.models import Idea
 
 def list_of_campaigns(request):
     campaigns = Campaign.objects.all()
@@ -12,10 +14,10 @@ def list_of_campaigns(request):
 def campaign_details(request, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)
     user = request.user
-    
+    ideas = Idea.objects.all().filter(campaign_id=campaign_id)
     if request.method == 'GET':
         form = CampaignForm(instance=campaign)
-        context =  {'form': form, 'campaign': campaign, 'user': user}
+        context =  {'form': form, 'campaign': campaign, 'user': user, 'ideas': ideas}
         return render(request, 'campaigns/campaign_details.html', context)
     else:
         try:
@@ -49,23 +51,10 @@ def campaign_delete(request, campaign_id):
     else:
         return render(request, 'campaigns/permission_error.html')
     
-
-# def campaign_update(request, campaign_id):
-#     campaign = Campaign.objects.get(id=campaign_id)
-#     form = CampaignForm(instance=campaign)
-#     if form.is_valid():
-
-#         # deleting old uploaded image.
-#         image_path = campaign.image.path
-#         if os.path.exists(image_path):
-#             os.remove(image_path)
-
-#         # the `form.save` will also update your newest image & path.
-#         form.save()
-#         return redirect("list_of_campaigns")
-#     else:
-#         context = {'campaign': campaign, 'form': form}
-#         return render(request, 'campaigns/campaign_update.html', context)
+def request_page(request):
+    if(request.GET.get('mybtn')):
+        mypythoncode.mypythonfunction( int(request.GET.get('mytextbox')) )
+        return render(request,'ideas/ideas_list.html')
 
 def campaign_update(request, campaign_id):
     campaign = Campaign.objects.get(id=campaign_id)

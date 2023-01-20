@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from users import views as users_views
 from campaigns import views as campaign_views
+from ideas import views as idea_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 
@@ -32,7 +33,7 @@ urlpatterns = [
     path('users/signup/', users_views.signup, name='signup'),
     path('about_us', campaign_views.about_us, name='about_us'),
     path('create', campaign_views.campaign_create, name='campaign_create'),
-    #path('image_upload/', campaign_views.campaign_image_view, name='image_upload'),
+    path('campaigns/<int:campaign_id>/ideas/create/', idea_views.idea_create, name='idea-create'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

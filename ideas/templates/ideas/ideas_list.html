@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <meta charset="utf-8">
         <title>My Ideas</title>
-        <h1> {{request.path}} </h1>
+        <h1> {{campaign_id}} </h1>
     </head>
     <body>
         <br>
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="idea_info">
-                     <a href={% url 'ideas:idea_details' idea.id %}>
+                     <a href={% url 'http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/' %}>
                         {{ idea.idea_title }}
                      </a>
                     

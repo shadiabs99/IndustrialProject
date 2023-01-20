@@ -3,11 +3,12 @@ from .forms import IdeaForm
 from .models import Idea
 from django.shortcuts import get_object_or_404, redirect
 from campaigns.models import Campaign
+import re
 
 def list_of_ideas(request, campaign_id):
     ideas = Idea.objects.all().filter(campaign_id=campaign_id)
     context = {'ideas': ideas}
-    return render(request, 'ideas/ideas_list.html', context)
+    return render(request, 'campaigns/campaign_details.html', context)
 
 def idea_details(request, idea_id, campaign_id):
     idea = get_object_or_404(Idea, id=idea_id)
@@ -28,22 +29,14 @@ def idea_details(request, idea_id, campaign_id):
 
 def idea_create(request, campaign_id):
     user = request.user
+    
     if request.method == 'GET':
-        return render(request, 'ideas/idea_form.html', {'form': IdeaForm(initial={'campaign_id': campaign_id})})
+        form = IdeaForm(initial={'campaign_id': campaign_id})
+        return render(request, 'ideas/idea_form.html', {'form': form})
     else:
         try:
             form = IdeaForm(request.POST, request.FILES, initial={'campaign_id': campaign_id})
-            # field_name = 'campaign'
-            # obj = Idea.objects.first()
-            # field_object = Idea._meta.get_field(field_name)
-            # field_value = field_object.value_from_object(obj)
-            # field_value = campaign
             form.save()
-            # obj = Idea.objects.first()
-            # field_object = Idea._meta.get_field('id')
-            # idea = get_object_or_404(Idea, id=field_object
-            # idea.campaign_id = campaign_id
-            # idea.save()
             return redirect('campaigns:ideas:list_of_ideas', campaign_id)
         except ValueError:
             context = {'form': IdeaForm(), 'error': 'Bad data try again'}
@@ -65,9 +58,7 @@ def idea_update(request, idea_id, campaign_id):
     if request.method == 'POST':
         form = IdeaForm(request.POST, instance=idea)
         if form.is_valid():
-            # update the existing `Band` in the database
             form.save()
-            # redirect to the detail page of the `Band` we just updated
             return redirect('ideas:list_of_ideas', campaign_id)
     else:
         form = IdeaForm(instance=idea)

@@ -2,6 +2,11 @@ from django.forms import ModelForm
 from .models import Idea
 
 class IdeaForm(ModelForm):
+    
+    def __init__(self, *args, **kwargs): 
+        super(IdeaForm, self).__init__(*args, **kwargs)                       
+        self.fields['campaign_id'].disabled = True
     class Meta:
         model = Idea
-        fields = ['idea_title', 'idea_description', 'idea_url']
+        fields = ['idea_title', 'idea_description', 'idea_url', 'campaign_id']
+        

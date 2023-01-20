@@ -65,6 +65,30 @@
         <strong>{{ campaign.likes.all.count }} likes</strong>
              </div>
             <div id="ideas">
+                <body>
+                    <br>
+                    <h1>Ideas:</h1>
+                    <br>
+                    <div class="ideas_layout">
+                        {% for idea in ideas %}
+                        <div class="idea">
+                            <div class="idea_description">
+                            {{ idea.idea_description }}
+                            </div>
+            
+                            <div class="idea_info">
+                                 <a href={% url 'ideas:idea_details' idea.id %}>
+                                    {{ idea.idea_title }}
+                                 </a>
+                                
+                            </div>
+                            
+                            
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                </body> 
             <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update" data-role="button" data-inline="true">Update Campaign</a>
          <br>
             <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/delete" data-role="button" data-inline="true">Delete Campaign</a>
