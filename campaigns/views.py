@@ -28,11 +28,12 @@ def campaign_details(request, campaign_id):
     
 @login_required
 def campaign_create(request):
+    user = request.user
     if request.method == 'GET':
         return render(request, 'campaigns/campaign_form.html', {'form': CampaignForm()})
     else:
         try:
-            form = CampaignForm(request.POST)
+            form = CampaignForm(request.POST, request.FILES)
             form.save()
             return redirect('campaigns:list_of_campaigns')
         except ValueError:
@@ -40,13 +41,48 @@ def campaign_create(request):
             return render(request, 'campaigns/campaign_form.html', context)
         
 def campaign_delete(request, campaign_id):
+    user = request.user
     campaign = get_object_or_404(Campaign, id=campaign_id)
-    campaign.delete()
-    return redirect('campaigns:list_of_campaigns')
+    if user.username == campaign.auther:
+        campaign.delete()
+        return redirect('campaigns:list_of_campaigns')
+    else:
+        return render(request, 'campaigns/permission_error.html')
+    
+
+# def campaign_update(request, campaign_id):
+#     campaign = Campaign.objects.get(id=campaign_id)
+#     form = CampaignForm(instance=campaign)
+#     if form.is_valid():
+
+#         # deleting old uploaded image.
+#         image_path = campaign.image.path
+#         if os.path.exists(image_path):
+#             os.remove(image_path)
+
+#         # the `form.save` will also update your newest image & path.
+#         form.save()
+#         return redirect("list_of_campaigns")
+#     else:
+#         context = {'campaign': campaign, 'form': form}
+#         return render(request, 'campaigns/campaign_update.html', context)
 
 def campaign_update(request, campaign_id):
     campaign = Campaign.objects.get(id=campaign_id)
-    form = CampaignForm(instance=campaign)
+
+    if request.method == 'POST':
+        form = CampaignForm(request.POST, instance=campaign)
+        if form.is_valid():
+            # update the existing `Band` in the database
+            image_path = campaign.image.path
+            if os.path.exists(image_path):
+                os.remove(image_path)
+            form.save()
+            # redirect to the detail page of the `Band` we just updated
+            return redirect('campaigns:list_of_campaigns', campaign.id)
+    else:
+        form = CampaignForm(instance=campaign)
+
     return render(request, 'campaigns/campaign_update.html', {'form': form})
 
 def about_us(request):
@@ -71,3 +107,21 @@ def campaign_like(request, campaign_id):
         like.save()
         
     return redirect('campaigns:campaign_details', campaign_id)
+
+def update_image(request, campaign_id):
+    campaign = Campaign.objects.get(id=campaign_id)
+    form = CampaignForm(request.POST, request.FILES, instance=campaign)
+
+    if form.is_valid():
+
+        # deleting old uploaded image.
+        image_path = campaign.image.image_document.path
+        if os.path.exists(image_path):
+            os.remove(image_path)
+
+        # the `form.save` will also update your newest image & path.
+        form.save()
+        return redirect("list_of_campaigns")
+    else:
+        context = {'campaign': campaign, 'form': form}
+        return render(request, 'campaigns/campaign_update.html', context)

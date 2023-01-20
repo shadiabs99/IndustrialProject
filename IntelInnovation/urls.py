@@ -31,7 +31,9 @@ urlpatterns = [
     path('users/', include('django.contrib.auth.urls')),
     path('users/signup/', users_views.signup, name='signup'),
     path('about_us', campaign_views.about_us, name='about_us'),
-    path('add_new_campaign', campaign_views.campaign_create, name='campaign_create'),
+    path('create', campaign_views.campaign_create, name='campaign_create'),
+    #path('image_upload/', campaign_views.campaign_image_view, name='image_upload'),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
