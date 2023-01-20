@@ -14,6 +14,8 @@ class Campaign(models.Model):
     token = models.CharField(max_length=10)
     
     likes = models.ManyToManyField(User, default=None, blank=True, related_name="likes")
+    participants = models.ManyToManyField(User, default=None, blank=True, related_name="campaign_participants")
+    #ideas = models.ManyToOneRel(User, default=None, blank=True, related_name="campaign_ideas")
     
     def __str__(self):
         return self.title
@@ -21,15 +23,32 @@ class Campaign(models.Model):
     @property
     def num_likes(self):
         return self.likes.all().count()
+    
+    @property
+    def num_participants(self):
+        return self.participants.all().count()
 
 LIKE_CHOICES = (
     ('Like', 'Like'), 
     ('Unlike', 'Unlike')
 )
+
+PARTICIPATE_CHOICES = (
+    ('Patrticipate', 'Patrticipate'), 
+    ('Withdraw', 'Withdraw')
+)
 class Like (models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE)
     value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
+    
+    def __str__(self):
+        return str(self.campaign)
+    
+class Participant (models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE)
+    value = models.CharField(choices=PARTICIPATE_CHOICES, default='Patrticipate', max_length=100)
     
     def __str__(self):
         return str(self.campaign)

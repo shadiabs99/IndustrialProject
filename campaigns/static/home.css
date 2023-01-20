@@ -5,7 +5,6 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     font-family: sans-serif;
-    position: relative;
 }
 
 .campaign{
@@ -15,7 +14,6 @@
 .campaign_image{
     width: 100%;
     display: block;
-    
 }
 
 .campaign_description{
@@ -41,8 +39,6 @@
     background: #eeeeee;
     color: #555555;
     font-size: 0.8em;
-    position: absolute;
-    bottom: 0;
 }
 
 .campaign_info i {

@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'ideas',
     'comments',
     'participants',
-    'author',
 ]
 
 MIDDLEWARE = [

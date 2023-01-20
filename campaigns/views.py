@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import CampaignForm
-from .models import Campaign, Like
+from .models import Campaign, Like, Participant
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 
@@ -105,7 +105,25 @@ def campaign_like(request, campaign_id):
             else:
                 like.value = 'Like'
         like.save()
+    return redirect('campaigns:campaign_details', campaign_id)
+
+def campaign_participate(request, campaign_id):
+    user = request.user
+    if request.method == 'POST':
         
+        campaign = Campaign.objects.get(id=campaign_id)
+        
+        if user in campaign.participants.all():
+            campaign.participants.remove(user)
+        else:
+            campaign.participants.add(user)    
+        participant, created = Participant.objects.get_or_create(user=user, campaign_id=campaign_id)
+        if not created:
+            if participant.value == 'Patrticipate':
+                participant.value = 'Withdraw'
+            else:
+                participant.value = 'Patrticipate'
+        participant.save()
     return redirect('campaigns:campaign_details', campaign_id)
 
 def update_image(request, campaign_id):

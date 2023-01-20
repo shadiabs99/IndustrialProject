@@ -51,6 +51,17 @@
         
                 {% endif %}
             </form>
+            <form action="{% url 'campaigns:campaign-participate' campaign.id %}" method='POST' >
+                {% csrf_token %}
+            <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
+            {% if user not in campaign.participants.all %}
+                
+                <button class="material-icons" type= 'submit'>group add</button>
+                 {% else%}
+                <button class="material-icons" type='submit'>person_remove</button>
+        
+                {% endif %}
+        </form>
         <strong>{{ campaign.likes.all.count }} likes</strong>
              </div>
             <div id="ideas">
