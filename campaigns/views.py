@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 import ideas.views
 from ideas.models import Idea
 from django.db.models import Count
+import os
 
 def list_of_campaigns(request):
     campaigns = Campaign.objects.all()
@@ -60,17 +61,14 @@ def request_page(request):
 
 def campaign_update(request, campaign_id):
     campaign = Campaign.objects.get(id=campaign_id)
+    form = CampaignForm(request.POST if request.POST else None, instance=campaign)
     if request.method == 'POST':
-        form = CampaignForm(request.POST, instance=campaign)
         if form.is_valid():
             image_path = campaign.image.path
             if os.path.exists(image_path):
                 os.remove(image_path)
             form.save()
-            return redirect('campaigns:list_of_campaigns', campaign.id)
-    else:
-        form = CampaignForm(instance=campaign)
-
+            return redirect('campaigns:campaign_details', campaign.id)    
     return render(request, 'campaigns/campaign_update.html', {'form': form})
 
 def about_us(request):

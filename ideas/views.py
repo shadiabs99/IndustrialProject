@@ -57,14 +57,11 @@ def idea_delete(request, idea_id, campaign_id):
     
 def idea_update(request, idea_id, campaign_id):
     idea = Idea.objects.get(id=idea_id)
+    form = IdeaForm(request.POST if request.POST else None, instance=idea)
     if request.method == 'POST':
-        form = IdeaForm(request.POST, instance=idea)
         if form.is_valid():
             form.save()
-            return redirect('ideas:list_of_ideas', campaign_id)
-    else:
-        form = IdeaForm(instance=idea)
-
+            return redirect('campaigns:campaign_details', campaign_id)
     return render(request, 'ideas/idea_update.html', {'form': form})
 
 def idea_like(request, idea_id, campaign_id):

@@ -54,15 +54,11 @@ def comment_delete(request, comment_id, campaign_id):
     
 def comment_update(request, comment_id, idea_id, campaign_id):
     comment = Comment.objects.get(id=comment_id)
-    idea = Idea.objects.get(id=idea_id)
+    form = CommentForm(request.POST if request.POST else None, instance=comment)
     if request.method == 'POST':
-        form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
-            return redirect('comments:list_of_comments', idea_id, campaign_id)
-    else:
-        form = CommentForm(instance=comment)
-
+        return redirect('campaigns:ideas:idea_details', campaign_id, idea_id)
     return render(request, 'comments/comment_update.html', {'form': form})
 
 def comment_like(request, comment_id, idea_id, campaign_id):
