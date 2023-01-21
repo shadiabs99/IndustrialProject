@@ -2,8 +2,9 @@ from django.shortcuts import render
 from .forms import IdeaForm
 from .models import Idea
 from django.shortcuts import get_object_or_404, redirect
-from campaigns.models import Campaign
+from campaigns.models import Campaign, Like
 from comments.models import Comment
+from django.db.models import Count
 
 import re
 
@@ -44,12 +45,12 @@ def idea_create(request, campaign_id):
         try:
             form = IdeaForm(request.POST, request.FILES, initial={'campaign_id': campaign_id})
             form.save()
-            return redirect('campaigns:ideas:list_of_ideas', campaign_id)
+            return redirect('campaigns:campaign_details', campaign_id)
         except ValueError:
             context = {'form': IdeaForm(), 'error': 'Bad data try again'}
             return render(request, 'ideas/idea_form.html', context)
         
-def idea_delete(request, idea_id):
+def idea_delete(request, idea_id, campaign_id):
     idea = get_object_or_404(Idea, id=idea_id)
     idea.delete()
     return redirect('ideas:list_of_ideas', campaign_id)

@@ -62,17 +62,15 @@
         
                 {% endif %}
             </form>
-            <form action="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/create/" method='POST' >
-                {% csrf_token %}
-            <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
-            {% if user not in campaign.participants.all %}
-                
-                <button class="material-icons" type= 'submit'>lightbulb</button>
-                 {% else%}
-                <button class="material-icons" type='submit'>person_remove</button>
         
-                {% endif %}
-            </form>
+            {% if user.is_authenticated and user in campaign.participants.all %}
+                
+            <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/create" data-role="button" data-inline="true" class="material-icons">lightbulb</a>
+        
+            {% endif %}
+            
+
+
         <strong>{{ campaign.likes.all.count }} likes</strong>
              </div>
             <div id="ideas">
