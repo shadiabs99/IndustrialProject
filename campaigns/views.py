@@ -5,10 +5,16 @@ from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 import ideas.views
 from ideas.models import Idea
+from django.db.models import Count
 
 def list_of_campaigns(request):
     campaigns = Campaign.objects.all()
     context = {'campaigns': campaigns}
+    return render(request, 'campaigns/home.html', context)
+
+def list_of_top_campaigns(request):
+    top_campaigns = Campaign.objects.annotate(q_count=Count('likes')).order_by('-q_count')[:7]    
+    context = {'campaigns': top_campaigns}
     return render(request, 'campaigns/home.html', context)
 
 def campaign_details(request, campaign_id):

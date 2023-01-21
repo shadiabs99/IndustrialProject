@@ -10,6 +10,11 @@ def list_of_comments(request, idea_id, campaign_id):
     context = {'comments': comments}
     return render(request, 'ideas/idea_details.html', context)
 
+def list_of_top_comments(request):
+    top_comments = Comment.objects.annotate(q_count=Count('likes')).order_by('-q_count')[:7]    
+    context = {'comments': top_comments}
+    return render(request, 'ideas/idea_details.html', context)
+
 def comment_details(request, comment_id, idea_id, campaign_id):
     comment = get_object_or_404(Comment, id=comment_id)
     
@@ -65,3 +70,21 @@ def comment_update(request, comment_id, idea_id, campaign_id):
 
     return render(request, 'comments/comment_update.html', {'form': form})
 
+def comment_like(request, comment_id, idea_id, campaign_id):
+    user = request.user
+    if request.method == 'POST':
+        
+        comment = Comment.objects.get(id=comment_id)
+        
+        if user in comment.likes.all():
+            comment.likes.remove(user)
+        else:
+            comment.likes.add(user)    
+        like, created = Like.objects.get_or_create(user=user, comment_id=comment_id)
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+        like.save()
+    return redirect('comments:comment_details', comment_id, idea_id, campaign_id)

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model, login, logout, authenticate
+from campaigns.models import Campaign
 def signup(request):
     if request.method == 'GET':
         return render(request, 'registration/signup.html',
@@ -14,7 +15,9 @@ def signup(request):
             authenticate(username=username, password=raw_password)
             user = get_user_model().objects.get(username=username)
             login(request, user)
-            return render(request,'campaigns/home.html')
+            campaigns = Campaign.objects.all()
+            context = {'campaigns': campaigns}
+            return render(request,'campaigns/home.html', context=context)
         else:
             error = form.errors
             return render(request, 'registration/signup.html', {'form':UserCreationForm(), 'error': error})

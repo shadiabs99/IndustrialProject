@@ -15,7 +15,6 @@ class Campaign(models.Model):
     
     likes = models.ManyToManyField(User, default=None, blank=True, related_name="likes")
     participants = models.ManyToManyField(User, default=None, blank=True, related_name="campaign_participants")
-    #ideas = models.ManyToOneRel(User, default=None, blank=True, related_name="campaign_ideas")
     
     def __str__(self):
         return self.title

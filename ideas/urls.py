@@ -9,4 +9,5 @@ urlpatterns = [
     path('<int:idea_id>/delete/', views.idea_delete, name='idea_delete'),
     path('<int:idea_id>/update/', views.idea_update, name='idea_update'),
     path('<int:idea_id>/comments/', include('comments.urls')),
+    path('<int:idea_id>/like/', views.idea_like, name='idea-like'),
 ]

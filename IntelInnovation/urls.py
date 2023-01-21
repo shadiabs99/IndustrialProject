@@ -28,6 +28,7 @@ urlpatterns = [
     path('', campaign_views.list_of_campaigns, name='list_of_campaigns'),
     path('admin/', admin.site.urls),
     path('campaigns/', include('campaigns.urls')),
+    path('top_campaigns/', campaign_views.list_of_top_campaigns, name='top_campaigns'),
     path('ideas/', include('ideas.urls')),
     path('comments/', include('comments.urls')),
     path('users/', include('django.contrib.auth.urls')),
@@ -35,7 +36,9 @@ urlpatterns = [
     path('about_us', campaign_views.about_us, name='about_us'),
     path('create', campaign_views.campaign_create, name='campaign_create'),
     path('campaigns/<int:campaign_id>/ideas/create/', idea_views.idea_create, name='idea-create'),
+    path('campaigns/<int:campaign_id>/top_ideas/', idea_views.list_of_top_ideas, name='top-ideas'),
     path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/comments/create', comment_views.comment_create, name='comment_create'),
+    path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/comments/top_comments', comment_views.list_of_top_comments, name='top-comments'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

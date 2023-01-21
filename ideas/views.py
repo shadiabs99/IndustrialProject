@@ -12,6 +12,11 @@ def list_of_ideas(request, campaign_id):
     context = {'ideas': ideas}
     return render(request, 'campaigns/campaign_details.html', context)
 
+def list_of_top_ideas(request):
+    top_ideas = Idea.objects.annotate(q_count=Count('likes')).order_by('-q_count')[:7]    
+    context = {'ideas': top_ideas}
+    return render(request, 'campaigns/campaign_details.html', context)
+
 def idea_details(request, idea_id, campaign_id):
     idea = get_object_or_404(Idea, id=idea_id)
     comments = Comment.objects.all().filter(idea_id=idea_id)
@@ -67,3 +72,21 @@ def idea_update(request, idea_id, campaign_id):
 
     return render(request, 'ideas/idea_update.html', {'form': form})
 
+def idea_like(request, idea_id, campaign_id):
+    user = request.user
+    if request.method == 'POST':
+        
+        idea = Idea.objects.get(id=idea_id)
+        
+        if user in idea.likes.all():
+            idea.likes.remove(user)
+        else:
+            idea.likes.add(user)    
+        like, created = Like.objects.get_or_create(user=user, idea_id=idea_id)
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+        like.save()
+    return redirect('ideas:idea_details', idea_id, campaign_id)
