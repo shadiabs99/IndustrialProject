@@ -8,18 +8,32 @@
     </head>
     <body>
         <h1>Details for Idea:</h1>
-        <a href={% url 'ideas:idea_delete' idea.id %}>
-            Delete this idea
-            </a>
+
         <br><br><br>
         <h1>{{ idea.idea_title }} </h1>
         <h2>{{ idea.idea_description }} </h2>
-        <form class="" method="post">
-            {% csrf_token %} 
-           {{form.as_p}}
-           <button type="submit" name="button">Update Idea</button>
-       </form>
-       
+        <div class="comments_layout">
+
+            {% for comment in comments %}
+            <div class="comment">
+                <div class="comment_info">
+                    Written by: {{ comment.author }}
+                    <br>
+                    {{comment.content}}
+                    <br>
+                    <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/update" data-role="button" data-inline="true">Update comment</a>
+                    <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/delete" data-role="button" data-inline="true">Delete comment</a>
+    
+                    <br>
+                    <br>
+                </div>
+            
+            </div>
+            {% endfor %}
+        </div>
+        <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/update" data-role="button" data-inline="true">Update Idea</a>
+         <br>
+        <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/delete" data-role="button" data-inline="true">Delete Idea</a>
     </body> 
 </html>
 {% endblock %}

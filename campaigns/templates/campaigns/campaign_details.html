@@ -72,18 +72,15 @@
                     <div class="ideas_layout">
                         {% for idea in ideas %}
                         <div class="idea">
+                            <div class="idea_info">
+                                <a href='http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}'>
+                                   {{ idea.idea_title }}
+                                </a>
+                               
+                            </div>
                             <div class="idea_description">
                             {{ idea.idea_description }}
                             </div>
-            
-                            <div class="idea_info">
-                                 <a href={% url 'ideas:idea_details' idea.id %}>
-                                    {{ idea.idea_title }}
-                                 </a>
-                                
-                            </div>
-                            
-                            
                         </div>
                         {% endfor %}
                     </div>

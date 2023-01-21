@@ -1,12 +1,12 @@
 from django.db import models
 from participants.models import Participant
 from ideas.models import Idea
+from author.decorators import with_author
 
-
+@with_author
 class Comment(models.Model):
-    #auther = models.ForeignKey(Participant, on_delete=models.CASCADE, related_name="comment_auther")
     content = models.TextField(max_length=250)
-    #idea = models.ForeignKey(Idea, on_delete=models.CASCADE, related_name="comment_idea")
+    idea_id = models.IntegerField(null=True)
     
     def __str__(self):
         return self.content

@@ -7,18 +7,16 @@
         <title></title>
     </head>
     <body>
-        <h1>Details for comment:</h1>
-        <a href={% url 'comments:comment_delete' comment.id %}>
-            Delete this comment
-            </a>
-        <br><br><br>
-        <h2>{{ comment.content }} </h2>
+        <h1>Details for Comment:</h1>
 
-        <form class="" method="post">
-            {% csrf_token %} 
-           {{form.as_p}}
-           <button type="submit" name="button">Update comment</button>
-       </form>
+        <br><br><br>
+        <h1>Written by: {{ comment.author }} </h1>
+        <h1>{{ comment.content }} </h1>
+        <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/update" data-role="button" data-inline="true">Update Comment</a>
+         <br>
+        <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/delete" data-role="button" data-inline="true">Delete Comment</a>
+            
+
        
     </body> 
 </html>

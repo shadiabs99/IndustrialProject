@@ -3,6 +3,8 @@ from .forms import IdeaForm
 from .models import Idea
 from django.shortcuts import get_object_or_404, redirect
 from campaigns.models import Campaign
+from comments.models import Comment
+
 import re
 
 def list_of_ideas(request, campaign_id):
@@ -12,10 +14,10 @@ def list_of_ideas(request, campaign_id):
 
 def idea_details(request, idea_id, campaign_id):
     idea = get_object_or_404(Idea, id=idea_id)
-    
+    comments = Comment.objects.all().filter(idea_id=idea_id)
     if request.method == 'GET':
         form = IdeaForm(instance=idea)
-        context =  {'form': form, 'idea': idea}
+        context =  {'form': form, 'idea': idea, 'campaign_id': campaign_id, 'comments': comments}
         return render(request, 'ideas/idea_details.html', context)
     else:
         try:
@@ -52,7 +54,7 @@ def idea_delete(request, idea_id):
         return render(request, 'ideas/permission_error.html')
     
 def idea_update(request, idea_id, campaign_id):
-    idea = Idea().objects.get(id=idea_id)
+    idea = Idea.objects.get(id=idea_id)
     campaign = Campaign.objects.get(id=campaign_id)
     
     if request.method == 'POST':
