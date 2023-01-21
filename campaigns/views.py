@@ -49,13 +49,9 @@ def campaign_create(request):
             return render(request, 'campaigns/campaign_form.html', context)
         
 def campaign_delete(request, campaign_id):
-    user = request.user
     campaign = get_object_or_404(Campaign, id=campaign_id)
-    if user.username == campaign.auther:
-        campaign.delete()
-        return redirect('campaigns:list_of_campaigns')
-    else:
-        return render(request, 'campaigns/permission_error.html')
+    campaign.delete()
+    return redirect('campaigns:list_of_campaigns')
     
 def request_page(request):
     if(request.GET.get('mybtn')):
@@ -64,16 +60,13 @@ def request_page(request):
 
 def campaign_update(request, campaign_id):
     campaign = Campaign.objects.get(id=campaign_id)
-
     if request.method == 'POST':
         form = CampaignForm(request.POST, instance=campaign)
         if form.is_valid():
-            # update the existing `Band` in the database
             image_path = campaign.image.path
             if os.path.exists(image_path):
                 os.remove(image_path)
             form.save()
-            # redirect to the detail page of the `Band` we just updated
             return redirect('campaigns:list_of_campaigns', campaign.id)
     else:
         form = CampaignForm(instance=campaign)

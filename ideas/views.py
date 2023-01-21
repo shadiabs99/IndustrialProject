@@ -9,7 +9,7 @@ import re
 
 def list_of_ideas(request, campaign_id):
     ideas = Idea.objects.all().filter(campaign_id=campaign_id)
-    context = {'ideas': ideas}
+    context = {'ideas': ideas, 'campaign_id': campaign_id}
     return render(request, 'campaigns/campaign_details.html', context)
 
 def list_of_top_ideas(request):
@@ -50,18 +50,12 @@ def idea_create(request, campaign_id):
             return render(request, 'ideas/idea_form.html', context)
         
 def idea_delete(request, idea_id):
-    user = request.user
     idea = get_object_or_404(Idea, id=idea_id)
-    if user.username == idea.author:
-        idea.delete()
-        return redirect('ideas:list_of_ideas', campaign_id)
-    else:
-        return render(request, 'ideas/permission_error.html')
+    idea.delete()
+    return redirect('ideas:list_of_ideas', campaign_id)
     
 def idea_update(request, idea_id, campaign_id):
     idea = Idea.objects.get(id=idea_id)
-    campaign = Campaign.objects.get(id=campaign_id)
-    
     if request.method == 'POST':
         form = IdeaForm(request.POST, instance=idea)
         if form.is_valid():

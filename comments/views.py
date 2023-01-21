@@ -48,18 +48,13 @@ def comment_create(request, idea_id, campaign_id):
             return render(request, 'comments/comment_form.html', context)
         
 def comment_delete(request, comment_id, campaign_id):
-    user = request.user
     comment = get_object_or_404(Comment, id=comment_id)
-    if user.username == idea.author:
-        comment.delete()
-        return redirect('comments:list_of_comments', idea_id, campaign_id)
-    else:
-        return render(request, 'comments/permission_error.html')
+    comment.delete()
+    return redirect('comments:list_of_comments', idea_id, campaign_id)
     
 def comment_update(request, comment_id, idea_id, campaign_id):
     comment = Comment.objects.get(id=comment_id)
     idea = Idea.objects.get(id=idea_id)
-    
     if request.method == 'POST':
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():

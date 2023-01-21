@@ -21,9 +21,10 @@
                     <br>
                     {{comment.content}}
                     <br>
+                    {% if user.is_authenticated and user == comment.author %}
                     <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/update" data-role="button" data-inline="true">Update comment</a>
                     <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/delete" data-role="button" data-inline="true">Delete comment</a>
-    
+                    {%endif%}
                     <br>
                     <br>
                 </div>
@@ -31,9 +32,11 @@
             </div>
             {% endfor %}
         </div>
+        {% if user.is_authenticated and user == idea.author %}
         <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/update" data-role="button" data-inline="true">Update Idea</a>
          <br>
         <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/delete" data-role="button" data-inline="true">Delete Idea</a>
+        {%endif%}
     </body> 
 </html>
 {% endblock %}

@@ -86,10 +86,14 @@
                     </div>
                     
                 </body> 
-            <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update" data-role="button" data-inline="true">Update Campaign</a>
-         <br>
-            <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/delete" data-role="button" data-inline="true">Delete Campaign</a>
-            </div>
+                {% if user.is_authenticated %} 
+                {% if user == campaign.author or user == campaign.manager %} 
+                        <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update" data-role="button" data-inline="true">Update Campaign</a>
+                        <br>
+                        <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/delete" data-role="button" data-inline="true">Delete Campaign</a>
+                {% endif %}
+                {% endif %}
+                </div>
         </div>
 
         
