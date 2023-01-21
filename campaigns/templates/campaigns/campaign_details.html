@@ -5,7 +5,7 @@
     <br>
     <head class="campaign_banner">
         {% load static %}
-        <link rel="stylesheet" href="{% static 'campaign_details.css' %}"> 
+        <link rel="stylesheet" href="{% static 'campaign_details_css.css' %}"> 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap"> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -19,23 +19,29 @@
                 {% if campaign.image %}
         
                 <img src="{{ campaign.image.url }} "
-                width="900" 
-                height="500" >
+                width="1000" 
+                height="650" >
                 {% endif %}
             </div>
 
 
             <div id="title-and-description">
+                <div id="campaign_info">Campaign Description:</div>
                 <strong> <h1>{{ campaign.title }} </h1> </strong>
-                <h3>{{ campaign.description }} </h3>
-                <h2>{{ campaign.start_date }} {{ campaign.end_date }}</h2>
+                <div id="campaign_info">Campaign Description:</div>
+                <h3>  {{ campaign.description }} </h3>
+                <div id="dates">
+                <div id="campaign_info">Campaign Begins at: </div> {{ campaign.start_date }} <div id="campaign_info">, Ends at: </div>  {{ campaign.end_date }}
+                </div>
+                <h2></h2>
             </div>
 
 
             <div id="author">
-                <h3> Manged by: {{ campaign.manager }} </h3>
-                <h3> Last edited by: {{ campaign.author }} </h3>
-
+                <div id="author_info"> Managed by: </div>
+                <h2>{{ campaign.manager }}</h2>
+                <div id="author_info"> Last edited by: </div>
+                <h2>{{ campaign.author }} </h2>
             </div>
 
 
@@ -62,38 +68,44 @@
         
                 {% endif %}
             </form>
-        
             {% if user.is_authenticated and user in campaign.participants.all %}
                 
             <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/create" data-role="button" data-inline="true" class="material-icons">lightbulb</a>
         
             {% endif %}
             
-
+   
 
         <strong>{{ campaign.likes.all.count }} likes</strong>
+
+
              </div>
+
             <div id="ideas">
                 <body>
                     <br>
-                    <h1>Ideas:</h1>
+                    <h1 id="ddd">Ideas:</h1>
                     <br>
                     <div class="ideas_layout">
                         {% for idea in ideas %}
-                        <div class="idea">
-                            <div class="idea_info">
+                        <div class="idea_details">
+                            <div>
+                                <div id="idea_info">Idea Title:</div>
                                 <a href='http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}'>
                                    {{ idea.idea_title }}
-                                </a>
+                                 </a>
                                
                             </div>
+                            
+                            
+                            <div id="idea_info">Idea Description:</div>
                             <div class="idea_description">
                             {{ idea.idea_description }}
                             </div>
                         </div>
                         {% endfor %}
                     </div>
-                    
+                
                 </body> 
                 {% if user.is_authenticated %} 
                 {% if user == campaign.author or user == campaign.manager %} 
