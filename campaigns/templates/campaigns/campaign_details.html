@@ -10,6 +10,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <meta charset="utf-8">
+        <style>
+            a:link{
+                color: aqua;
+            }
+        </style>
         </head>
     
         <div class="container">
@@ -56,6 +61,7 @@
                 <button class="material-icons" type='submit'>thumb_down</button>
         
                 {% endif %}
+                <div><strong>{{ campaign.likes.all.count }} likes</strong></div>
             </form>
             <form action="{% url 'campaigns:campaign-participate' campaign.id %}" method='POST' >
                 {% csrf_token %}
@@ -67,16 +73,17 @@
                 <button class="material-icons" type='submit'>person_remove</button>
         
                 {% endif %}
+                <div><strong>{{ campaign.participants.all.count }} participants</strong></strong></div>
             </form>
             {% if user.is_authenticated and user in campaign.participants.all %}
                 
-            <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/create" data-role="button" data-inline="true" class="material-icons">lightbulb</a>
+            <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/create" style="color: aqua" data-role="button" data-inline="true" class="material-icons">lightbulb</a>
         
             {% endif %}
             
-   
+       
 
-        <strong>{{ campaign.likes.all.count }} likes</strong>
+        
 
 
              </div>
@@ -91,13 +98,10 @@
                         <div class="idea_details">
                             <div>
                                 <div id="idea_info">Idea Title:</div>
-                                <a href='http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}'>
+                                <a href='http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}' style="color: aqua">
                                    {{ idea.idea_title }}
                                  </a>
-                               
                             </div>
-                            
-                            
                             <div id="idea_info">Idea Description:</div>
                             <div class="idea_description">
                             {{ idea.idea_description }}
@@ -109,15 +113,11 @@
                 </body> 
                 {% if user.is_authenticated %} 
                 {% if user == campaign.author or user == campaign.manager %} 
-                        <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update" data-role="button" data-inline="true">Update Campaign</a>
+                        <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update" style="color: aqua" data-role="button" data-inline="true">Update Campaign</a>
                         <br>
-                        <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/delete" data-role="button" data-inline="true">Delete Campaign</a>
+                        <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/delete" style="color: aqua" data-role="button" data-inline="true">Delete Campaign</a>
                 {% endif %}
                 {% endif %}
                 </div>
         </div>
-
-        
-    
-
     {% endblock %}

@@ -3,22 +3,29 @@
 <!DOCTYPE html>
 <html lang-"en" dir-"Itr">
    <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'idea_details_css.css' %}"> 
         <meta charset="utf-8">
-        <title></title>
+
     </head>
     <body>
-        <h1>Details for Idea:</h1>
-
-        <br><br><br>
-        <h1>{{ idea.idea_title }} </h1>
-        <h2>{{ idea.idea_description }} </h2>
+        <br><br>
+        <div id="idea_details">
+            <div id="idea_info">Idea Title:</div>
+                <h2>{{ idea.idea_title }} </h2>
+            <div id="idea_info">Idea Description:</div>
+                <h3>{{ idea.idea_description }} </h3>
+        </div>
+        <br><br><br><br>
         <div class="comments_layout">
-
+            <div class="comment_title"> <h2>Comments:<h2></div>
             {% for comment in comments %}
-            <div class="comment">
+            <div class="comment_details">
                 <div class="comment_info">
-                    Written by: {{ comment.author }}
+                    <div id="idea_info">Written by:  </div>
+                     <h5 id="comment_text">{{ comment.author }}</h5>
                     <br>
+                </div>
                     {{comment.content}}
                     <br>
                     {% if user.is_authenticated and user == comment.author %}
@@ -27,7 +34,7 @@
                     {%endif%}
                     <br>
                     <br>
-                </div>
+                
             
             </div>
             {% endfor %}

@@ -31,6 +31,8 @@
   border-radius:var(--main-radius);
   padding-top:var(--main-padding);
   text-align:left;
+  padding-left: 5px;
+  border: 1px solid rgb(255, 255, 255);
 }
 
 #author{
@@ -46,7 +48,7 @@
   padding-top:var(--main-padding);
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 20px;
   align-items: center;
   margin-left: 40%;
 }
@@ -82,7 +84,7 @@
 }
 
 .idea_details{
-  border: 1px solid rebeccapurple;
+  border: 1px solid rgb(255, 255, 255);
   border-bottom: none;
   border-left: none;
   border-right: none;
@@ -91,15 +93,24 @@
 }
 
 #idea_info{
-  color: rgba(122, 118, 118, 0.52);
+  color: #92d4ff;
 }
 
 #campaign_info{
-  color: rgba(122, 118, 118, 0.52);
+  color: #92d4ff;
 }
 
 #author_info{
-  color: rgba(122, 118, 118, 0.52);
+  color: #92d4ff;
+}
+
+
+body{
+  background-color: #2479a3;
+}
+
+.a:link{
+  color: aqua;
 }
 
 
