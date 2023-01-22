@@ -39,6 +39,8 @@ urlpatterns = [
     path('campaigns/<int:campaign_id>/top_ideas/', idea_views.list_of_top_ideas, name='top-ideas'),
     path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/comments/create', comment_views.comment_create, name='comment_create'),
     path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/comments/top_comments', comment_views.list_of_top_comments, name='top-comments'),
+    path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/like/', idea_views.idea_like, name='idea-like'),
+    path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/', idea_views.idea_details, name='idea_details'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

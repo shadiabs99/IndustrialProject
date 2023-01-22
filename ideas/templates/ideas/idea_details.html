@@ -5,6 +5,7 @@
    <head>
     {% load static %}
     <link rel="stylesheet" href="{% static 'idea_details_css.css' %}"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <meta charset="utf-8">
 
     </head>
@@ -17,6 +18,18 @@
                 <h3>{{ idea.idea_description }} </h3>
         </div>
         <br><br><br><br>
+
+        <form action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/like/"  method='POST' >
+            {% csrf_token %}
+        <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
+        {% if user not in idea.likes.all %}
+        
+        <button class="material-icons" type= 'submit'>thumb_up</button>
+         {% else%}
+        <button class="material-icons" type='submit'>thumb_down</button>
+
+        {% endif %}
+
         <div class="comments_layout">
             <div class="comment_title"> <h2>Comments:<h2></div>
             {% for comment in comments %}

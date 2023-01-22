@@ -1,6 +1,11 @@
 {% extends "campaigns/base.html" %}
 {% block content %}
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'idea_form_css.css' %}"> 
+</head>
 
+<body>
 <h1> Create a new Campaign </h1>
 
 {{ error }}
@@ -10,5 +15,5 @@
     {{form.as_p}}
     <button type="submit" name="button">New Campaign</button>
 </form>
-
+</body>
 {% endblock %}

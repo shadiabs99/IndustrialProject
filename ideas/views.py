@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import IdeaForm
-from .models import Idea
+from .models import Idea, IdeaLike
 from django.shortcuts import get_object_or_404, redirect
 from campaigns.models import Campaign, Like
 from comments.models import Comment
@@ -64,7 +64,7 @@ def idea_update(request, idea_id, campaign_id):
             return redirect('campaigns:campaign_details', campaign_id)
     return render(request, 'ideas/idea_update.html', {'form': form})
 
-def idea_like(request, idea_id, campaign_id):
+def idea_like(request, campaign_id, idea_id):
     user = request.user
     if request.method == 'POST':
         
@@ -74,11 +74,11 @@ def idea_like(request, idea_id, campaign_id):
             idea.likes.remove(user)
         else:
             idea.likes.add(user)    
-        like, created = Like.objects.get_or_create(user=user, idea_id=idea_id)
+        like, created = IdeaLike.objects.get_or_create(user=user, idea_id=idea_id)
         if not created:
             if like.value == 'Like':
                 like.value = 'Unlike'
             else:
                 like.value = 'Like'
         like.save()
-    return redirect('ideas:idea_details', idea_id, campaign_id)
+    return redirect('idea_details', campaign_id, idea_id)
