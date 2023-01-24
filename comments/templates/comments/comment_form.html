@@ -1,14 +1,23 @@
 {% extends "campaigns/base.html" %}
 {% block content %}
 
-<h1> Create a new comment </h1>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'comment_form.css' %}"> 
+</head>
 
+<body>
+    <br>
+    <br>
+    <br>
+<h1 class="form-name"> New Comment </h1>
+<br>
 {{ error }}
 
-<form class="" method="POST">
+<form class="elias" method="POST">
      {% csrf_token %} 
     {{form.as_p}}
-    <button type="submit" name="button">New comment</button>
+    <button type="submit" name="button" class="new_comment_button">New comment</button>
 </form>
-
+</body>
 {% endblock %}

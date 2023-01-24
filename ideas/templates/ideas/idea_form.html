@@ -7,14 +7,17 @@
 </head>
 
 <body>
-<h1> Create a new Idea </h1>
-
+    <br>
+    <br>
+    <br>
+<h1 class="form-name"> New Idea </h1>
+<br>
 {{ error }}
 
-<form class="" method="POST">
+<form class="elias" method="POST" class="elias">
      {% csrf_token %} 
     {{form.as_p}}
-    <button type="submit" name="button">New Idea</button>
+    <button type="submit" name="button" class="new_idea_button">New Idea</button>
 </form>
 </body>
 {% endblock %}

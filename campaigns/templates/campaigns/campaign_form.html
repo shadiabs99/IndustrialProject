@@ -1,5 +1,6 @@
 {% extends "campaigns/base.html" %}
 {% block content %}
+
 <head>
     {% load static %}
     <link rel="stylesheet" href="{% static 'campaign_form.css' %}"> 
@@ -7,7 +8,9 @@
 
 <body>
     <br>
-    
+    <br>
+    <br>
+
 <h1 class="form-name"> New Campaign </h1>
 <br>
 
@@ -15,10 +18,12 @@
 
 <form class="elias" method="POST" enctype="multipart/form-data">
      {% csrf_token %} 
+
     {{form.as_p}}
-    <div class="new_campaign_button">
-    <button type="submit" name="button">New Campaign</button>
-    </div>
+    <br>
+    <button type="submit" name="button" class="new_campaign_button">New Campaign</button>
 </form>
 </body>
 {% endblock %}
+
+

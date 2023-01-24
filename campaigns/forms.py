@@ -14,11 +14,12 @@ class CampaignForm(ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control',
                                             'style': 'width: auto',
+                                            'style': 'width: auto',
                                             'placeholder': 'Title',
                                             }),
-            'description': forms.TextInput(attrs={'class': 'form-control',
-                                                  'style': 'width: auto',
-                                                  'placeholder': 'Description',}),
+            'description': forms.Textarea(attrs={'class': 'form-control',
+                                                 'style': 'width: auto',
+                                                 'placeholder': 'Description', }),
             'start_date': forms.SelectDateWidget(),
             'end_date': forms.SelectDateWidget(),
 
