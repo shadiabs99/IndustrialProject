@@ -1,6 +1,9 @@
 {% extends "campaigns/base.html" %}
 {% block content %}
-
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'campaign_update.css' %}"> 
+</head>
 <h1> Update your campaign </h1>
 
 {{ error }}

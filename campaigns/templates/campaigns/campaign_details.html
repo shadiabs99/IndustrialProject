@@ -1,119 +1,164 @@
+
+
 {% extends "campaigns/base.html" %}
+
 {% block content %}
+
 <!DOCTYPE html>
 <html lang-"en" dir-"Itr">
     <br>
     <head class="campaign_banner">
         {% load static %}
-        <link rel="stylesheet" href="{% static 'campaign_details_css.css' %}"> 
+        <link rel="stylesheet" href="{% static 'campaign_details.css' %}"> 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap"> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.cdnfonts.com/css/intelone-display" rel="stylesheet"> 
         <meta charset="utf-8">
         <style>
             a:link{
                 color: aqua;
             }
         </style>
-        </head>
+    </head>
     
-        <div class="container">
+    <div class="container">
 
+        <div id="campaign-banner">
+            <br>
+            <br>
 
-            <div id="campaign-banner">
+            <div id="campaign_details_image">
                 {% if campaign.image %}
-        
-                <img src="{{ campaign.image.url }} "
-                width="1000" 
-                height="650" >
-                {% endif %}
+                <img class="campaign_details_image"
+                height="300"
+                width="300" 
+                src="{{ campaign.image.url }} ">                {% endif %}
+        </div>
+        <br>
+
+    </div>
+        <div id="title-and-description">
+            <div id="campaign_info">
+                Campaign Title:
             </div>
-
-
-            <div id="title-and-description">
-                <div id="campaign_info">Campaign Description:</div>
-                <strong> <h1>{{ campaign.title }} </h1> </strong>
-                <div id="campaign_info">Campaign Description:</div>
-                <h3>  {{ campaign.description }} </h3>
-                <div id="dates">
-                <div id="campaign_info">Campaign Begins at: </div> {{ campaign.start_date }} <div id="campaign_info">, Ends at: </div>  {{ campaign.end_date }}
+            <strong> <h1>
+                {{ campaign.title }} 
+            </h1> </strong>
+            <div id="campaign_info">
+                Campaign Description:
+            </div>
+            <h3>
+                {{ campaign.description }}
+            </h3>
+            <div id="dates">
+                <div id="campaign_info">
+                    Campaign Begins at:&nbsp; 
                 </div>
-                <h2></h2>
+                {{ campaign.start_date }}
+                <div id="campaign_info">
+                    , Ends at:&nbsp; 
+                </div>  
+                {{ campaign.end_date }}
             </div>
+            <h2>
+            </h2>
+        </div>
 
-
-            <div id="author">
-                <div id="author_info"> Managed by: </div>
-                <h2>{{ campaign.manager }}</h2>
-                <div id="author_info"> Last edited by: </div>
-                <h2>{{ campaign.author }} </h2>
+        <div id="author">
+            <div id="author_info">
+                 Managed by: 
             </div>
-
-
-            <div id="statistics"> 
-                <form action="{% url 'campaigns:campaign-like' campaign.id %}" method='POST' >
-                    {% csrf_token %}
-                <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
-                {% if user not in campaign.likes.all %}
-                
-                <button class="material-icons" type= 'submit'>thumb_up</button>
-                 {% else%}
-                <button class="material-icons" type='submit'>thumb_down</button>
+            <h2>
+                {{ campaign.manager }}
+            </h2>
+            <div id="author_info">
+                 Last edited by: 
+            </div>
+            <h2>
+                {{ campaign.author }} 
+            </h2>
+        </div>
         
+        <div id="statistics"> 
+            <form action="{% url 'campaigns:campaign-like' campaign.id %}" method='POST' >
+                {% csrf_token %}
+            <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
+                {% if user not in campaign.likes.all %}
+                    <button id="thumb_up" class="material-icons" type= 'submit'>
+                        thumb_up
+                    </button>
+                {% else%}
+                    <button id="thumb_down"class="material-icons" type='submit'>
+                        thumb_up
+                    </button>
                 {% endif %}
-                <div><strong>{{ campaign.likes.all.count }} likes</strong></div>
+                <div><strong>
+                    {{ campaign.likes.all.count }} likes
+                </strong></div>
             </form>
             <form action="{% url 'campaigns:campaign-participate' campaign.id %}" method='POST' >
                 {% csrf_token %}
             <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
-            {% if user not in campaign.participants.all %}
-                
-                <button class="material-icons" type= 'submit'>group add</button>
-                 {% else%}
-                <button class="material-icons" type='submit'>person_remove</button>
-        
+                {% if user not in campaign.participants.all %}
+                    <button id="thumb_up" class="material-icons" type= 'submit'>
+                        group add
+                    </button>
+                {% else%}
+                    <button id="thumb_down" class="material-icons" type='submit'>
+                        person_remove
+                    </button>
                 {% endif %}
-                <div><strong>{{ campaign.participants.all.count }} participants</strong></strong></div>
+                <div><strong>
+                    {{ campaign.participants.all.count }}
+                     participants
+                </strong></div>
             </form>
             {% if user.is_authenticated and user in campaign.participants.all %}
-                
-            <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/create" style="color: aqua" data-role="button" data-inline="true" class="buttonn">Suggest an idea</a>
-
+                <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/create" style="color: aqua" data-role="button" data-inline="true" class="buttonn">
+                    Suggest an idea
+                </a>
             {% endif %}
+        </div>
 
-
-             </div>
-
-            <div id="ideas">
-                <body>
-                    <br>
-                    <h1 id="ddd">Ideas:</h1>
-                    <br>
-                    <div class="ideas_layout">
-                        {% for idea in ideas %}
+        <div id="ideas">
+            <body>
+                <br>
+                <h1 id="ddd">
+                    Ideas:
+                </h1>
+                <br>
+                <div class="ideas_layout">
+                    {% for idea in ideas %}
                         <div class="idea_details">
                             <div>
-                                <div id="idea_info">Idea Title:</div>
+                                <div id="idea_info">
+                                    Idea Title:
+                                </div>
                                 <a href='http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}' style="color: aqua">
-                                   {{ idea.idea_title }}
-                                 </a>
+                                    {{ idea.idea_title }}
+                                </a>
                             </div>
-                            <div id="idea_info">Idea Description:</div>
+                            <div id="idea_info">
+                                Idea Description:
+                            </div>
                             <div class="idea_description">
-                            {{ idea.idea_description }}
+                                {{ idea.idea_description }}
                             </div>
                         </div>
-                        {% endfor %}
-                    </div>
-                
-                </body> 
-                {% if user.is_authenticated %} 
-                {% if user == campaign.author or user == campaign.manager %} 
-                        <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update" style="color: aqua" data-role="button" data-inline="true">Update Campaign</a>
-                        <br>
-                        <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/delete" style="color: aqua" data-role="button" data-inline="true">Delete Campaign</a>
-                {% endif %}
-                {% endif %}
+                    {% endfor %}
                 </div>
+            </body> 
+            {% if user.is_authenticated %} 
+                {% if user == campaign.author or user == campaign.manager %} 
+                        <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update" style="color: aqua" data-role="button" data-inline="true">
+                            Update Campaign
+                        </a>
+                        <br>
+                        <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/delete" style="color: aqua" data-role="button" data-inline="true">
+                            Delete Campaign
+                        </a>
+                {% endif %}
+            {% endif %}
         </div>
-    {% endblock %}
+{% endblock %}

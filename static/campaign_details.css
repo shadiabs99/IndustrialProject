@@ -11,6 +11,8 @@
   "statistics statistics"
   "ideas ideas";
   grid-gap: 0.2rem;
+  font-family: "intel-one","intel-clear",Helvetica,Arial,sans-serif;
+  
   /* font-family: "Inter", sans-serif;
   font-weight: 800;
   font-size: 12px;
@@ -24,15 +26,18 @@
   grid-area:campaign-banner;
   border-radius:var(--main-radius);
   padding-top:var(--main-padding);
+
 }
     
 #title-and-description{
   grid-area:title-and-description;
-  border-radius:var(--main-radius);
+  border-radius: 0.7rem;
   padding-top:var(--main-padding);
   text-align:left;
   padding-left: 5px;
-  border: 1px solid rgb(255, 255, 255);
+  border-block: solid;
+  writing-mode: horizontal-tb;
+  border-color:white;
 }
 
 #author{
@@ -40,6 +45,7 @@
   border-radius:var(--main-radius);
   padding-top:var(--main-padding);
   text-align:left;
+  padding-left: 0.25rem;
 }
 
 #statistics{
@@ -51,6 +57,7 @@
   gap: 20px;
   align-items: center;
   margin-left: 40%;
+
 }
 
 #dates{
@@ -106,7 +113,9 @@
 
 
 body{
-  background-color: #2479a3;
+  background-color: #0071c5;
+      font-family: 'IntelOne Display', sans-serif;
+
 }
 
 .a:link{
@@ -116,11 +125,34 @@ body{
 .buttonn{
   font: bold 11px Arial;
   text-decoration: none;
-  background-color: #f20606;
+  background-color: white;
   color: #333333;
   padding: 2px 6px 2px 6px;
   border-top: 1px solid #CCCCCC;
   border-right: 1px solid #333333;
   border-bottom: 1px solid #333333;
   border-left: 1px solid #CCCCCC;
+  opacity: 0.5;
+}
+
+.campaign_details_image{
+  line-break: strict;
+  height: 400;
+  width: 100%;
+  display: block;
+  border-radius: 0.9rem;
+  object-fit: cover;
+}
+
+#thumb_down{
+  color: white;
+  background-color: #0071c5;
+  border: none;
+}
+
+#thumb_up{
+  color: white;
+  opacity: 0.3;
+  background-color: #0071c5;
+  border: none;
 }

@@ -1,0 +1,25 @@
+body{
+    background-color: #0071c5;
+    font-family: 'IntelOne Display', sans-serif;
+}
+
+.elias{
+    block-size: 50;
+    border: 3px solid rgb(255, 255, 255);
+    text-align: left;
+    padding-left: 150px;
+    border-radius: 0.7rem;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: aliceblue !important;
+    min-width: 600px;
+}
+.fields{
+    background-color: black;
+}
+.form-name{
+    color: aliceblue;
+    text-align: center;
+}

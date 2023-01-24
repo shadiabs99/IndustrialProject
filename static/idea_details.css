@@ -1,7 +1,12 @@
 body{
-    background-color: #2479a3;
-}
+    background-color: #0071c5;
+    font-family: 'IntelOne Display', sans-serif;
 
+}
+head{
+    font-family: 'IntelOne Display', sans-serif;
+
+}
 #idea_info{
     color: #92d4ff;
 }

@@ -1,3 +1,5 @@
+<link href="https://fonts.cdnfonts.com/css/intelone-display" rel="stylesheet"> 
+<style> @import url('https://fonts.cdnfonts.com/css/intelone-display'); </style>
 {% extends "campaigns/base.html" %}
 
 {% block content %}
@@ -13,26 +15,25 @@
     </head>
     <body>
         <br>
-        <h1>Current active campaigns: </h1>
         <br>
         <div class="campiagns_layout">
             {% for campaign in campaigns %}
             <div class="campaign">
                 {% if campaign.image %}
         
-                <a href={% url 'campaigns:campaign_details' campaign.id %}>
+                    <a href={% url 'campaigns:campaign_details' campaign.id %}>
                     <img class="campaign_image"
-                    height="300"
-                    width="300" 
-                src="{{ campaign.image.url }} ">
-            </a>
+                        height="300"
+                        width="300" 
+                        src="{{ campaign.image.url }} ">
+                    </a>
                 {% endif %}
 
-                <div class="campaign_description">
+            <div class="campaign_description">
                 {{ campaign.description }}
-                </div>
+            </div>
 
-                <div class="campaign_info">
+            <div class="campaign_info">
                 <div>
                     <i class="material-icons">thumb_up</i>
                     {{ campaign.likes.all.count}}
@@ -41,7 +42,7 @@
                         {{ campaign.title }}
                      </a>
                     
-                </div>
+            </div>
                 
                 
             </div>
