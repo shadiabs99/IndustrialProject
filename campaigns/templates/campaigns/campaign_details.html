@@ -107,54 +107,7 @@
         <div id="statistics"> 
 
 
-                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck1"><form action="{% url 'campaigns:campaign-like' campaign.id %}" method='POST' >
-                        {% csrf_token %}
-                <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
-                    {% if user not in campaign.likes.all %}
-                        <button id="thumb_up" class="material-icons" type= 'submit'>
-                            thumb_up
-                        </button>
-                    {% else%}
-                        <button id="thumb_down"class="material-icons" type='submit'>
-                            thumb_up
-                        </button>
-                    {% endif %}
-
-                </form>
-            </label>
-            <div><strong>
-                {{ campaign.likes.all.count }} likes
-            </strong></div>
-                  
-                    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck2">            <form action="{% url 'campaigns:campaign-participate' campaign.id %}" method='POST' >
-                        {% csrf_token %}
-                    <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
-                        {% if user not in campaign.participants.all %}
-                            <button id="thumb_up" class="material-icons" type= 'submit'>
-                                group add
-                            </button>
-                        {% else%}
-                            <button id="thumb_down" class="material-icons" type='submit'>
-                                person_remove
-                            </button>
-                        {% endif %}
-
-                    </form></label>                        <div><strong>
-                        {{ campaign.participants.all.count }}
-                         participants
-                    </strong></div>
-                  
-                    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck3">            {% if user.is_authenticated and user in campaign.participants.all %}
-                        <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/create" style="color: aqua" data-role="button" data-inline="true" class="buttonn">
-                            Suggest an idea
-                        </a>
-                    {% endif %}</label>
-                  </div>
-                  {% comment %} <form action="{% url 'campaigns:campaign-like' campaign.id %}" method='POST' >
+                   <form action="{% url 'campaigns:campaign-like' campaign.id %}" method='POST' >
                     {% csrf_token %}
             <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
                 {% if user not in campaign.likes.all %}
@@ -191,40 +144,9 @@
                 <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/create" style="color: aqua" data-role="button" data-inline="true" class="buttonn">
                     Suggest an idea
                 </a>
-            {% endif %} {% endcomment %}
-        </div>
+            {% endif %}
 
-        <div id="ideas" >
-            <br><h1 id="ddd">
-                Ideas:
-            </h1><br>
-            <div >
-                    <div class="ideas_container">
-                
-                <div class="idea_col">
-                    {% for idea in ideas %}
-                    <div class="idea_row">
-                        <a href='http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}' style="color: aqua">
-                            {{ idea.idea_title }} 
-                        </a>
-                        <br>
-                        {{ idea.idea_description }}
-                    </div>
-                    {% endfor %} 
-                </div>
-                
-            </div>
-        </div>
-
-
-
-
-                
-        </div>
-
-
-
-        {% if user.is_authenticated %} 
+            {% if user.is_authenticated %} 
             {% if user == campaign.author or user == campaign.manager %} 
                     <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update" style="color: aqua" data-role="button" data-inline="true">
                         Update Campaign
@@ -235,5 +157,56 @@
                     </a>
             {% endif %}
         {% endif %}
+            </div>
+            
+        <div id="ideas" >
+            
+            <div class="ideas_double_container">
+                    <div class="ideas_container">
+                        <h1 id="ddd">
+                            Ideas
+                        </h1>
+                <div class="idea_col">
+                    
+                    {% for idea in ideas %}
+                    <br>
+                    <div class="idea_row">
+                        <a href='http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}' style="color: #0071c5">
+                            {{ idea.idea_title }} 
+                        </a>
+                        <br>
+                        {{ idea.idea_description }}
+                        <br>
+                        <div>
+                            <br>
+                            Suggested URL: <a href='{{idea.idea_url}}' style="color: #0071c5;">
+                                {{idea.idea_url}}
+                            </a> 
+                            <div style="float: right;">
+                                <form action="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/like/"  method='POST' >
+                                    {% csrf_token %}
+                                <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
+                                {% if user not in idea.likes.all %}
+                                
+                                <button class="material-icons" type= 'submit'>thumb_up</button>
+                                 {% else%}
+                                <button class="material-icons" type='submit'>thumb_down</button>
+                                {% endif %}
+                                </form>
+                            </div>
+                            <div class="idea-num-of-likes" style="float: right; padding-right: 10px">
+                            {{ idea.likes.all.count }} likes
+                            </div>
+                            
+                        
+                        </div>
+                        
+                    </div>
+                    {% endfor %} 
+                </div>
+            </div>
+        </div>          
+        </div>
     </div>
+    
 {% endblock %}

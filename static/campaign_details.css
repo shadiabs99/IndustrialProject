@@ -85,7 +85,7 @@ align-items: center;
 #ddd{
   text-align:left;
   margin-left: 10px;
-  color: aliceblue;
+  color: #0071c5;
   border-bottom: aliceblue;
 }
 
@@ -122,7 +122,7 @@ body{
   color:#0071c5 !important;
 }
 
-/* .buttonn{
+.buttonn{
   font: bold 11px Arial;
   text-decoration: none;
   background-color: white;
@@ -133,7 +133,7 @@ body{
   border-bottom: 1px solid #333333;
   border-left: 1px solid #CCCCCC;
   opacity: 0.5;
-} */
+}
 
 .campaign_details_image{
   line-break: strict;
@@ -163,24 +163,30 @@ body{
 
 .ideas_container{
   border: #92d4ff;
-  height:300px;
-  width:600px;
+  height:700px;
+  width:970px;
   overflow:auto;
   background-color:aliceblue;
-  color:black;
-  scrollbar-base-color:gold;
   font-family:sans-serif;
   padding:10px;
   text-align: left;
-border-radius: 0.7rem;
-
+  border-radius: 0.7rem;
+  padding-bottom: 5px;
 }
 
-.ideas_row{
-  border-color: #0071c5;
-
+.idea_row{
+  border: 1px solid #0071c5 !important;
+  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-left: 5px;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
 }
 
-.ideas_col{
+.ideas_double_container{
+  padding-bottom: 100px;
+}
 
+.idea-num-of-likes{
 }

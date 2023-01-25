@@ -30,8 +30,18 @@
         <button class="material-icons" type='submit'>thumb_down</button>
 
         {% endif %}
+        </form>
+        <div class="idea-num-of-likes">
+                                
+            {{ idea.likes.all.count }} likes
+        </div>
 
         <div class="comments_layout">
+            <br><br>
+            <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/create" style="color: aqua" data-role="button" data-inline="true">
+                Add Comment
+            </a>
+            <br>
             <div class="comment_title"> <h2>Comments:<h2></div>
             {% for comment in comments %}
             <div class="comment_details">
@@ -52,6 +62,27 @@
             
             </div>
             {% endfor %}
+            <!--{% for idea in ideas %}
+                    <br>
+                    <div class="idea_row">
+                        <a href='http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}' style="color: #0071c5">
+                            {{ idea.idea_title }} 
+                        </a>
+                        <br>
+                        {{ idea.idea_description }}
+                        <br>
+                        <div>
+                            <br>
+                            Suggested URL: <a href='{{idea.idea_url}}' style="color: #0071c5;">
+                                {{idea.idea_url}}
+                            </a> 
+                            <div class="idea-num-of-likes" style="float: right">
+                            {{ idea.likes.all.count }} likes
+                            </div>
+                        </div>
+                        
+                    </div>
+                    {% endfor %} -->
         </div>
         {% if user.is_authenticated and user == idea.author %}
         <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/update" data-role="button" data-inline="true">Update Idea</a>
