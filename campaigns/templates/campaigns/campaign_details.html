@@ -93,15 +93,15 @@
             <div id="author_info">
                  Managed by: 
             </div>
-            <h2>
+            <h4>
                 {{ campaign.manager }}
-            </h2>
+            </h4>
             <div id="author_info">
                  Last edited by: 
             </div>
-            <h2>
+            <h4>
                 {{ campaign.author }} 
-            </h2>
+            </h4>
         </div>
         
         <div id="statistics"> 
@@ -141,21 +141,30 @@
                 </strong></div>
             </form>
             {% if user.is_authenticated and user in campaign.participants.all %}
-                <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/create" style="color: aqua" data-role="button" data-inline="true" class="buttonn">
+                <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/create" style="color: aqua" data-role="button" data-inline="true">
+                    <button type="button" class="btn btn-outline-light">
                     Suggest an idea
+                    </button>
                 </a>
             {% endif %}
 
             {% if user.is_authenticated %} 
             {% if user == campaign.author or user == campaign.manager %} 
                     <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update" style="color: aqua" data-role="button" data-inline="true">
+                        <button type="button" class="btn btn-outline-light">
                         Update Campaign
+                        </button>
                     </a>
-                    <br>
                     <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/delete" style="color: aqua" data-role="button" data-inline="true">
+                        <button type="button" class="btn btn-outline-light">
                         Delete Campaign
+                        
+                        </button>
+
                     </a>
             {% endif %}
+            
+
         {% endif %}
             </div>
             
@@ -164,7 +173,7 @@
             <div class="ideas_double_container">
                     <div class="ideas_container">
                         <h1 id="ddd">
-                            Ideas
+                            {{ideas.all.count}} Ideas
                         </h1>
                 <div class="idea_col">
                     
@@ -179,6 +188,10 @@
                         <br>
                         <div>
                             <br>
+                            <div id="idea_info">
+                                Suggested by:  {{idea.author}}
+                            </div>
+
                             Suggested URL: <a href='{{idea.idea_url}}' style="color: #0071c5;">
                                 {{idea.idea_url}}
                             </a> 
@@ -187,10 +200,9 @@
                                     {% csrf_token %}
                                 <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
                                 {% if user not in idea.likes.all %}
-                                
-                                <button class="material-icons" type= 'submit'>thumb_up</button>
+                                <button id="thumb_up_idea" class="material-icons" type= 'submit'>thumb_up</button>
                                  {% else%}
-                                <button class="material-icons" type='submit'>thumb_down</button>
+                                <button id="thumb_down_idea" class="material-icons" type='submit'>thumb_down</button>
                                 {% endif %}
                                 </form>
                             </div>

@@ -1,14 +1,23 @@
 {% extends "campaigns/base.html" %}
 {% block content %}
 
-<h1> Update your comment </h1>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'comment_form.css' %}"> 
+</head>
 
+<body>
+    <br>
+    <br>
+    <br>
+<h1 class="form-name"> Update Comment </h1>
+<br>
 {{ error }}
 
-<form method="POST" enctype="multipart/form-data">
+<form class="elias" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Submit">
+    <button type="submit" name="button" class="new_comment_button">Update comment</button>
  </form>
 
 {% endblock %}

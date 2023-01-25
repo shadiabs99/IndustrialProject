@@ -74,6 +74,7 @@ def campaign_update(request, campaign_id):
 def about_us(request):
     return render(request, 'campaigns/about_us.html')
 
+@login_required()
 def campaign_like(request, campaign_id):
     user = request.user
     if request.method == 'POST':

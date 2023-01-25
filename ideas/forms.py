@@ -11,25 +11,40 @@ class IdeaForm(ModelForm):
 
     class Meta:
         model = Idea
-        fields = ['idea_title', 'idea_description', 'idea_url', 'campaign_id']
+        fields = ['idea_title', 'idea_url',
+                  'campaign_id', 'team', 'background', 'impact', 'solution']
         widgets = {
             'idea_title': forms.TextInput(attrs={'class': 'form-control',
                                                  'style': 'width: auto',
                                                  'style': 'width: auto',
                                                  'placeholder': 'Title',
                                                  }),
-            'idea_description': forms.Textarea(attrs={'class': 'form-control',
-                                                      'style': 'width: auto',
-                                                      'placeholder': 'Description', }),
             'idea_url': forms.TextInput(attrs={'class': 'form-control',
                                                'style': 'width: auto',
                                                'placeholder': 'URL', }),
+            'team': forms.TextInput(attrs={'class': 'form-control',
+                                           'style': 'width: auto',
+                                           'style': 'width: auto',
+                                           'placeholder': 'Team',
+                                           }),
+            'background': forms.Textarea(attrs={'class': 'form-control',
+                                                'style': 'width: auto',
+                                                'placeholder': 'Background and Problem Statement', }),
+            'solution': forms.Textarea(attrs={'class': 'form-control',
+                                              'style': 'width: auto',
+                                              'placeholder': 'Proposed Solution', }),
+            'impact': forms.Textarea(attrs={'class': 'form-control',
+                                            'style': 'width: auto',
+                                            'placeholder': 'Impact', }),
 
         }
 
         labels = {
             'idea_title': '',
-            'idea_description': '',
             'idea_url': '',
+            'team': '',
+            'background': '',
+            'solution': '',
+            'impact': '',
 
         }

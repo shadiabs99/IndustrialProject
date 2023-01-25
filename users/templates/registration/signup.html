@@ -1,11 +1,20 @@
 {% extends "campaigns/base.html" %}
 {% block content %}
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'comment_form.css' %}"> 
+</head>
+
+<body>
+  <br>
+  <br>
+  <br>
   {% if error %}
 <h3>Something went wrong</h3>
 <p color="red">{{ error }}</p>
   {% endif %}
-<h2>Signup</h2>
-<form  method="post">
+<h2 class="form-name">Signup</h2>
+<form  class="elias" id="elias_sign_up" method="post">
     {% csrf_token %}
     {{ form.as_p}}
 <button type="submit" name="button">Sign Up</button>

@@ -7,10 +7,15 @@ from author.decorators import with_author
 @with_author
 class Idea(models.Model):
     idea_title = models.CharField(max_length=50)
-    idea_description = models.TextField(max_length=250)
+    # idea_description = models.TextField(max_length=250)
     idea_url = models.URLField()
     campaign_id = models.IntegerField(null=True)
     
+    team = models.CharField(max_length=50)
+    background = models.TextField(max_length=250)
+    solution = models.TextField(max_length=250)
+    impact = models.TextField(max_length=250)
+
     likes = models.ManyToManyField(User, default=None, blank=True, related_name="idea_likes")
     
     def __str__(self):

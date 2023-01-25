@@ -1,94 +1,115 @@
 {% extends "campaigns/base.html" %}
 {% block content %}
+
 <!DOCTYPE html>
 <html lang-"en" dir-"Itr">
-    {% load static %}
-   <head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'idea_details.css' %}"> 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <meta charset="utf-8">
-
-    </head>
-    <body>
-        <br><br>
-        <div id="idea_details">
-            <div id="idea_info">Idea Title:</div>
-                <h2>{{ idea.idea_title }} </h2>
-            <div id="idea_info">Idea Description:</div>
-                <h3>{{ idea.idea_description }} </h3>
-        </div>
-        <br><br><br><br>
-
-        <form action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/like/"  method='POST' >
-            {% csrf_token %}
-        <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
-        {% if user not in idea.likes.all %}
+    <br>
+    <head class="idea_banner">
+        {% load static %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'idea_details_.css' %}"> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.cdnfonts.com/css/intelone-display" rel="stylesheet"> 
         
-        <button class="material-icons" type= 'submit'>thumb_up</button>
-         {% else%}
-        <button class="material-icons" type='submit'>thumb_down</button>
+        <meta charset="utf-8">
+        <style>
+            a:link{
+                color: aqua;
+            }
+        </style>
+    </head>
 
-        {% endif %}
-        </form>
-        <div class="idea-num-of-likes">
-                                
-            {{ idea.likes.all.count }} likes
+    <div class="container">
+        <br>
+        <br>
+        <div id="title-and-description">
+            <div id="idea_info">Background::</div>
+            <h3>{{ idea.background }}</h3>
+            <div id="idea_info">Proposed Solution:</div>
+            <h3>{{ idea.solution }}</h3>
+            <div id="idea_info">Impact:</div>
+            <h3>{{ idea.impact }}</h3>
+            <h2></h2>
         </div>
 
-        <div class="comments_layout">
-            <br><br>
-            <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/create" style="color: aqua" data-role="button" data-inline="true">
-                Add Comment
-            </a>
-            <br>
-            <div class="comment_title"> <h2>Comments:<h2></div>
-            {% for comment in comments %}
-            <div class="comment_details">
-                <div class="comment_info">
-                    <div id="idea_info">Written by:  </div>
-                     <h5 id="comment_text">{{ comment.author }}</h5>
-                    <br>
-                </div>
-                    {{comment.content}}
-                    <br>
-                    {% if user.is_authenticated and user == comment.author %}
-                    <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/update" data-role="button" data-inline="true">Update comment</a>
-                    <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/delete" data-role="button" data-inline="true">Delete comment</a>
-                    {%endif%}
-                    <br>
-                    <br>
-                
+        <div id="author">
+            <div id="author_info">Title: </div>
+            <h4>{{ idea.idea_title }}</h4>
+            <div id="author_info">Suggested By: </div>
+            <h4>{{ idea.author }}</h4>
+            <div id="author_info">Team: </div>
+            <h4>{{ idea.team }}</h4>
+        </div>
+        
+        <div id="statistics"> 
+            <form action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/like/"  method='POST' >
+                {% csrf_token %}
+                <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
+                {% if user not in idea.likes.all %}
             
-            </div>
-            {% endfor %}
-            <!--{% for idea in ideas %}
-                    <br>
-                    <div class="idea_row">
-                        <a href='http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}' style="color: #0071c5">
-                            {{ idea.idea_title }} 
-                        </a>
-                        <br>
-                        {{ idea.idea_description }}
-                        <br>
-                        <div>
-                            <br>
-                            Suggested URL: <a href='{{idea.idea_url}}' style="color: #0071c5;">
-                                {{idea.idea_url}}
-                            </a> 
-                            <div class="idea-num-of-likes" style="float: right">
-                            {{ idea.likes.all.count }} likes
-                            </div>
-                        </div>
-                        
-                    </div>
-                    {% endfor %} -->
+                    <button id="thumb_up" class="material-icons" type= 'submit'>thumb_up</button>
+                {% else%}
+                    <button id="thumb_down" class="material-icons" type='submit'>thumb_down</button>
+                {% endif %}
+                <div><strong>
+                    {{ idea.likes.all.count }} likes
+                </strong></div>
+            </form>
+            <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/create" data-role="button" data-inline="true">
+                
+                <button type="button" class="btn btn-outline-light">
+                    Add Comment        </button></a>
+
+
+            {% if user.is_authenticated and user == idea.author %}
+                <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/update" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-light">Update Idea</button></a>
+                <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/delete" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-light">Delete Idea</button></a>
+            {%endif%}
         </div>
-        {% if user.is_authenticated and user == idea.author %}
-        <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/update" data-role="button" data-inline="true">Update Idea</a>
-         <br>
-        <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/delete" data-role="button" data-inline="true">Delete Idea</a>
-        {%endif%}
-    </body> 
-</html>
+            
+        <div id="comments" >
+            <div class="comments_double_container">
+                <div class="comments_container">
+                    <h1 id="ddd"> {{comments.all.count}} Comments</h1>
+                <div class="comment_col">
+                    {% for comment in comments %}
+                        <br>
+                        <div class="comment_row">
+                            {{ comment.content }}
+                            <div>
+                                <br>
+                                <div id="comment_info">
+                                    Written by:  {{comment.author}}
+                                </div>
+                                {% if user.is_authenticated and user == comment.author %}
+                                <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/update" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-dark">Update Comment</button></a>
+                                <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/delete" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-dark">Delete Comment</button></a>
+                            {%endif%}
+                                <div style="float: right;">
+                                    <form action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/like/"  method='POST' >
+                                        {% csrf_token %}
+                                    <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
+                                    {% if user not in comment.likes.all %}
+                                    <button id="thumb_up_comment" class="material-icons" type= 'submit'>thumb_up</button>
+                                     {% else%}
+                                    <button id="thumb_down_comment" class="material-icons" type='submit'>thumb_down</button>
+                                    {% endif %}
+                                    </form>
+                                </div>
+                                <div class="comment-num-of-likes" style="float: right; padding-right: 10px">
+                                    {{ comment.likes.all.count }} likes
+                                </div>
+                            </div>
+                            
+                        </div>
+                    {% endfor %} 
+                </div>
+            </div> 
+        </div>          
+
+    </div>    </div>
+
+    
 {% endblock %}
