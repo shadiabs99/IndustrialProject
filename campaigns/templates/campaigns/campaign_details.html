@@ -141,7 +141,7 @@
                 </strong></div>
             </form>
             {% if user.is_authenticated and user in campaign.participants.all %}
-                <a href="http://http://eliasnassar.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/create" style="color: aqua" data-role="button" data-inline="true">
+                <a href="http://eliasnassar.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/create" style="color: aqua" data-role="button" data-inline="true">
                     <button type="button" class="btn btn-outline-light">
                     Suggest an idea
                     </button>
@@ -150,12 +150,12 @@
 
             {% if user.is_authenticated %} 
             {% if user == campaign.author or user == campaign.manager %} 
-                    <a href="http://http://eliasnassar.pythonanywhere.com/campaigns/{{campaign.id}}/update" style="color: aqua" data-role="button" data-inline="true">
+                    <a href="http://eliasnassar.pythonanywhere.com/campaigns/{{campaign.id}}/update" style="color: aqua" data-role="button" data-inline="true">
                         <button type="button" class="btn btn-outline-light">
                         Update Campaign
                         </button>
                     </a>
-                    <a href="http://http://eliasnassar.pythonanywhere.com/campaigns/{{campaign.id}}/delete" style="color: aqua" data-role="button" data-inline="true">
+                    <a href="http://eliasnassar.pythonanywhere.com/campaigns/{{campaign.id}}/delete" style="color: aqua" data-role="button" data-inline="true">
                         <button type="button" class="btn btn-outline-light">
                         Delete Campaign
                         
@@ -180,7 +180,7 @@
                     {% for idea in ideas %}
                     <br>
                     <div class="idea_row">
-                        <a href='http://http://eliasnassar.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/{{idea.id}}' style="color: #0071c5">
+                        <a href='http://eliasnassar.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/{{idea.id}}' style="color: #0071c5">
                             {{ idea.idea_title }} 
                         </a>
                         <br>
@@ -196,7 +196,7 @@
                                 {{idea.idea_url}}
                             </a> 
                             <div style="float: right;">
-                                <form action="http://http://eliasnassar.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/{{idea.id}}/like/"  method='POST' >
+                                <form action="http://eliasnassar.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/{{idea.id}}/like/"  method='POST' >
                                     {% csrf_token %}
                                 <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
                                 {% if user not in idea.likes.all %}
