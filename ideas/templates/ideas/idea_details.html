@@ -44,7 +44,7 @@
         </div>
         
         <div id="statistics"> 
-            <form action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/like/"  method='POST' >
+            <form action="http://http://eliasnassar.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/like/"  method='POST' >
                 {% csrf_token %}
                 <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
                 {% if user not in idea.likes.all %}
@@ -57,15 +57,15 @@
                     {{ idea.likes.all.count }} likes
                 </strong></div>
             </form>
-            <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/create" data-role="button" data-inline="true">
+            <a href="http://http://eliasnassar.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/create" data-role="button" data-inline="true">
                 
                 <button type="button" class="btn btn-outline-light">
                     Add Comment        </button></a>
 
 
             {% if user.is_authenticated and user == idea.author %}
-                <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/update" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-light">Update Idea</button></a>
-                <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/delete" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-light">Delete Idea</button></a>
+                <a href="http://http://eliasnassar.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/update" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-light">Update Idea</button></a>
+                <a href="http://http://eliasnassar.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/delete" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-light">Delete Idea</button></a>
             {%endif%}
         </div>
             
@@ -84,11 +84,11 @@
                                     Written by:  {{comment.author}}
                                 </div>
                                 {% if user.is_authenticated and user == comment.author %}
-                                <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/update" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-dark">Update Comment</button></a>
-                                <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/delete" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-dark">Delete Comment</button></a>
+                                <a href="http://http://eliasnassar.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/update" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-dark">Update Comment</button></a>
+                                <a href="http://http://eliasnassar.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/delete" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-dark">Delete Comment</button></a>
                             {%endif%}
                                 <div style="float: right;">
-                                    <form action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/like/"  method='POST' >
+                                    <form action="http://http://eliasnassar.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/like/"  method='POST' >
                                         {% csrf_token %}
                                     <input type= 'hidden' name= 'campaign_id' value="{{campaign.id}}">
                                     {% if user not in comment.likes.all %}
