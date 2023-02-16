@@ -14,7 +14,7 @@ def list_of_campaigns(request):
     return render(request, 'campaigns/home.html', context)
 
 def list_of_top_campaigns(request):
-    top_campaigns = Campaign.objects.annotate(q_count=Count('likes')).order_by('-q_count')[:7]    
+    top_campaigns = Campaign.objects.annotate(q_count=Count('likes')).order_by('-q_count')[:7]
     context = {'campaigns': top_campaigns}
     return render(request, 'campaigns/home.html', context)
 
@@ -34,7 +34,7 @@ def campaign_details(request, campaign_id):
         except ValueError:
             context = {'form': CampaignForm(), 'error': 'Bad data try again'}
             return render(request, 'campaigns/campaign_details.html', context)
-    
+
 @login_required
 def campaign_create(request):
     user = request.user
@@ -48,12 +48,12 @@ def campaign_create(request):
         except ValueError:
             context = {'form': CampaignForm(), 'error': 'Bad data try again'}
             return render(request, 'campaigns/campaign_form.html', context)
-        
+
 def campaign_delete(request, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)
     campaign.delete()
     return redirect('campaigns:list_of_campaigns')
-    
+
 def request_page(request):
     if(request.GET.get('mybtn')):
         mypythoncode.mypythonfunction( int(request.GET.get('mytextbox')) )
@@ -64,11 +64,11 @@ def campaign_update(request, campaign_id):
     form = CampaignForm(request.POST if request.POST else None, instance=campaign)
     if request.method == 'POST':
         if form.is_valid():
-            image_path = campaign.image.path
+            image_path = campaign.image.url
             if os.path.exists(image_path):
                 os.remove(image_path)
             form.save()
-            return redirect('campaigns:campaign_details', campaign.id)    
+            return redirect('campaigns:campaign_details', campaign.id)
     return render(request, 'campaigns/campaign_update.html', {'form': form})
 
 def about_us(request):
@@ -78,13 +78,13 @@ def about_us(request):
 def campaign_like(request, campaign_id):
     user = request.user
     if request.method == 'POST':
-        
+
         campaign = Campaign.objects.get(id=campaign_id)
-        
+
         if user in campaign.likes.all():
             campaign.likes.remove(user)
         else:
-            campaign.likes.add(user)    
+            campaign.likes.add(user)
         like, created = Like.objects.get_or_create(user=user, campaign_id=campaign_id)
         if not created:
             if like.value == 'Like':
@@ -97,13 +97,13 @@ def campaign_like(request, campaign_id):
 def campaign_participate(request, campaign_id):
     user = request.user
     if request.method == 'POST':
-        
+
         campaign = Campaign.objects.get(id=campaign_id)
-        
+
         if user in campaign.participants.all():
             campaign.participants.remove(user)
         else:
-            campaign.participants.add(user)    
+            campaign.participants.add(user)
         participant, created = Participant.objects.get_or_create(user=user, campaign_id=campaign_id)
         if not created:
             if participant.value == 'Patrticipate':
