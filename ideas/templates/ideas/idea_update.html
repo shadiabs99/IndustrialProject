@@ -12,7 +12,8 @@
 <form  class = "elias"method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Submit">
+    <button type="submit" name="button" class="new_idea_button">Update Idea</button>
+
  </form>
 
 {% endblock %}
