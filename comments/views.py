@@ -41,6 +41,8 @@ def comment_create(request, idea_id, campaign_id):
 
     if request.method == 'GET':
         form = CommentForm(initial={'idea_id': idea_id})
+        field = form.fields['idea_id']
+        field.widget = field.hidden_widget()
         return render(request, 'comments/comment_form.html', {'form': form})
     else:
         try:
@@ -63,6 +65,8 @@ def comment_update(request, comment_id, idea_id, campaign_id):
     comment = Comment.objects.get(id=comment_id)
     form = CommentForm(
         request.POST if request.POST else None, instance=comment)
+    field = form.fields['idea_id']
+    field.widget = field.hidden_widget()
     if request.method == 'POST':
         if form.is_valid():
             form.save()
