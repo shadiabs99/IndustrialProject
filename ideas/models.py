@@ -36,4 +36,5 @@ class IdeaLike (models.Model):
     value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
     
     def __str__(self):
+        """dsdsd"""
         return str(self.idea)
