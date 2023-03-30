@@ -27,8 +27,8 @@ class CampaignForm(ModelForm):
 
         labels = {
             'manager': 'Who manages this campaign?',
-            'title': '',
-            'description': '',
+            'title': 'Title',
+            'description': 'Description',
             'start_date': 'Start Date: ',
             'end_date': 'End Date: ',
         }

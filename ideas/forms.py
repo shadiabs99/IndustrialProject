@@ -40,11 +40,11 @@ class IdeaForm(ModelForm):
         }
 
         labels = {
-            'idea_title': '',
-            'idea_url': '',
-            'team': '',
-            'background': '',
-            'solution': '',
-            'impact': '',
+            'idea_title': 'Title',
+            'idea_url': 'URL',
+            'team': 'Team',
+            'background': 'Background',
+            'solution': 'Solution',
+            'impact': 'Impact',
 
         }
