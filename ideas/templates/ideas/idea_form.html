@@ -14,7 +14,7 @@
 <br>
 {{ error }}
 
-<form class="elias" method="POST" class="elias">
+<form class="elias" method="POST" class="elias" enctype="multipart/form-data">
      {% csrf_token %} 
     {{form.as_p}}
     <button type="submit" name="button" class="new_idea_button">New Idea</button>

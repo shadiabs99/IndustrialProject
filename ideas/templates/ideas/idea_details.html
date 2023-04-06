@@ -31,6 +31,11 @@
             <h3>{{ idea.solution }}</h3>
             <div id="idea_info">Impact:</div>
             <h3>{{ idea.impact }}</h3>
+            {% if idea.file %}
+            <a href="{{ idea.file.url }}" class="btn btn-primary btn-sm">
+                Show File
+            </a>
+            {% endif %}
             <h2></h2>
         </div>
 

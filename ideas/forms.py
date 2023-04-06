@@ -12,7 +12,7 @@ class IdeaForm(ModelForm):
     class Meta:
         model = Idea
         fields = ['idea_title', 'idea_url',
-                  'campaign_id', 'team', 'background', 'impact', 'solution']
+                  'campaign_id', 'team', 'background', 'impact', 'solution', 'file']
         widgets = {
             'idea_title': forms.TextInput(attrs={'class': 'form-control',
                                                  'style': 'width: auto',
@@ -46,5 +46,10 @@ class IdeaForm(ModelForm):
             'background': 'Background',
             'solution': 'Solution',
             'impact': 'Impact',
-
+            'file': 'Files',
         }
+
+class UserFile(forms.ModelForm):
+    class meta:
+        models = Idea
+        fields = '__all__'
