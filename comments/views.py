@@ -24,7 +24,8 @@ def comment_details(request, comment_id, idea_id, campaign_id):
 
     if request.method == 'GET':
         form = CommentForm(instance=comment)
-        context = {'form': form, 'comment': comment, 'idea_id': idea_id}
+        context = {'form': form, 'comment': comment,
+                   'idea_id': idea_id, 'campaign_id': campaign_id}
         return render(request, 'comments/comment_details.html', context)
     else:
         try:
@@ -36,23 +37,52 @@ def comment_details(request, comment_id, idea_id, campaign_id):
             return render(request, 'comments/comment_details.html', context)
 
 
-def comment_create(request, idea_id, campaign_id):
-    user = request.user
+def comment_create(request, idea_id, campaign_id, comment_id=0):
+    if comment_id is 0:
+        if request.method == 'GET':
+            form = CommentForm(initial={'idea_id': idea_id})
+            field = form.fields['idea_id']
+            field.widget = field.hidden_widget()
 
-    if request.method == 'GET':
-        form = CommentForm(initial={'idea_id': idea_id})
-        field = form.fields['idea_id']
-        field.widget = field.hidden_widget()
-        return render(request, 'comments/comment_form.html', {'form': form})
+            return render(request, 'comments/comment_form.html', {'form': form})
+        else:
+            try:
+                form = CommentForm(request.POST, request.FILES,
+                                   initial={'idea_id': idea_id})
+                form.save()
+                return redirect('idea_details', campaign_id, idea_id)
+            except ValueError:
+                context = {'form': CommentForm(
+                ), 'error': 'Bad data try again'}
+                return render(request, 'comments/comment_form.html', context)
     else:
-        try:
-            form = CommentForm(request.POST, request.FILES,
-                               initial={'idea_id': idea_id})
-            form.save()
-            return redirect('idea_details', campaign_id, idea_id)
-        except ValueError:
-            context = {'form': CommentForm(), 'error': 'Bad data try again'}
-            return render(request, 'comments/comment_form.html', context)
+        parent_comment = get_object_or_404(Comment, id=comment_id)
+        if request.method == 'GET':
+            form = CommentForm(
+                initial={'idea_id': idea_id, 'comment_id': comment_id})
+            comment = form.save(commit=False)
+            comment.parent = parent_comment
+            field = form.fields['idea_id']
+            field.widget = field.hidden_widget()
+            field = form.fields['comment_id']
+            field.widget = field.hidden_widget()
+            return render(request, 'comments/comment_form.html', {'form': form})
+        else:
+            try:
+                form = CommentForm(request.POST, request.FILES,
+                                   initial={'idea_id': idea_id, 'comment_id': comment_id})
+                comment = form.save(commit=False)
+                comment.parent = parent_comment
+                field = form.fields['idea_id']
+                field.widget = field.hidden_widget()
+                field = form.fields['comment_id']
+                field.widget = field.hidden_widget()
+                form.save()
+                return redirect('idea_details', campaign_id, idea_id)
+            except ValueError:
+                context = {'form': CommentForm(
+                ), 'error': 'Bad data try again'}
+                return render(request, 'comments/comment_form.html', context)
 
 
 def comment_delete(request, comment_id, idea_id, campaign_id):
