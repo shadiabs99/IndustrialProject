@@ -8,4 +8,7 @@ urlpatterns = [
     path('<int:comment_id>/', views.comment_details, name='comment_details'),
     path('<int:comment_id>/delete/', views.comment_delete, name='comment_delete'),
     path('<int:comment_id>/update/', views.comment_update, name='comment_update'),
+    path('<int:comment_id>/details/',
+         views.comment_details, name='comment_details'),
+
 ]
