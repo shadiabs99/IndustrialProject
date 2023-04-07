@@ -77,9 +77,10 @@
         <div id="comments" >
             <div class="comments_double_container">
                 <div class="comments_container">
-                    <h1 id="ddd"> {{comments.all.count}} Comments</h1>
+                    <h4 id="ddd"> {{comments.all.count}} total comments</h4>
                 <div class="comment_col">
                     {% for comment in comments %}
+                        {% if comment.comment_id == null %}
                         <br>
                         <div class="comment_row">
                             {{ comment.content }}
@@ -88,9 +89,15 @@
                                 <div id="comment_info">
                                     Written by:  {{comment.author}}
                                 </div>
+                                <div id="comment_replies">
+                                    <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/details" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-dark">Show {{ comment.replies.all.count }} replies</button></a>
+                                </div>
+                                <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/reply" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-dark">Reply</button></a>
+
                                 {% if user.is_authenticated and user == comment.author %}
                                 <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/update" data-role="button" data-inline="true"><button type="button" class="btn btn-outline-dark">Update Comment</button></a>
                                 <a href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/delete" data-role="button" data-inline="true" ><button type="button" class="btn btn-outline-dark" onclick="return confirm('Are you sure you want to delete this comment?')">Delete Comment</button></a>
+
                             {%endif%}
                                 <div style="float: right;">
                                     <form action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/like/"  method='POST' >
@@ -109,6 +116,7 @@
                             </div>
                             
                         </div>
+                        {%endif%}
                     {% endfor %} 
                 </div>
             </div> 
