@@ -25,6 +25,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path("accounts/", include("allauth.urls")),
+    path("" , include("users.urls")),
 
     # Campaign Views
     path('', campaign_views.list_of_campaigns, name='list_of_campaigns'),
