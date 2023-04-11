@@ -30,6 +30,8 @@ ALLOWED_HOSTS = ['eliasnassar.pythonanywhere.com', '127.0.0.1']
 
 # Application definition
 
+SITE_ID=2
+
 INSTALLED_APPS = [
     'django_extensions',
     'django.contrib.admin',
@@ -43,7 +45,22 @@ INSTALLED_APPS = [
     'ideas',
     'comments',
     'participants',
+    'django.contrib.sites',
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google"
 ]
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email"
+        ],
+        "AUTH_PARAMS": {"access_type": "online"}
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -139,9 +156,14 @@ LOGIN_URL = '/users/login'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/campaigns/'
+LOGIN_REDIRECT_URL = '/campaigns/' #check later it was 
 
-LOGOUT_REDIRECT_URL = '/users/login'
+LOGOUT_REDIRECT_URL = '/users/login' ##check later it was '/users/login'
 
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..')
 SITE_ROOT = PROJECT_ROOT
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend"
+)

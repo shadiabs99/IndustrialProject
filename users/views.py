@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model, login, logout, authenticate
 from campaigns.models import Campaign
@@ -23,3 +23,9 @@ def signup(request):
             return render(request, 'registration/signup.html', {'form':UserCreationForm(), 'error': error})
         
         
+def home(request):
+    return render(request,'registration/home.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect("/")
