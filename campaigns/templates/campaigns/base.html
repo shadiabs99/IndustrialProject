@@ -46,32 +46,16 @@
 
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="http://127.0.0.1:8000/create">
-                    
-                    
                     Add a new campaign
-                  
-                  
-                  
                   </a></li>
                 </ul>
               </li>
-              {% comment %} <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Ideas
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Show all ideas</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Add a new idea</a></li>
-                </ul>
-              </li> {% endcomment %}
             </ul>
                 {% if user.is_authenticated %}
                 Logged in as {{ user.username }} &nbsp;<a href={% url 'logout' %}>Logout</a>
               {% else %}
-                Logged Out &nbsp;<a href={% url 'login' %}>Login&nbsp;</a> or &nbsp;<a href={% url 'signup' %}>SignUp</a>
+                Logged Out &nbsp;<a href="http://127.0.0.1:8000/accounts/login/">Login&nbsp;</a> or &nbsp;<a href="http://127.0.0.1:8000/accounts/signup/">SignUp</a>
               {% endif %}
-            
           </div>
         </div>
       </nav>

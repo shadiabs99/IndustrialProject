@@ -1,0 +1,59 @@
+{% extends "campaigns/base.html" %}
+{% block content %}
+{% load i18n %}
+{% load account socialaccount %}
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'comment_form.css' %}"> 
+</head>
+
+<body>
+  <br>
+  <br>
+  <br>
+{% if form.errors %}
+
+
+<h1 class="form-name"> Login </h1>
+<br>
+<p>Your user password didn't match</p>
+{% endif %}
+<br>
+<h2 class="form-name">Sign in</h2>
+<form class="elias" method="post" %>
+    {% get_providers as socialaccount_providers %}
+
+    {% if socialaccount_providers %}
+    <p>{% blocktrans with site.name as site_name %}Please sign in with your gmail account.{% endblocktrans %}</p>
+    
+    <div class="socialaccount_ballot">
+    
+
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    <br>
+      <br>
+    <p>Or {% blocktrans with site.name as site_name %}<a href="{{ signup_url }}">sign up</a>
+        for a new account and sign in below:{% endblocktrans %}</p>
+    </div>
+    
+    {% include "socialaccount/snippets/login_extra.html" %}
+    
+    {% else %}
+    <p>{% blocktrans %}If you have not created an account yet, then please
+        
+    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+    {% endif %}
+    
+    <form class="elias" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class="new_comment_button" type="submit">{% trans "Sign In" %}</button>
+      <br>
+      <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+    </form>
+</form>
+{% endblock %}
