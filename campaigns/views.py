@@ -8,20 +8,26 @@ from ideas.models import Idea
 from django.db.models import Count
 import os
 
-def list_of_campaigns(request):
-    campaigns = Campaign.objects.all()
-    context = {'campaigns': campaigns}
-    return render(request, 'campaigns/home.html', context)
 
 def list_of_top_campaigns(request):
     top_campaigns = Campaign.objects.annotate(q_count=Count('likes')).order_by('-q_count')[:7]
     context = {'campaigns': top_campaigns}
     return render(request, 'campaigns/home.html', context)
 
+def list_of_campaigns(request):
+    top_campaigns = Campaign.objects.all().order_by('-created_at')
+    context = {'campaigns': top_campaigns}
+    return render(request, 'campaigns/home.html', context)
+
+def list_of_soon_campaigns(request):
+    campaigns = Campaign.objects.all().order_by('start_date')
+    context = {'campaigns': campaigns}
+    return render(request, 'campaigns/home.html', context)
+
 def campaign_details(request, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)
     user = request.user
-    ideas = Idea.objects.all().filter(campaign_id=campaign_id)
+    ideas = Idea.objects.all().order_by('-idea_created_at')
     if request.method == 'GET':
         form = CampaignForm(instance=campaign)
         context =  {'form': form, 'campaign': campaign, 'user': user, 'ideas': ideas}

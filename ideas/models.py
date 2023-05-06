@@ -16,14 +16,16 @@ class Idea(models.Model):
     impact = models.TextField(max_length=250)
     file = models.FileField(upload_to="files/",null=True, blank=True)
 
-    likes = models.ManyToManyField(User, default=None, blank=True, related_name="idea_likes")
+    idea_likes = models.ManyToManyField(User, default=None, blank=True, related_name="idea_likes")
     
+    idea_created_at = models.DateTimeField(auto_now_add=True)
+    idea_updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.solution
     
     @property
     def num_likes(self):
-        return self.likes.all().count()
+        return self.idea_likes.all().count()
 
 LIKE_CHOICES = (
     ('Like', 'Like'), 

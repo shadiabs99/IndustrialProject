@@ -16,6 +16,9 @@ class Campaign(models.Model):
     likes = models.ManyToManyField(User, default=None, blank=True, related_name="likes")
     participants = models.ManyToManyField(User, default=None, blank=True, related_name="campaign_participants")
     
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
     def __str__(self):
         return self.title
     

@@ -7,7 +7,7 @@ import re
 
 
 def list_of_comments(request, idea_id, campaign_id):
-    comments = Comment.objects.all().filter(idea_id=idea_id)
+    comments = Comment.objects.all().order_by('created_at')
     context = {'comments': comments}
     return render(request, 'ideas/idea_details.html', context)
 

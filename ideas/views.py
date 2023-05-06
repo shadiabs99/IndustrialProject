@@ -10,15 +10,14 @@ import re
 
 
 def list_of_ideas(request, campaign_id):
-    ideas = Idea.objects.all().filter(campaign_id=campaign_id)
+    ideas = Idea.objects.all().order_by('idea_created_at')
     context = {'ideas': ideas, 'campaign_id': campaign_id}
     return render(request, 'campaigns/campaign_details.html', context)
 
 
-def list_of_top_ideas(request):
-    top_ideas = Idea.objects.annotate(
-        q_count=Count('likes')).order_by('-q_count')[:7]
-    context = {'ideas': top_ideas}
+def list_of_top_ideas(request, campaign_id):
+    top_ideas = Idea.objects.annotate(q_count=Count('idea_likes')).order_by('-q_count')[:7]
+    context = {'ideas': top_ideas, 'campaign_id': campaign_id}
     return render(request, 'campaigns/campaign_details.html', context)
 
 
@@ -85,10 +84,10 @@ def idea_like(request, campaign_id, idea_id):
 
         idea = Idea.objects.get(id=idea_id)
 
-        if user in idea.likes.all():
-            idea.likes.remove(user)
+        if user in idea.idea_likes.all():
+            idea.idea_likes.remove(user)
         else:
-            idea.likes.add(user)
+            idea.idea_likes.add(user)
         like, created = IdeaLike.objects.get_or_create(
             user=user, idea_id=idea_id)
         if not created:

@@ -17,6 +17,9 @@ class Comment(models.Model):
     likes = models.ManyToManyField(
         User, default=None, blank=True, related_name="comment_likes")
 
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
     def __str__(self):
         return self.content
 
