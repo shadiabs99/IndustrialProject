@@ -33,6 +33,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('campaigns/', include('campaigns.urls')),
     path('top_campaigns/', campaign_views.list_of_top_campaigns, name='top_campaigns'),
+    path('soon_campaigns/', campaign_views.list_of_soon_campaigns, name='soon_campaigns'),
     path('ideas/', include('ideas.urls')),
     path('comments/', include('comments.urls')),
     path('users/', include('django.contrib.auth.urls')),
