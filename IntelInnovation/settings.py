@@ -152,13 +152,13 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-LOGIN_URL = '/users/login'
+LOGIN_URL = '/accounts/login/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/campaigns/' #check later it was 
 
-LOGOUT_REDIRECT_URL = '/users/login' ##check later it was '/users/login'
+LOGOUT_REDIRECT_URL = '/accounts/login' 
 
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..')
 SITE_ROOT = PROJECT_ROOT
