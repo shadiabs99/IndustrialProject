@@ -44,12 +44,11 @@ urlpatterns = [
     # Idea Views
     path('campaigns/<int:campaign_id>/ideas/create/',
          idea_views.idea_create, name='idea-create'),
-    path('campaigns/<int:campaign_id>/top_ideas/',
-         idea_views.list_of_top_ideas, name='top-ideas'),
     path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/like/',
          idea_views.idea_like, name='idea-like'),
     path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/',
          idea_views.idea_details, name='idea_details'),
+
 
     # Comment Views
     path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/comments/create',

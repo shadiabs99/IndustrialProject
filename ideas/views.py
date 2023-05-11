@@ -11,14 +11,14 @@ import re
 
 def list_of_ideas(request, campaign_id):
     ideas = Idea.objects.all().order_by('idea_created_at')
-    context = {'ideas': ideas, 'campaign_id': campaign_id}
+    context = {'ideas': ideas}
     return render(request, 'campaigns/campaign_details.html', context)
 
 
-def list_of_top_ideas(request, campaign_id):
-    top_ideas = Idea.objects.annotate(q_count=Count('idea_likes')).order_by('-q_count')[:7]
-    context = {'ideas': top_ideas, 'campaign_id': campaign_id}
-    return render(request, 'campaigns/campaign_details.html', context)
+# def list_of_top_ideas(request, campaign_id):
+#     top_ideas = Idea.objects.annotate(q_count=Count('idea_likes')).order_by('-q_count')[:7]
+#     context = {'ideas': top_ideas}
+#     return render(request, 'campaigns/campaign_details.html', context)
 
 
 def idea_details(request, idea_id, campaign_id):

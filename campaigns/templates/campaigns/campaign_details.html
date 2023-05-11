@@ -149,8 +149,9 @@
         Suggest an idea
       </button>
     </a>
-    {% endif %} {% if user.is_authenticated %} {% if user == campaign.author or
-    user == campaign.manager %}
+    {% endif %} 
+
+    {% if user.is_authenticated and user == campaign.author or user == campaign.manager %}
     <a
       href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update"
       style="color: aqua"
@@ -161,6 +162,7 @@
         Update Campaign
       </button>
     </a>
+
     <a
       href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/delete"
       style="color: aqua"
@@ -176,27 +178,8 @@
   </div>
 
   <div id="ideas">
-    <a
-      href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/"
-      style="color: aqua"
-      data-role="button"
-      data-inline="true"
-    >
-      <button type="button" class="btn btn-outline-light">
-        Sort by newest
-      </button>
-    </a>
 
-    <a
-      href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/top_ideas"
-      style="color: aqua"
-      data-role="button"
-      data-inline="true"
-    >
-      <button type="button" class="btn btn-outline-light">
-        Sort by popularity
-      </button>
-    </a>
+
     <div class="ideas_double_container">
       <div class="ideas_container">
         <h1 id="ddd">{{ideas.all.count}} Ideas</h1>
