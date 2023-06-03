@@ -140,7 +140,7 @@
     </form>
     {% if user.is_authenticated and user in campaign.participants.all %}
     <a
-      href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/create"
+      href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/create"
       style="color: aqua"
       data-role="button"
       data-inline="true"
@@ -152,7 +152,7 @@
     {% endif %} {% if user.is_authenticated %} {% if user == campaign.author or
     user == campaign.manager %}
     <a
-      href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/update"
+      href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/update"
       style="color: aqua"
       data-role="button"
       data-inline="true"
@@ -162,7 +162,7 @@
       </button>
     </a>
     <a
-      href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/delete"
+      href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/delete"
       style="color: aqua"
       data-role="button"
       data-inline="true"
@@ -177,7 +177,7 @@
 
   <div id="ideas">
     <a
-      href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/"
+      href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/"
       style="color: aqua"
       data-role="button"
       data-inline="true"
@@ -188,7 +188,7 @@
     </a>
 
     <a
-      href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/top_ideas"
+      href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/top_ideas"
       style="color: aqua"
       data-role="button"
       data-inline="true"
@@ -205,7 +205,7 @@
           <br />
           <div class="idea_row">
             <a
-              href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}"
+              href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/{{idea.id}}"
               style="color: #0071c5"
             >
               {{ idea.idea_title }}
@@ -223,7 +223,7 @@
               </a>
               <div style="float: right">
                 <form
-                  action="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/like/"
+                  action="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/{{idea.id}}/like/"
                   method="POST"
                 >
                   {% csrf_token %}

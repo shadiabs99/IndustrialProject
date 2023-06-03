@@ -64,7 +64,7 @@
 
   <div id="statistics">
     <form
-      action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/like/"
+      action="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/like/"
       method="POST"
     >
       {% csrf_token %}
@@ -82,7 +82,7 @@
       <div><strong> {{ idea.idea_likes.all.count }} likes </strong></div>
     </form>
     <a
-      href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/create"
+      href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/create"
       data-role="button"
       data-inline="true"
     >
@@ -93,7 +93,7 @@
 
     {% if user.is_authenticated and user == idea.author %}
     <a
-      href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/update"
+      href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/update"
       data-role="button"
       data-inline="true"
       ><button type="button" class="btn btn-outline-light">
@@ -101,7 +101,7 @@
       </button></a
     >
     <a
-      href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/delete"
+      href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/delete"
       data-role="button"
       data-inline="true"
       ><button
@@ -129,7 +129,7 @@
               <div id="comment_info">Written by: {{comment.author}}</div>
               <div id="comment_replies">
                 <a
-                  href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/details"
+                  href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/details"
                   data-role="button"
                   data-inline="true"
                   ><button type="button" class="btn btn-outline-dark">
@@ -138,7 +138,7 @@
                 >
               </div>
               <a
-                href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/reply"
+                href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/reply"
                 data-role="button"
                 data-inline="true"
                 ><button type="button" class="btn btn-outline-dark">
@@ -148,7 +148,7 @@
 
               {% if user.is_authenticated and user == comment.author %}
               <a
-                href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/update"
+                href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/update"
                 data-role="button"
                 data-inline="true"
                 ><button type="button" class="btn btn-outline-dark">
@@ -156,7 +156,7 @@
                 </button></a
               >
               <a
-                href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/delete"
+                href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/delete"
                 data-role="button"
                 data-inline="true"
                 ><button
@@ -171,7 +171,7 @@
               {%endif%}
               <div style="float: right">
                 <form
-                  action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/like/"
+                  action="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/like/"
                   method="POST"
                 >
                   {% csrf_token %}
