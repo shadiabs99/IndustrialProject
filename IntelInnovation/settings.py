@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['intetinnovation.pythonanywhere.com', '127.0.0.1']
 
 # Application definition
 
-SITE_ID=3
+SITE_ID=2
 
 INSTALLED_APPS = [
     'django_extensions',
