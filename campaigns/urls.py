@@ -13,7 +13,5 @@ urlpatterns = [
     path('<int:campaign_id>/update_image/', views.update_image, name='update-image'),
     path('<int:campaign_id>/ideas/', include('ideas.urls')),
     path('<int:campaign_id>/participate/', views.campaign_participate, name='campaign-participate'),   
-    path('<int:campaign_id>/top_ideas/', idea_views.list_of_top_ideas, name='list_of_top_ideas'),
-
 
 ]

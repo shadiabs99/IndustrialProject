@@ -149,8 +149,9 @@
         Suggest an idea
       </button>
     </a>
-    {% endif %} {% if user.is_authenticated %} {% if user == campaign.author or
-    user == campaign.manager %}
+    {% endif %} 
+
+    {% if user.is_authenticated and user == campaign.author or user == campaign.manager %}
     <a
       href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/update"
       style="color: aqua"
@@ -161,6 +162,7 @@
         Update Campaign
       </button>
     </a>
+
     <a
       href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/delete"
       style="color: aqua"
@@ -186,6 +188,7 @@
         Sort by newest
       </button>
     </a>
+
 
     <a
       href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/top_ideas"

@@ -97,7 +97,7 @@ def campaign_like(request, campaign_id):
         else:
             like.value = 'Like'
     like.save()
-    return redirect('campaigns:campaign_details', campaign.id)
+    return redirect('campaigns:campaign_details', campaign_id)
     
 @login_required()
 def campaign_participate(request, campaign_id):
