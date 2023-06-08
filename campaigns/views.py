@@ -19,6 +19,11 @@ def list_of_campaigns(request):
     context = {'campaigns': top_campaigns}
     return render(request, 'campaigns/home.html', context)
 
+def archived_campaigns(request):
+    campaigns = Campaign.objects.all().order_by('-created_at')
+    context = {'campaigns': campaigns}
+    return render(request, 'campaigns/archived_campaigns.html', context)
+
 def list_of_soon_campaigns(request):
     campaigns = Campaign.objects.all().order_by('start_date')
     context = {'campaigns': campaigns}
@@ -58,6 +63,12 @@ def campaign_create(request):
 def campaign_delete(request, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)
     campaign.delete()
+    return redirect('campaigns:list_of_campaigns')
+
+def campaign_close(request, campaign_id):
+    campaign = get_object_or_404(Campaign, id=campaign_id)
+    campaign.campaign_opened = False
+    campaign.save()
     return redirect('campaigns:list_of_campaigns')
 
 def request_page(request):

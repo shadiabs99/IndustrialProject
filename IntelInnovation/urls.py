@@ -40,6 +40,8 @@ urlpatterns = [
     path('users/signup/', users_views.signup, name='signup'),
     path('about_us', campaign_views.about_us, name='about_us'),
     path('create', campaign_views.campaign_create, name='campaign_create'),
+    path('archived_campaigns', campaign_views.archived_campaigns, name='archived_campaigns'),
+
 
     # Idea Views
     path('campaigns/<int:campaign_id>/ideas/create/',

@@ -63,6 +63,8 @@
   </div>
 
   <div id="statistics">
+    {% if campaign.campaign_opened == True %}
+
     <form
       action="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/like/"
       method="POST"
@@ -112,6 +114,7 @@
         Delete Idea
       </button></a
     >
+    {% endif %}
     {%endif%}
   </div>
 
@@ -137,6 +140,8 @@
                   </button></a
                 >
               </div>
+              {% if campaign.campaign_opened == True %}
+
               <a
                 href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/reply"
                 data-role="button"
@@ -167,7 +172,7 @@
                   Delete Comment
                 </button></a
               >
-
+              {%endif%}
               {%endif%}
               <div style="float: right">
                 <form
