@@ -1,189 +1,222 @@
-.container {
-    display: grid;
-    height: 100vh;
-    width: 100vw;
-    grid-template-rows: 2fr 1fr 1fr 2fr;
-    grid-template-columns: 3fr 1fr;
-    grid-template-areas: "campaign-banner campaign-banner" "title-and-description author" "statistics statistics" "ideas ideas";
-    grid-gap: 0.2rem;
-    font-family: "intel-one", "intel-clear", Helvetica, Arial, sans-serif;
-    text-align: center;
-}
-
-#campaign-banner {
-    grid-area: campaign-banner;
-    border-radius: var(--main-radius);
-    padding-top: var(--main-padding);
-}
-
-#title-and-description {
-    grid-area: title-and-description;
-    border-radius: 0.7rem;
-    padding-top: var(--main-padding);
-    text-align: center;
-    padding-left: 5px;
-    border-block: solid;
-    border-color: black;
-    color: aliceblue;
-}
-
-#author {
-    grid-area: author;
-    border-radius: var(--main-radius);
-    padding-top: var(--main-padding);
-    text-align: right;
-    padding-left: 0.25rem;
-}
-
-#statistics {
-    grid-area: statistics;
-    border-radius: var(--main-radius);
-    padding-top: var(--main-padding);
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center;
-    /* margin-left: 40%; */
-}
-
-#dates {
-    display: flex;
-    flex-direction: row;
-}
-
-#ideas {
-    grid-area: ideas;
-    border-radius: var(--main-radius);
-    padding-top: var(--main-padding);
-    margin-right: 20px;
-    align-items: center;
-}
-
-@media only screen and (max-width:650px) {
     .container {
-        grid-template-columns: 1fr;
-        grid-template-rows: 2fr 1fr 0.8fr 0.8fr 1fr;
-        grid-template-areas: "campaign-banner" "title-and-description" "author" "statistics" "ideas";
+        display: grid;
+        height: 100vh;
+        width: 100vw;
+        grid-template-rows: 2fr 1fr 1fr 2fr;
+        grid-template-columns: 3fr 1fr;
+        grid-template-areas: "campaign-banner campaign-banner" "title-and-description author" "statistics statistics" "ideas ideas";
+        grid-gap: 0.2rem;
+        font-family: "intel-one", "intel-clear", Helvetica, Arial, sans-serif;
+        text-align: center;
     }
-}
+    
+    #campaign-banner {
+        grid-area: campaign-banner;
+        border-radius: var(--main-radius);
+        padding-top: var(--main-padding);
+    }
+    
+    .title-and-description {
+        grid-area: title-and-description;
+        font-family: 'IntelOne Display', sans-serif;
+        font-weight: 300;
+        border-block: solid;
+        border-color: aliceblue;
+        color: aliceblue;
+        opacity: 0.5rem;
+        font-style: unset;
+        text-align: left;
+    }
+    
+    #campaign_title {
+        grid-area: title-and-description;
+        font-family: 'IntelOne Display', sans-serif;
+        font-weight: 300;
+        border-block: solid;
+        border-color: aliceblue;
+        color: aliceblue;
+        opacity: 0.5rem;
+        font-style: unset;
+    }
+    
+    #try{
+        font-weight: 300;
+    }
 
-#ddd {
-    text-align: left;
-    margin-left: 10px;
-    color: #0071c5;
-    border-bottom: aliceblue;
-}
+    #authors-dropdown{
+        list-style-type: none;
+    }
 
-.idea_details {
-    border: 1px solid rgb(255, 255, 255);
-    border-bottom: none;
-    border-left: none;
-    border-right: none;
-    text-align: left;
-    padding-left: 160px;
-}
+    #author {
+        grid-area: author;
+        border-radius: var(--main-radius);
+        padding-top: var(--main-padding);
+        text-align: left;
+        padding-left: 4rem;
 
-#idea_info {
-    color: #92d4ff;
-}
+    }
+    
+    #statistics {
+        grid-area: statistics;
+        border-radius: var(--main-radius);
+        padding-top: var(--main-padding);
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+        /* margin-left: 40%; */
+    }
+    
+    #dates {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    #ideas {
+        grid-area: ideas;
+        border-radius: var(--main-radius);
+        padding-top: var(--main-padding);
+        margin-right: 20px;
+        align-items: center;
+    }
+    
+    @media only screen and (max-width:650px) {
+        .container {
+            grid-template-columns: 1fr;
+            grid-template-rows: 2fr 1fr 0.8fr 0.8fr 1fr;
+            grid-template-areas: "campaign-banner" "title-and-description" "author" "statistics" "ideas";
+        }
+    }
+    
+    #ddd {
+        text-align: left;
+        margin-left: 10px;
+        color: #0071c5;
+        border-bottom: aliceblue;
+        display: inline;
+    }
+    
+    .idea_details {
+        border: 1px solid rgb(255, 255, 255);
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+        text-align: left;
+        padding-left: 160px;
+    }
+    
+    #idea_info {
+        color: #92d4ff;
+    }
+    
+    #campaign_info {
+        color: #92d4ff;
+    }
+    
+    #author_info {
+        color: #92d4ff;
+    }
+    
+    #managers-names {
 
-#campaign_info {
-    color: #92d4ff;
-}
+        color:darksalmon;
+        box-shadow: #CCCCCC;
+    }
 
-#author_info {
-    color: #92d4ff;
-}
+    body {
+        background-color: #0071c5;
+        font-family: 'IntelOne Display', sans-serif;
+    }
 
-body {
-    background-color: #0071c5;
-    font-family: 'IntelOne Display', sans-serif;
-}
+    .a:link {
+        color: #0071c5 !important;
+    }
+    
+    .buttonn {
+        font: bold 11px Arial;
+        text-decoration: none;
+        background-color: white;
+        color: #333333;
+        padding: 2px 6px 2px 6px;
+        border-top: 1px solid #CCCCCC;
+        border-right: 1px solid #333333;
+        border-bottom: 1px solid #333333;
+        border-left: 1px solid #CCCCCC;
+        opacity: 0.5;
+    }
+    
+    .campaign_details_image {
+        line-break: strict;
+        height: 400;
+        width: 100%;
+        display: block;
+        border-radius: 0.9rem;
+        object-fit: cover;
+    }
+    
+    #thumb_down {
+        color: white;
+        background-color: #0071c5;
+        border: none;
+    }
+    
+    #thumb_up {
+        color: white;
+        opacity: 0.3;
+        background-color: #0071c5;
+        border: none;
+    }
+    
+    #thumb_down_idea {
+        color: green;
+        background-color: aliceblue;
+        border: none;
+    }
+    
+    #thumb_up_idea {
+        color: green;
+        opacity: 0.2;
+        border: none;
+        background-color: aliceblue;
+    }
+    
+    .btn-check {
+        color: black !important;
+    }
+    
+    .ideas_container {
+        border: #92d4ff;
+        height: 700px;
+        width: 970px;
+        overflow: auto;
+        background-color: aliceblue;
+        font-family: sans-serif;
+        padding: 10px;
+        text-align: left;
+        border-radius: 0.7rem;
+        padding-bottom: 5px;
+    }
+    
+    .idea_row {
+        border: 1px solid #0071c5 !important;
+        padding-bottom: 6px;
+        padding-top: 3px;
+        padding-left: 5px;
+        border-left: none !important;
+        border-right: none !important;
+        border-top: none !important;
+    }
+    
+    .ideas_double_container {
+        padding-bottom: 100px;
+        opacity: 0.9;
+    }
+    
+    .idea-num-of-likes {
+        color: green !important;
+    }
 
-.a:link {
-    color: #0071c5 !important;
-}
-
-.buttonn {
-    font: bold 11px Arial;
-    text-decoration: none;
-    background-color: white;
-    color: #333333;
-    padding: 2px 6px 2px 6px;
-    border-top: 1px solid #CCCCCC;
-    border-right: 1px solid #333333;
-    border-bottom: 1px solid #333333;
-    border-left: 1px solid #CCCCCC;
-    opacity: 0.5;
-}
-
-.campaign_details_image {
-    line-break: strict;
-    height: 400;
-    width: 100%;
-    display: block;
-    border-radius: 0.9rem;
-    object-fit: cover;
-}
-
-#thumb_down {
-    color: white;
-    background-color: #0071c5;
-    border: none;
-}
-
-#thumb_up {
-    color: white;
-    opacity: 0.3;
-    background-color: #0071c5;
-    border: none;
-}
-
-#thumb_down_idea {
-    color: green;
-    background-color: aliceblue;
-    border: none;
-}
-
-#thumb_up_idea {
-    color: green;
-    opacity: 0.2;
-    border: none;
-    background-color: aliceblue;
-}
-
-.btn-check {
-    color: black !important;
-}
-
-.ideas_container {
-    border: #92d4ff;
-    height: 700px;
-    width: 970px;
-    overflow: auto;
-    background-color: aliceblue;
-    font-family: sans-serif;
-    padding: 10px;
-    text-align: left;
-    border-radius: 0.7rem;
-    padding-bottom: 5px;
-}
-
-.idea_row {
-    border: 1px solid #0071c5 !important;
-    padding-bottom: 6px;
-    padding-top: 3px;
-    padding-left: 5px;
-    border-left: none !important;
-    border-right: none !important;
-    border-top: none !important;
-}
-
-.ideas_double_container {
-    padding-bottom: 100px;
-    opacity: 0.9;
-}
-
-.idea-num-of-likes {
-    color: green !important;
-}
+    .ideas_banner {
+        display: inline;
+        text-align: right;
+    }

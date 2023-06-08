@@ -66,7 +66,7 @@
   <div id="campaign-banner">
     <br />
     <br />
-    <div id="title-and-description">
+    <div id="campaign_title">
       <strong> <h1>{{ campaign.title }}</h1> </strong>
     </div>
 
@@ -85,10 +85,10 @@
     <br />
   </div>
 
-  <div id="title-and-description">
+  <div class="title-and-description">
   
     <div id="campaign_info">Description:</div>
-    <h3>{{ campaign.description }}</h3>
+    <h3 id="try">{{ campaign.description }}</h3>
     <div id="dates">
       <div id="campaign_info">Campaign Begins at:&nbsp;</div>
       {{ campaign.start_date }}
@@ -100,9 +100,38 @@
 
   <div id="author">
     <div id="author_info">Managed by:</div>
-    <h4>{{ campaign.manager }}</h4>
+    <h4 id="managers-names">{{ campaign.manager }}</h4>
     <div id="author_info">Last edited by:</div>
-    <h4>{{ campaign.author }}</h4>
+    <h4 id="managers-names">{{ campaign.author }}</h4>
+
+
+
+
+
+    <li class="dropdown" id="authors-dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" id="managers-options">
+    Managers options
+  </button>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+        <li><a class="dropdown-item" href="http://intelinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/update" >
+          Update Campaign
+        </a></li>
+
+        <li><a class="dropdown-item" href="http://intelinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/delete" onclick="return confirm('Are you sure you want to delete this campaign?\n\nThis action is IRREVERSABLE!')">
+          Delete Campaign
+        </a></li>
+
+        <li><a class="dropdown-item" href="http://intelinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/close" onclick="return confirm('Are you sure you want to close this campaign? \n\nThis action moves your campaign to archive.')">
+          Close Campaign
+        </a></li>
+
+      </ul>
+    </li>
+
+
+
+
   </div>
 
   <div id="statistics">
@@ -154,7 +183,7 @@
 {% if campaign.campaign_opened == True %}
     {% if user.is_authenticated and user in campaign.participants.all %}
     <a
-      href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/create"
+      href="http://intelinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/create"
       style="color: aqua"
       data-role="button"
       data-inline="true"
@@ -166,8 +195,8 @@
     {% endif %} 
 
     {% if user.is_authenticated and user == campaign.author or user == campaign.manager %}
-    <a
-      href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/update"
+    {% comment %} <a
+      href="http://intelinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/update"
       style="color: aqua"
       data-role="button"
       data-inline="true"
@@ -178,7 +207,7 @@
     </a>
 
     <a
-      href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/delete"
+      href="http://intelinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/delete"
       style="color: aqua"
       data-role="button"
       data-inline="true"
@@ -190,7 +219,7 @@
     </a>
 
     <a
-      href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/close"
+      href="http://intelinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/close"
       style="color: aqua"
       data-role="button"
       data-inline="true"
@@ -199,44 +228,52 @@
       <button type="button" class="btn btn-outline-light">
         Close Campaign
       </button>
-    </a>
+    </a> {% endcomment %}
 
     {% endif %}
     {% endif %}
   </div>
 
   <div id="ideas">
-    <a
-      href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/"
-      style="color: aqua"
-      data-role="button"
-      data-inline="true"
-    >
-      <button type="button" class="btn btn-outline-light">
-        Sort by newest
-      </button>
-    </a>
 
-
-    <a
-      href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/top_ideas"
-      style="color: aqua"
-      data-role="button"
-      data-inline="true"
-    >
-      <button type="button" class="btn btn-outline-light">
-        Sort by popularity
-      </button>
-    </a>
     <div class="ideas_double_container">
       <div class="ideas_container">
+
         <h1 id="ddd">{{ideas.all.count}} Ideas</h1>
+        <div class="ideas_banner">
+
+        <a
+        href="http://intelinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/"
+        style="color: aqua"
+        data-role="button"
+        data-inline="true"
+      >
+        <button type="button" class="btn btn-outline-light">
+          Sort by newest
+        </button>
+      </a>
+  
+  
+      <a
+        href="http://intelinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/top_ideas"
+        style="color: aqua"
+        data-role="button"
+        data-inline="true"
+      >
+        <button type="button" class="btn btn-outline-light">
+          Sort by popularity
+        </button>
+      </a>
+    </div>
+
+
+
         <div class="idea_col">
           {% for idea in ideas %}
           <br />
           <div class="idea_row">
             <a
-              href="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/{{idea.id}}"
+              href="http://intelinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/{{idea.id}}"
               style="color: #0071c5"
             >
               {{ idea.idea_title }}
@@ -254,7 +291,7 @@
               </a>
               <div style="float: right">
                 <form
-                  action="http://intetinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/{{idea.id}}/like/"
+                  action="http://intelinnovation.pythonanywhere.com/campaigns/{{campaign.id}}/ideas/{{idea.id}}/like/"
                   method="POST"
                 >
                   {% csrf_token %}
