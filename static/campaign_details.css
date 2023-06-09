@@ -28,11 +28,10 @@
         text-align: left;
         border-image: linear-gradient(to right, transparent, aliceblue, transparent);
         border-image-slice: 1;
-        padding-top: 15px;
     }
     
     #campaign_title {
-        grid-area: title-and-description;
+        grid-area: campaign-banner;
         font-family: 'IntelOne Display', sans-serif;
         font-weight: 300;
         border-top: 1px solid aliceblue;
@@ -41,7 +40,6 @@
         opacity: 0.5rem;
         font-style: unset;
         display: inline-block;
-        min-width: 600px;
         border-image: linear-gradient(to right, transparent, aliceblue, transparent);
         border-image-slice: 1;
     }
@@ -59,7 +57,7 @@
         border-radius: var(--main-radius);
         padding-top: var(--main-padding);
         text-align: left;
-        padding-left: 4rem;
+        padding-left: 3rem;
     }
     
     #statistics {
@@ -140,6 +138,8 @@
         color: black;
         opacity: .8;
         border-radius: 0.9rem;
+        font-size: small;
+        color: aliceblue;
     }
     
     #dropdownMenu3 {
@@ -281,6 +281,7 @@
     .ideas_double_container {
         padding-bottom: 100px;
         opacity: 0.9;
+        display: flex;
     }
     
     .idea-num-of-likes {
@@ -301,4 +302,17 @@
     
     #idea_like_shit {
         background-color: rgb(229, 238, 249) !important
+    }
+
+    .event_closed {
+        float: right;
+        padding-top: 5px;
+        text-shadow: 0 0 3px red;
+        color: red;
+    }
+    .event_available {
+        float: right;
+        padding-top: 5px;
+        text-shadow: 0 0 3px greenyellow;
+        color: greenyellow;
     }
