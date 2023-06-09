@@ -2,8 +2,8 @@
     margin: 0 auto;
     max-width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 320px));
-    gap: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 290px));
+    gap: 40px;
     font-family: 'IntelOne Display', sans-serif;
     place-content: center;
 }

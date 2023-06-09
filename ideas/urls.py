@@ -9,4 +9,5 @@ urlpatterns = [
     path('<int:idea_id>/update/', views.idea_update, name='idea_update'),
     path('<int:idea_id>/comments/', include('comments.urls')),
 
+
 ]

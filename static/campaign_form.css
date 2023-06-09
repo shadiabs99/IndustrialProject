@@ -1,12 +1,10 @@
-body{
+body {
     background-color: #0071c5;
     font-family: 'IntelOne Display', sans-serif;
     align-items: center;
-
-
 }
 
-.elias{
+.elias {
     block-size: 50;
     border: 3px solid rgb(255, 255, 255);
     text-align: left;
@@ -19,14 +17,12 @@ body{
     background-color: aliceblue !important;
     max-width: 600px;
     align-self: center;
-
-
 }
-.form-name{
+
+.form-name {
     color: aliceblue;
     text-align: center;
     align-items: center;
-
 }
 
 .new_campaign_button {
@@ -37,6 +33,4 @@ body{
     border-style: hidden;
     text-align: center;
     align-items: center;
-
-    
 }

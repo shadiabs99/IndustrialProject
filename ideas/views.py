@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, redirect
 from campaigns.models import Campaign, Like
 from comments.models import Comment
 from django.db.models import Count
+from django.contrib.auth.decorators import login_required
 
 import re
 
@@ -15,10 +16,11 @@ def list_of_ideas(request, campaign_id):
     return render(request, 'campaigns/campaign_details.html', context)
 
 
-# def list_of_top_ideas(request, campaign_id):
-#     top_ideas = Idea.objects.annotate(q_count=Count('idea_likes')).order_by('-q_count')[:7]
-#     context = {'ideas': top_ideas}
-#     return render(request, 'campaigns/campaign_details.html', context)
+def list_of_top_ideas(request, campaign_id):
+    campaign = get_object_or_404(Campaign, id=campaign_id)
+    top_ideas = Idea.objects.annotate(q_count=Count('idea_likes')).order_by('-q_count')[:7]
+    context = {'ideas': top_ideas, 'campaign': campaign}
+    return render(request, 'campaigns/campaign_details.html', context)
 
 
 def idea_details(request, idea_id, campaign_id):
@@ -38,7 +40,7 @@ def idea_details(request, idea_id, campaign_id):
             context = {'form': IdeaForm(), 'error': 'Bad data try again'}
             return render(request, 'ideas/idea_details.html', context)
 
-
+@login_required
 def idea_create(request, campaign_id):
     user = request.user
 
@@ -59,13 +61,13 @@ def idea_create(request, campaign_id):
             context = {'form': IdeaForm(), 'error': 'Bad data try again'}
             return render(request, 'ideas/idea_form.html', context)
 
-
+@login_required
 def idea_delete(request, idea_id, campaign_id):
     idea = get_object_or_404(Idea, id=idea_id)
     idea.delete()
     return redirect('ideas:list_of_ideas', campaign_id)
 
-
+@login_required
 def idea_update(request, idea_id, campaign_id):
     idea = Idea.objects.get(id=idea_id)
     form = IdeaForm(request.POST if request.POST else None, instance=idea)
@@ -77,7 +79,7 @@ def idea_update(request, idea_id, campaign_id):
             return redirect('campaigns:campaign_details', campaign_id)
     return render(request, 'ideas/idea_update.html', {'form': form})
 
-
+@login_required
 def idea_like(request, campaign_id, idea_id):
     user = request.user
     if request.method == 'POST':

@@ -1,7 +1,7 @@
-    .container {
+    .campaigns_container {
         display: grid;
         height: 100vh;
-        width: 100vw;
+        width: auto;
         grid-template-rows: 2fr 1fr 1fr 2fr;
         grid-template-columns: 3fr 1fr;
         grid-template-areas: "campaign-banner campaign-banner" "title-and-description author" "statistics statistics" "ideas ideas";
@@ -17,43 +17,49 @@
     }
     
     .title-and-description {
+        border-top: 1px solid aliceblue;
+        border-bottom: 1px solid aliceblue;
         grid-area: title-and-description;
         font-family: 'IntelOne Display', sans-serif;
         font-weight: 300;
-        border-block: solid;
-        border-color: aliceblue;
         color: aliceblue;
         opacity: 0.5rem;
         font-style: unset;
         text-align: left;
+        border-image: linear-gradient(to right, transparent, aliceblue, transparent);
+        border-image-slice: 1;
+        padding-top: 15px;
     }
     
     #campaign_title {
         grid-area: title-and-description;
         font-family: 'IntelOne Display', sans-serif;
         font-weight: 300;
-        border-block: solid;
-        border-color: aliceblue;
+        border-top: 1px solid aliceblue;
+        border-bottom: 1px solid aliceblue;
         color: aliceblue;
         opacity: 0.5rem;
         font-style: unset;
+        display: inline-block;
+        min-width: 600px;
+        border-image: linear-gradient(to right, transparent, aliceblue, transparent);
+        border-image-slice: 1;
     }
     
-    #try{
+    #try {
         font-weight: 300;
     }
-
-    #authors-dropdown{
+    
+    #authors-dropdown {
         list-style-type: none;
     }
-
+    
     #author {
         grid-area: author;
         border-radius: var(--main-radius);
         padding-top: var(--main-padding);
         text-align: left;
         padding-left: 4rem;
-
     }
     
     #statistics {
@@ -88,12 +94,18 @@
         }
     }
     
-    #ddd {
-        text-align: left;
+    #ideas_count {
+        float: left;
         margin-left: 10px;
         color: #0071c5;
         border-bottom: aliceblue;
         display: inline;
+        text-size-adjust: 80%;
+        font-weight: 300;
+    }
+    
+    .sorting_options {
+        float: right;
     }
     
     .idea_details {
@@ -118,16 +130,73 @@
     }
     
     #managers-names {
-
-        color:darksalmon;
+        color: chocolate;
         box-shadow: #CCCCCC;
+        font-weight: 600;
     }
-
+    
+    #dropdownMenu2 {
+        background-color: chocolate;
+        color: black;
+        opacity: .8;
+        border-radius: 0.9rem;
+    }
+    
+    #dropdownMenu3 {
+        background-color: #0071c5;
+        color: aliceblue;
+        opacity: .8;
+        border-radius: 0.9rem;
+    }
+    
     body {
         background-color: #0071c5;
-        font-family: 'IntelOne Display', sans-serif;
+        font-family: 'IntelOne Display', sans-serif !important;
     }
-
+    
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        display: none;
+        min-width: 10rem;
+        padding: .5rem 0;
+        margin: .125rem 0 0;
+        font-size: 1rem;
+        color: #212529;
+        text-align: left;
+        list-style: none;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, .15);
+        border-radius: .7rem;
+        position: static;
+        width: fit-content !important;
+        border-radius: 0.9rem;
+    }
+    
+    #CampaignDropDown {
+        opacity: .5;
+        width: 50px;
+    }
+    
+    .campaign_details_dropdown {
+        opacity: .5;
+    }
+    
+    .btn-close {
+        box-sizing: content-box;
+        width: 1em;
+        height: 1em;
+        padding: .25em .25em;
+        color: #000;
+        background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+        border: 0;
+        border-radius: .7rem;
+        opacity: .5
+    }
+    
     .a:link {
         color: #0071c5 !important;
     }
@@ -169,15 +238,15 @@
     
     #thumb_down_idea {
         color: green;
-        background-color: aliceblue;
+        background-color: rgb(255, 255, 255) !important;
         border: none;
     }
     
     #thumb_up_idea {
         color: green;
-        opacity: 0.2;
+        /* opacity: 0.3; */
         border: none;
-        background-color: aliceblue;
+        background-color: rgb(255, 255, 255) !important;
     }
     
     .btn-check {
@@ -195,6 +264,7 @@
         text-align: left;
         border-radius: 0.7rem;
         padding-bottom: 5px;
+        font-family: 'IntelOne Display', sans-serif !important;
     }
     
     .idea_row {
@@ -202,9 +272,10 @@
         padding-bottom: 6px;
         padding-top: 3px;
         padding-left: 5px;
-        border-left: none !important;
-        border-right: none !important;
-        border-top: none !important;
+        border-radius: 0.9rem;
+        background-color: #0071c5;
+        opacity: .5;
+        padding-left: 10px;
     }
     
     .ideas_double_container {
@@ -214,9 +285,20 @@
     
     .idea-num-of-likes {
         color: green !important;
+        padding-top: 3px;
+        font-size: small;
+        font-weight: 500;
     }
-
+    
     .ideas_banner {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .accordion-header {
         display: inline;
-        text-align: right;
+    }
+    
+    #idea_like_shit {
+        background-color: rgb(229, 238, 249) !important
     }

@@ -1,10 +1,12 @@
+{% load static %}
 <br>
 
 <!doctype html>
 <html lang="en">
-  {% load static %}
+  
   <head>
-
+    
+    
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,8 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link href="https://fonts.cdnfonts.com/css/intelone-display" rel="stylesheet"> 
     <link rel="stylesheet" href="{% static 'base.css' %}"> 
-    <link rel="stylesheet" href="{% static 'temp.css' %}"> 
-
+    <link rel="stylesheet" href="{% static 'base.css' %}"> 
     <title>Intel Innovation</title>
 
   </head>
@@ -25,21 +26,31 @@
     <nav class=" navbar navbar-expand-lg navbar-light bg-body " >
         
         <div class="container-fluid" >
-          <a class="navbar-brand" href="/">      <img src="/media/images/logo-classicblue-72px.ai" alt="" width="70" height="30">
-            Innovation</a>
+          <a class="navbar-brand" href="/">      <img id="intel_logo" src="/media/images/logo-classicblue-72px.ai" alt="" width="60" height="25">
+            <span style="color: rgb(9, 82, 165) !important;">
+                Innovation
+            </span>
+          </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" id="nav_bar_tab" aria-current="page" href="http://127.0.0.1:8000/about_us">About us</a>
+                <a class="nav-link active" id="nav_bar_tab" aria-current="page" href="http://127.0.0.1:8000/about_us">
+                  <span class="nav-bar-one-item">
+                    
+                    About us</a>
+                  </span>
               </li>
             
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="nav-bar-one-item">
                   Campaings
+                  </span>
                 </a>
+
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="http://127.0.0.1:8000/top_campaigns">Sort by popularity</a></li>
                   <li><a class="dropdown-item" href="http://127.0.0.1:8000/">Sort by creation date</a></li>
@@ -52,11 +63,19 @@
                 </ul>
 
                 <li class="nav-item" >
-                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/create">Create Campaign</a>
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/create">
+                    <span class="nav-bar-one-item">
+                      Create Campaign
+                    </span>
+                  </a>
                 </li>
 
                 <li class="nav-item" >
-                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/archived_campaigns">Archive</a>
+                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/archived_campaigns">
+                    <span class="nav-bar-one-item">
+                      Archive
+                    </span>
+                    </a>
                 </li>
 
               </li>
@@ -90,3 +109,4 @@
 
 </html>
 <br>
+
