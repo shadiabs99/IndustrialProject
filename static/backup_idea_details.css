@@ -1,15 +1,3 @@
-.container {
-    display: grid;
-    height: 100vh;
-    width: 100vw;
-    grid-template-rows: 2fr 1fr 1fr 2fr;
-    grid-template-columns: 3fr 1fr;
-    grid-template-areas: "idea-banner idea-banner" "title-and-description author" "statistics statistics" "comments comments";
-    grid-gap: 0.2rem;
-    font-family: "intel-one", "intel-clear", Helvetica, Arial, sans-serif;
-    text-align: center;
-}
-
 #idea-banner {
     grid-area: idea-banner;
     border-radius: var(--main-radius);
@@ -98,7 +86,7 @@
 
 body {
     background-color: #0071c5;
-    font-family: 'IntelOne Display', sans-serif;
+    font-family: 'IntelOne Display', sans-serif !important;
 }
 
 .a:link {

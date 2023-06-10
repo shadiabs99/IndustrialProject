@@ -1,318 +1,363 @@
-    .campaigns_container {
-        display: grid;
-        height: 100vh;
-        width: auto;
-        grid-template-rows: 2fr 1fr 1fr 2fr;
-        grid-template-columns: 3fr 1fr;
-        grid-template-areas: "campaign-banner campaign-banner" "title-and-description author" "statistics statistics" "ideas ideas";
-        grid-gap: 0.2rem;
-        font-family: "intel-one", "intel-clear", Helvetica, Arial, sans-serif;
-        text-align: center;
-    }
-    
-    #campaign-banner {
-        grid-area: campaign-banner;
-        border-radius: var(--main-radius);
-        padding-top: var(--main-padding);
-    }
-    
-    .title-and-description {
-        border-top: 1px solid aliceblue;
-        border-bottom: 1px solid aliceblue;
-        grid-area: title-and-description;
-        font-family: 'IntelOne Display', sans-serif;
-        font-weight: 300;
-        color: aliceblue;
-        opacity: 0.5rem;
-        font-style: unset;
-        text-align: left;
-        border-image: linear-gradient(to right, transparent, aliceblue, transparent);
-        border-image-slice: 1;
-    }
-    
-    #campaign_title {
-        grid-area: campaign-banner;
-        font-family: 'IntelOne Display', sans-serif;
-        font-weight: 300;
-        border-top: 1px solid aliceblue;
-        border-bottom: 1px solid aliceblue;
-        color: aliceblue;
-        opacity: 0.5rem;
-        font-style: unset;
-        display: inline-block;
-        border-image: linear-gradient(to right, transparent, aliceblue, transparent);
-        border-image-slice: 1;
-    }
-    
-    #try {
-        font-weight: 300;
-    }
-    
-    #authors-dropdown {
-        list-style-type: none;
-    }
-    
-    #author {
-        grid-area: author;
-        border-radius: var(--main-radius);
-        padding-top: var(--main-padding);
-        text-align: left;
-        padding-left: 3rem;
-    }
-    
-    #statistics {
-        grid-area: statistics;
-        border-radius: var(--main-radius);
-        padding-top: var(--main-padding);
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
-        align-items: center;
-        /* margin-left: 40%; */
-    }
-    
-    #dates {
-        display: flex;
-        flex-direction: row;
-    }
-    
-    #ideas {
-        grid-area: ideas;
-        border-radius: var(--main-radius);
-        padding-top: var(--main-padding);
-        margin-right: 20px;
-        align-items: center;
-    }
-    
-    @media only screen and (max-width:650px) {
-        .container {
-            grid-template-columns: 1fr;
-            grid-template-rows: 2fr 1fr 0.8fr 0.8fr 1fr;
-            grid-template-areas: "campaign-banner" "title-and-description" "author" "statistics" "ideas";
-        }
-    }
-    
-    #ideas_count {
-        float: left;
-        margin-left: 10px;
-        color: #0071c5;
-        border-bottom: aliceblue;
-        display: inline;
-        text-size-adjust: 80%;
-        font-weight: 300;
-    }
-    
-    .sorting_options {
-        float: right;
-    }
-    
-    .idea_details {
-        border: 1px solid rgb(255, 255, 255);
-        border-bottom: none;
-        border-left: none;
-        border-right: none;
-        text-align: left;
-        padding-left: 160px;
-    }
-    
-    #idea_info {
-        color: #92d4ff;
-    }
-    
-    #campaign_info {
-        color: #92d4ff;
-    }
-    
-    #author_info {
-        color: #92d4ff;
-    }
-    
-    #managers-names {
-        color: chocolate;
-        box-shadow: #CCCCCC;
-        font-weight: 600;
-    }
-    
-    #dropdownMenu2 {
-        background-color: chocolate;
-        color: black;
-        opacity: .8;
-        border-radius: 0.9rem;
-        font-size: small;
-        color: aliceblue;
-    }
-    
-    #dropdownMenu3 {
-        background-color: #0071c5;
-        color: aliceblue;
-        opacity: .8;
-        border-radius: 0.9rem;
-    }
-    
-    body {
-        background-color: #0071c5;
-        font-family: 'IntelOne Display', sans-serif !important;
-    }
-    
-    .dropdown-menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 1000;
-        display: none;
-        min-width: 10rem;
-        padding: .5rem 0;
-        margin: .125rem 0 0;
-        font-size: 1rem;
-        color: #212529;
-        text-align: left;
-        list-style: none;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid rgba(0, 0, 0, .15);
-        border-radius: .7rem;
-        position: static;
-        width: fit-content !important;
-        border-radius: 0.9rem;
-    }
-    
-    #CampaignDropDown {
-        opacity: .5;
-        width: 50px;
-    }
-    
-    .campaign_details_dropdown {
-        opacity: .5;
-    }
-    
-    .btn-close {
-        box-sizing: content-box;
-        width: 1em;
-        height: 1em;
-        padding: .25em .25em;
-        color: #000;
-        background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
-        border: 0;
-        border-radius: .7rem;
-        opacity: .5
-    }
-    
-    .a:link {
-        color: #0071c5 !important;
-    }
-    
-    .buttonn {
-        font: bold 11px Arial;
-        text-decoration: none;
-        background-color: white;
-        color: #333333;
-        padding: 2px 6px 2px 6px;
-        border-top: 1px solid #CCCCCC;
-        border-right: 1px solid #333333;
-        border-bottom: 1px solid #333333;
-        border-left: 1px solid #CCCCCC;
-        opacity: 0.5;
-    }
-    
-    .campaign_details_image {
-        line-break: strict;
-        height: 400;
-        width: 100%;
-        display: block;
-        border-radius: 0.9rem;
-        object-fit: cover;
-    }
-    
-    #thumb_down {
-        color: white;
-        background-color: #0071c5;
-        border: none;
-    }
-    
-    #thumb_up {
-        color: white;
-        opacity: 0.3;
-        background-color: #0071c5;
-        border: none;
-    }
-    
-    #thumb_down_idea {
-        color: green;
-        background-color: rgb(255, 255, 255) !important;
-        border: none;
-    }
-    
-    #thumb_up_idea {
-        color: green;
-        /* opacity: 0.3; */
-        border: none;
-        background-color: rgb(255, 255, 255) !important;
-    }
-    
-    .btn-check {
-        color: black !important;
-    }
-    
-    .ideas_container {
-        border: #92d4ff;
-        height: 700px;
-        width: 970px;
-        overflow: auto;
-        background-color: aliceblue;
-        font-family: sans-serif;
-        padding: 10px;
-        text-align: left;
-        border-radius: 0.7rem;
-        padding-bottom: 5px;
-        font-family: 'IntelOne Display', sans-serif !important;
-    }
-    
-    .idea_row {
-        border: 1px solid #0071c5 !important;
-        padding-bottom: 6px;
-        padding-top: 3px;
-        padding-left: 5px;
-        border-radius: 0.9rem;
-        background-color: #0071c5;
-        opacity: .5;
-        padding-left: 10px;
-    }
-    
-    .ideas_double_container {
-        padding-bottom: 100px;
-        opacity: 0.9;
-        display: flex;
-    }
-    
-    .idea-num-of-likes {
-        color: green !important;
-        padding-top: 3px;
-        font-size: small;
-        font-weight: 500;
-    }
-    
-    .ideas_banner {
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .accordion-header {
-        display: inline;
-    }
-    
-    #idea_like_shit {
-        background-color: rgb(229, 238, 249) !important
-    }
+.campaigns_container {
+    display: grid;
+    height: 100vh;
+    width: auto;
+    grid-template-rows: 2fr 1fr 1fr 2fr;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas: "campaign-banner campaign-banner" "title-and-description author" "statistics statistics" "ideas ideas";
+    grid-gap: 0.2rem;
+    font-family: "intel-one", "intel-clear", Helvetica, Arial, sans-serif;
+    text-align: center;
+}
 
-    .event_closed {
-        float: right;
-        padding-top: 5px;
-        text-shadow: 0 0 3px red;
-        color: red;
+#campaign-banner {
+    grid-area: campaign-banner;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+}
+
+.title-and-description {
+    border-top: 1px solid aliceblue;
+    border-bottom: 1px solid aliceblue;
+    grid-area: title-and-description;
+    font-family: 'IntelOne Display', sans-serif;
+    font-weight: 300;
+    color: aliceblue;
+    opacity: 0.5rem;
+    font-style: unset;
+    text-align: left;
+    border-image: linear-gradient(to right, transparent, aliceblue, transparent);
+    border-image-slice: 1;
+    display: inline;
+    align-items: center;
+}
+
+#author {
+    grid-area: author;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    text-align: left;
+    padding-left: 3rem;
+}
+
+.ideas {
+    grid-area: ideas;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    align-items: center;
+}
+
+#campaign_title {
+    grid-area: campaign-banner;
+    font-family: 'IntelOne Display', sans-serif;
+    font-weight: 300;
+    border-top: 1px solid aliceblue;
+    border-bottom: 1px solid aliceblue;
+    color: aliceblue;
+    opacity: 0.5rem;
+    font-style: unset;
+    display: inline-block;
+    border-image: linear-gradient(to right, transparent, aliceblue, transparent);
+    border-image-slice: 1;
+}
+
+#try {
+    font-weight: 300;
+}
+
+#authors-dropdown {
+    list-style-type: none;
+}
+
+#statistics {
+    grid-area: statistics;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+@media only screen and (max-width:650px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr 1fr 0.8fr 0.8fr 1fr;
+        grid-template-areas: "campaign-banner" "title-and-description" "author" "statistics" "ideas";
     }
-    .event_available {
-        float: right;
-        padding-top: 5px;
-        text-shadow: 0 0 3px greenyellow;
-        color: greenyellow;
+}
+
+#ideas_count {
+    float: left;
+    margin-left: 10px;
+    color: #0071c5;
+    border-bottom: aliceblue;
+    display: inline;
+    text-size-adjust: 80%;
+    font-weight: 300;
+}
+
+.sorting_options {
+    float: right;
+}
+
+.idea_details {
+    border: 1px solid rgb(255, 255, 255);
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    text-align: left;
+    padding-left: 160px;
+}
+
+#idea_info {
+    color: #92d4ff;
+}
+
+#campaign_info {
+    color: #92d4ff;
+}
+
+.dates {
+    display: flex;
+    /* flex-direction: row; */
+    flex-wrap: wrap;
+}
+
+.campaign_info_start {
+    color: #92d4ff;
+}
+
+.campaign_info_end {
+    color: #92d4ff;
+    margin-left: 3rem;
+}
+
+@media (max-width: 600px) {
+    .campaign_info_start:after {
+        content: none;
     }
+    .campaign_info_end {
+        flex-basis: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 600px) {
+    .campaign_info_start:after {
+        content: ", ";
+        flex-basis: auto;
+    }
+    .campaign_info_end {
+        margin-left: 0.25rem;
+    }
+}
+
+#start_date {
+    color: aliceblue;
+    opacity: 1;
+}
+
+#end_date {
+    color: aliceblue;
+    opacity: 1;
+}
+
+#author_info {
+    color: #92d4ff;
+}
+
+#managers-names {
+    color: aliceblue;
+    box-shadow: #CCCCCC;
+    font-weight: 300;
+    font-family: 'IntelOne Display', sans-serif !important;
+}
+
+#dropdownMenu2 {
+    background-color: black;
+    opacity: .8;
+    border-radius: 0.9rem;
+    font-size: small;
+    color: aliceblue;
+    margin-left: -5px;
+}
+
+#dropdownMenu3 {
+    background-color: #0071c5;
+    color: aliceblue;
+    opacity: .8;
+    border-radius: 0.9rem;
+}
+
+body {
+    background-color: #0071c5;
+    font-family: 'IntelOne Display', sans-serif !important;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    min-width: 10rem;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: .7rem;
+    position: static;
+    width: fit-content !important;
+    border-radius: 0.9rem;
+}
+
+#CampaignDropDown {
+    opacity: .5;
+    width: 50px;
+}
+
+.campaign_details_dropdown {
+    opacity: .5;
+}
+
+.btn-close {
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: .25em .25em;
+    color: #000;
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+    border: 0;
+    border-radius: .7rem;
+    opacity: .5
+}
+
+.a:link {
+    color: #0071c5 !important;
+}
+
+.buttonn {
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: white;
+    color: #333333;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+    opacity: 0.5;
+}
+
+.campaign_details_image {
+    line-break: strict;
+    height: 400;
+    width: 100%;
+    display: block;
+    border-radius: 0.9rem;
+    object-fit: cover;
+}
+
+#thumb_down {
+    color: white;
+    background-color: #0071c5;
+    border: none;
+}
+
+#thumb_up {
+    color: white;
+    opacity: 0.3;
+    background-color: #0071c5;
+    border: none;
+}
+
+#thumb_down_idea {
+    color: green;
+    background-color: rgb(255, 255, 255) !important;
+    border: none;
+}
+
+#thumb_up_idea {
+    color: green;
+    /* opacity: 0.3; */
+    border: none;
+    background-color: rgb(255, 255, 255) !important;
+}
+
+.btn-check {
+    color: black !important;
+}
+
+.ideas_double_container {
+    grid-area: ideas_container;
+    font-family: 'IntelOne Display', sans-serif;
+    display: inline;
+    align-items: center;
+    padding-bottom: 100px;
+    opacity: 0.9;
+    display: flex;
+}
+
+.ideas_container {
+    border: #92d4ff;
+    height: 700px;
+    width: 970px;
+    overflow: auto;
+    background-color: aliceblue;
+    font-family: sans-serif;
+    padding: 10px;
+    text-align: left;
+    border-radius: 0.7rem;
+    padding-bottom: 5px;
+    font-family: 'IntelOne Display', sans-serif !important;
+}
+
+.idea_row {
+    border: 1px solid #0071c5 !important;
+    padding-bottom: 6px;
+    padding-top: 3px;
+    padding-left: 5px;
+    border-radius: 0.9rem;
+    background-color: #0071c5;
+    opacity: .5;
+    padding-left: 10px;
+}
+
+.idea-num-of-likes {
+    color: green !important;
+    padding-top: 3px;
+    font-size: small;
+    font-weight: 500;
+}
+
+.ideas_banner {
+    display: flex;
+    justify-content: space-between;
+}
+
+.accordion-header {
+    display: inline;
+}
+
+#idea_like_shit {
+    background-color: rgb(229, 238, 249) !important
+}
+
+.event_closed {
+    float: right;
+    padding-top: 5px;
+    text-shadow: 0 0 3px red;
+    color: red;
+}
+
+.event_available {
+    float: right;
+    text-shadow: 0 0 3px greenyellow;
+    color: greenyellow;
+}

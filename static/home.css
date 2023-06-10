@@ -6,12 +6,22 @@
     gap: 40px;
     font-family: 'IntelOne Display', sans-serif;
     place-content: center;
+    padding-top: 20px;
 }
 
 .campaign {
     box-shadow: 0 0 3px rgba(0, 0, 0, 1);
     border-radius: 0.9rem 0.9rem 0.9rem 0.9rem;
     background-color: #0071c5;
+}
+
+.campaign:hover {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 1);
+    border-radius: 0.9rem 0.9rem 0.9rem 0.9rem;
+    background-color: #0071c5;
+    transform: scale(1.1);
+    background-color: #0071c5;
+    color: #0071c5;
 }
 
 .campaign_image {
