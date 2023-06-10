@@ -48,7 +48,7 @@
 
     <div class="idea_info">
       <div class="back_sol_impact">
-        <div class="nav nav-tabs" id="myTab" role="tablist">
+        <div class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
           <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="tab1" aria-selected="true">Background</button>
           <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false">Solution</button>
           <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3" type="button" role="tab" aria-controls="tab3" aria-selected="false">Impact</button>
@@ -65,24 +65,23 @@
           </div>
         </div>
       </div>
-
-      <div class="idea_team">
-        {{ idea.team }}
-      </div>
-
       <div class="idea_dates">
-        <span id="bolded_title">
-          Created: <br>
-        </span>
-        <span id="unbolded_content">
-          {{ idea.idea_created_at }}<br><br>
-        </span>
-        <span id="bolded_title">
-          Updated: <br>
-        </span>
-        <span id="unbolded_content">
-          {{ idea.idea_updated_at }}<br><br>
-        </span>
+        <div class="campaign_info_start">
+          &nbsp;&nbsp;Created by 
+          <span id="team_name">
+            {{ idea.team }} 
+          </span>
+          team at:&nbsp;
+          <span id="start_date">
+            {{ idea.idea_created_at }}
+          </span>
+        </div>
+        <div  class="campaign_info_end">
+          Updated at:&nbsp;
+          <span id="end_date">
+            {{ idea.idea_updated_at }}&nbsp;&nbsp;
+          </span>
+        </div>
       </div>
       
     </div>
@@ -102,86 +101,49 @@
 
 
     <div class="idea_comments_container">
-      COMMENTS
       <div class="comments_number_sort">
       </div>
       <div class="idea_comments">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<div class="container">
-<div class="row">
-    <div class="col-md-8">
-        <div class="media g-mb-30 media-comment">
-            <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image Description">
-            <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
-              <div class="g-mb-15">
-                <h5 class="h5 g-color-gray-dark-v1 mb-0">John Doe</h5>
-                <span class="g-color-gray-dark-v4 g-font-size-12">5 days ago</span>
-              </div>
-        
-              <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue
-                felis in faucibus ras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
-        
-              <ul class="list-inline d-sm-flex my-0">
-                <li class="list-inline-item g-mr-20">
-                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                    <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3"></i>
-                    178
-                  </a>
-                </li>
-                <li class="list-inline-item g-mr-20">
-                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                    <i class="fa fa-thumbs-down g-pos-rel g-top-1 g-mr-3"></i>
-                    34
-                  </a>
-                </li>
-                <li class="list-inline-item ml-auto">
-                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                    <i class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i>
-                    Reply
-                  </a>
-                </li>
-              </ul>
+        <div class="container">
+        <div class="row">
+            {% for comment in comments %}
+            <div class="col-md-8">
+                <div class="media g-mb-30 media-comment">
+                    <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
+                      <div class="g-mb-15">
+                        <h5 class="h5 g-color-gray-dark-v1 mb-0">{{ comment.author}} </h5>
+                        <span class="g-color-gray-dark-v4 g-font-size-12">Posted: WTF</span>
+                      </div>
+                
+                      <p>{{comment.content}}</p>
+                
+                      <ul class="list-inline d-sm-flex my-0">
+                        <li class="list-inline-item g-mr-20">
+                          <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                            <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3"></i>
+                            178
+                          </a>
+                        </li>
+                        <li class="list-inline-item g-mr-20">
+                          <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                            <i class="fa fa-thumbs-down g-pos-rel g-top-1 g-mr-3"></i>
+                            34
+                          </a>
+                        </li>
+                        <li class="list-inline-item ml-auto">
+                          <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                            <i class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i>
+                            Reply
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
             </div>
+            {% endfor %}
         </div>
-    </div>
-
-    <div class="col-md-8">
-        <div class="media g-mb-30 media-comment">
-            <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Image Description">
-            <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
-              <div class="g-mb-15">
-                <h5 class="h5 g-color-gray-dark-v1 mb-0">John Doe</h5>
-                <span class="g-color-gray-dark-v4 g-font-size-12">5 days ago</span>
-              </div>
-        
-              <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue
-                felis in faucibus ras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
-        
-              <ul class="list-inline d-sm-flex my-0">
-                <li class="list-inline-item g-mr-20">
-                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                    <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3"></i>
-                    178
-                  </a>
-                </li>
-                <li class="list-inline-item g-mr-20">
-                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                    <i class="fa fa-thumbs-down g-pos-rel g-top-1 g-mr-3"></i>
-                    34
-                  </a>
-                </li>
-                <li class="list-inline-item ml-auto">
-                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                    <i class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i>
-                    Reply
-                  </a>
-                </li>
-              </ul>
-            </div>
         </div>
-    </div>
-</div>
-</div>
         
       </div>
     </div>

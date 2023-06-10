@@ -56,23 +56,28 @@ body {
 
 .back_sol_impact {
     grid-area: back_sol_impact;
-    background-color: #0071c5;
+    background-color: aliceblue;
+    margin: 20px;
+    text-align: left;
+    border-radius: 0.8rem;
+    margin-bottom: -20px;
+}
+
+.idea_team {
+    grid-area: idea_team;
+    background-color: rgba(0, 113, 197, 0.5);
     margin: 20px;
     text-align: left;
     border-radius: 0.8rem;
 }
 
-.idea_team {
-    grid-area: idea_team;
-    background-color: #0071c5;
-    margin: 10px;
-    margin-bottom: -20px;
-}
-
 .idea_dates {
     grid-area: idea_dates;
     background-color: #0071c5;
-    margin: 10px;
+    margin: 20px;
+    text-align: left;
+    border-radius: 0.8rem;
+    width: fit-content;
 }
 
 #btn.btn-primary {
@@ -125,3 +130,88 @@ body {
 .media-comment {
     margin-top: 20px
 }
+
+.idea_dates {
+    display: flex;
+    flex-wrap: wrap;
+    border-image-slice: 1;
+}
+
+.campaign_info_start {
+    color: #92d4ff;
+}
+
+.campaign_info_end {
+    color: #92d4ff;
+    margin-left: 3rem;
+}
+
+@media (max-width: 600px) {
+    .campaign_info_start:after {
+        content: none;
+    }
+    .campaign_info_end {
+        flex-basis: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 600px) {
+    .campaign_info_start:after {
+        content: ", ";
+        flex-basis: auto;
+    }
+    .campaign_info_end {
+        margin-left: 0.25rem;
+    }
+}
+
+#start_date {
+    color: aliceblue;
+    opacity: 1;
+}
+
+#end_date {
+    color: aliceblue;
+    opacity: 1;
+}
+
+#team_name {
+    color: aliceblue;
+    opacity: 1;
+}
+
+.nav.nav-tabs {
+    background-color: #0071c5;
+    border-radius: 0.8rem;
+    padding: 15px;
+    width: fit-content;
+    align-self: center;
+}
+
+.tab-pane.fade.show.active {
+    color: #0071c5;
+    text-size-adjust: 3rem;
+    margin-left: 15px;
+    font-size: large;
+    margin-top: 8px;
+}
+
+.tab-pane.fade {
+    color: #0071c5;
+    text-size-adjust: 3rem;
+    margin-left: 15px;
+    font-size: large;
+}
+
+.nav-link:hover {
+    color: aliceblue;
+    border-color: aliceblue;
+}
+
+.nav-link {
+    color: aliceblue;
+    border-color: aliceblue;
+}
+
+ideas_banner>comments_number_sort
