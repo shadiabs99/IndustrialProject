@@ -20,6 +20,17 @@ class Idea(models.Model):
     
     idea_created_at = models.DateTimeField(auto_now_add=True)
     idea_updated_at = models.DateTimeField(auto_now=True)
+    
+    STATUS_CHOICES = (
+        ("IDEATION", "Ideation"),
+        ("INREVIEW", "In Review"),
+        ("CLOSED", "Closed"),
+        ("INCUBATION", "Incubation"),
+        ("POC", "Poc"),
+    )
+
+    idea_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="IDEATION")
+    
     def __str__(self):
         return self.solution
     

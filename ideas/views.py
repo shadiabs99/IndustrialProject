@@ -98,4 +98,4 @@ def idea_like(request, campaign_id, idea_id):
             else:
                 like.value = 'Like'
         like.save()
-    return redirect('idea_details', campaign_id, idea_id)
+    return redirect('campaigns:campaign_details', campaign_id)
