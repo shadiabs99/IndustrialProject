@@ -189,28 +189,61 @@ body {
     align-self: center;
 }
 
+#myTabContent {}
+
 .tab-pane.fade.show.active {
     color: #0071c5;
     text-size-adjust: 3rem;
-    margin-left: 15px;
     font-size: large;
     margin-top: 8px;
+    border: 2px solid #0071c5;
+    border-radius: 0.5rem;
+    padding: 12px;
 }
 
 .tab-pane.fade {
     color: #0071c5;
     text-size-adjust: 3rem;
-    margin-left: 15px;
     font-size: large;
     margin-top: 8px;
+    border: 2px solid #0071c5;
+    border-radius: 0.5rem;
+    padding: 12px;
 }
 
 .nav-link:hover {
     color: aliceblue;
     border-color: aliceblue;
+    background-color: black;
 }
 
 .nav-link {
     color: aliceblue;
-    border-color: aliceblue;
+    background-color: aliceblue;
+    border-radius: 0.5rem !important;
+}
+
+#thumb_up_idea {
+    color: green;
+    border: none;
+    background-color: aliceblue !important;
+    opacity: 0.8;
+    padding-top: 20px;
+    font-size: 35px;
+}
+
+#thumb_down_idea {
+    color: green;
+    background-color: aliceblue !important;
+    border: none;
+    opacity: 0.8;
+    padding-top: 20px;
+    font-size: 35px;
+}
+
+.idea_likes {
+    color: green !important;
+    font-size: small;
+    font-weight: 500;
+    display: inline;
 }
