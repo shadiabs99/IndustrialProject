@@ -61,7 +61,7 @@ body {
 .back_sol_impact {
     grid-area: back_sol_impact;
     background-color: aliceblue;
-    margin: 20px;
+    margin: 15px;
     text-align: left;
     border-radius: 0.8rem;
     margin-bottom: -20px;
@@ -216,13 +216,15 @@ body {
 .nav-link:hover {
     color: aliceblue;
     border-color: aliceblue;
-    background-color: black;
+    /* background-color: black; */
 }
 
 .nav-link {
     color: aliceblue;
     background-color: aliceblue;
     border-radius: 0.5rem !important;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .idea_likes {
@@ -231,16 +233,6 @@ body {
     font-weight: 500;
     display: inline;
     padding-top: 20px;
-}
-
-#dropdownMenu2 {
-    background-color: black;
-    opacity: .8;
-    border-radius: 0.9rem;
-    font-size: small;
-    color: aliceblue;
-    margin-left: -5px;
-    border: none;
 }
 
 .button-link {

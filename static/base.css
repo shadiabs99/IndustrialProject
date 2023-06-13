@@ -10461,5 +10461,19 @@ fieldset:disabled .btn {
     margin-bottom: 9px;
 }
 
+.nav-link:hover {
+    color: aliceblue;
+    border-color: aliceblue;
+    /* background-color: black; */
+}
+
+.nav-link {
+    color: aliceblue;
+    background-color: aliceblue;
+    border-radius: 0.5rem !important;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 
 /*# sourceMappingURL=bootstrap.min.css.map */
