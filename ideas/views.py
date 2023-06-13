@@ -6,7 +6,7 @@ from campaigns.models import Campaign, Like
 from comments.models import Comment
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
-
+from django.urls import reverse
 import re
 
 
@@ -82,10 +82,9 @@ def idea_update(request, idea_id, campaign_id):
 @login_required
 def idea_like(request, campaign_id, idea_id):
     user = request.user
+    idea = Idea.objects.get(id=idea_id)
+    comments = Comment.objects.all().filter(idea_id=idea_id)
     if request.method == 'POST':
-
-        idea = Idea.objects.get(id=idea_id)
-
         if user in idea.idea_likes.all():
             idea.idea_likes.remove(user)
         else:
@@ -98,4 +97,9 @@ def idea_like(request, campaign_id, idea_id):
             else:
                 like.value = 'Like'
         like.save()
-    return redirect('campaigns:campaign_details', campaign_id)
+    previous_url = request.META.get('HTTP_REFERER')
+    if 'ideas' in previous_url:
+        return render(request, 'ideas/idea_details.html', {'idea': idea, 'campaign_id': campaign_id, 'comments': comments})
+    else:
+        return redirect('campaigns:campaign_details', campaign_id=campaign_id)
+    

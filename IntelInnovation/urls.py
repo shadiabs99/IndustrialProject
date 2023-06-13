@@ -48,8 +48,9 @@ urlpatterns = [
          idea_views.idea_create, name='idea-create'),
     path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/like/',
          idea_views.idea_like, name='idea-like'),
-    path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/',
-         idea_views.idea_details, name='idea_details'),
+    path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/', idea_views.idea_details, name='idea_details'),
+    path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/update/', idea_views.idea_update, name='idea_update'),
+
 
 
     # Comment Views
