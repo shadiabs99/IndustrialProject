@@ -147,3 +147,15 @@ def update_image(request, campaign_id):
     else:
         context = {'campaign': campaign, 'form': form}
         return render(request, 'campaigns/campaign_update.html', context)
+
+@login_required
+def add_favorite_campaign(request, campaign_id):
+    campaign = get_object_or_404(Campaign, pk=campaign_id)
+    campaign.favorites.add(request.user)
+    return redirect('campaigns:campaign_details', campaign_id)
+
+@login_required
+def remove_favorite_campaign(request, campaign_id):
+    campaign = get_object_or_404(Campaign, pk=campaign_id)
+    campaign.favorites.remove(request.user)
+    return redirect('campaigns:campaign_details', campaign_id)

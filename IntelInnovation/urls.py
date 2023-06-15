@@ -41,7 +41,8 @@ urlpatterns = [
     path('about_us', campaign_views.about_us, name='about_us'),
     path('create', campaign_views.campaign_create, name='campaign_create'),
     path('archived_campaigns', campaign_views.archived_campaigns, name='archived_campaigns'),
-
+    path('campaigns/<int:campaign_id>/remove_favorite/', campaign_views.remove_favorite_campaign, name='remove_favorite_campaign'),
+    path('campaigns/<int:campaign_id>/add_favorite/', campaign_views.add_favorite_campaign, name='add_favorite_campaign'),
 
     # Idea Views
     path('campaigns/<int:campaign_id>/ideas/create/',

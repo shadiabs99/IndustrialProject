@@ -20,6 +20,7 @@ class Campaign(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     campaign_opened = models.BooleanField(default=True)
+    favorites = models.ManyToManyField(User, related_name='favorite_campaigns')
     
     def __str__(self):
         return self.title
