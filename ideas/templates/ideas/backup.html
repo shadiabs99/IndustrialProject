@@ -71,7 +71,6 @@
          <div class="stage stage-5">Incubation</div>
          {% endif %}
       </div>
-
       <div class="idea_container">
          <div class="idea_title">
             {{ idea.idea_title }}
@@ -167,7 +166,6 @@
             {% endif %}
             </span>
          </div>
-         
          <div class="idea_comments_container">
             <div class="comments_number_sort">
                <h4 id="comments_count">
@@ -269,7 +267,7 @@
                      {% if comment.replies.all %}
                      
                      <div class="accordion" id="accordionExample">
-                      <div class="accordion-item" id="accordion-comment">
+                      <div class="accordion-item">
                          <h2 class="accordion-header" id="comment{{ forloop.counter }}">
                             <button
                                class="accordion-button"
@@ -279,8 +277,11 @@
                                aria-expanded="false"
                                aria-controls="collapse{{ forloop.counter }}"
                                >
-                           
-                            <strong>Show {{ comment.replies.all.count }} replies &nbsp;&nbsp; </strong>
+                            <a
+                               href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/comments/{{comment.id}}"
+                               style="color: #0071c5"
+                               >
+                            <strong>Show replies</strong>
                             </a>
                             </button>
                          </h2>
@@ -293,60 +294,14 @@
                             <div class="accordion-body">
 
                               {% for reply in comment.replies.all%}
-                              <div class="comment">
-                                <div class="comment-content">{{ reply.content }}</div>
-                                <br>
-                                <div class="comment-header">
-                                   Created by: 
-                                   <span class="comment-author">{{ reply.author }}</span>
-                                   at: 
-                                   <span class="comment-date">{{ reply.created_at }}</span>
-                                   <span style="float: right">
-                                      <form
-                                         action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/like/"
-                                         method="POST"
-                                         >
-                                         {% csrf_token %}
-                                         <input
-                                            type="hidden"
-                                            name="campaign_id"
-                                            value="{{campaign.id}}"
-                                            />
-                                         {% if user not in comment.likes.all %}
-                                         <button
-                                            id="thumb_up_comment"
-                                            class="material-icons"
-                                            type="submit"
-                                            >
-                                         thumb_up
-                                         </button>
-                                         {% else%}
-                                         <button
-                                            id="thumb_down_comment"
-                                            class="material-icons"
-                                            type="submit"
-                                            >
-                                         thumb_down
-                                         </button>
-                                         {% endif %}
-                                      </form>
-                                   </span>
-                                   <span
-                                      class="idea-num-of-likes"
-                                      style="float: right; padding-right: 10px; font-weight: 500; color: green"
-                                      >
-                                   {{ comment.likes.all.count }}
-                                   </span>
-                                </div>
-                              </div>
+
                                
                               {% endfor %}
 
                             </div>
                          </div>
                       </div>
-                    </div>
-                      {% endif %}
+                     {% endif %}
                   </div>
                   {% endif %}
                   {% endfor %}

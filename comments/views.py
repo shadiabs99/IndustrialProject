@@ -4,15 +4,17 @@ from .models import Comment, CommentLike
 from django.shortcuts import get_object_or_404, redirect
 from ideas.models import Idea
 import re
+from django.db.models import Count
+from django.contrib.auth.decorators import login_required
 
 
 def list_of_comments(request, idea_id, campaign_id):
-    comments = Comment.objects.all().order_by('created_at')
+    comments = Comment.objects.all().order_by('-created_at')
     context = {'comments': comments}
     return render(request, 'ideas/idea_details.html', context)
 
 
-def list_of_top_comments(request):
+def list_of_top_comments(request, idea_id, campaign_id):
     top_comments = Comment.objects.annotate(
         q_count=Count('likes')).order_by('-q_count')[:7]
     context = {'comments': top_comments}
@@ -36,7 +38,7 @@ def comment_details(request, comment_id, idea_id, campaign_id):
             context = {'form': CommentForm(), 'error': 'Bad data try again'}
             return render(request, 'comments/comment_details.html', context)
 
-
+@login_required
 def comment_create(request, idea_id, campaign_id, comment_id=0):
     if comment_id is 0:
         if request.method == 'GET':
@@ -84,13 +86,13 @@ def comment_create(request, idea_id, campaign_id, comment_id=0):
                 ), 'error': 'Bad data try again'}
                 return render(request, 'comments/comment_form.html', context)
 
-
+@login_required
 def comment_delete(request, comment_id, idea_id, campaign_id):
     comment = get_object_or_404(Comment, id=comment_id)
     comment.delete()
     return redirect('idea_details', campaign_id, idea_id)
 
-
+@login_required
 def comment_update(request, comment_id, idea_id, campaign_id):
     comment = Comment.objects.get(id=comment_id)
     form = CommentForm(
@@ -103,7 +105,7 @@ def comment_update(request, comment_id, idea_id, campaign_id):
         return redirect('idea_details', campaign_id, idea_id)
     return render(request, 'comments/comment_update.html', {'form': form})
 
-
+@login_required
 def comment_like(request, comment_id, idea_id, campaign_id):
     user = request.user
     if request.method == 'POST':

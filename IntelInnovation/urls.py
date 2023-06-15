@@ -57,7 +57,7 @@ urlpatterns = [
     path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/comments/create',
          comment_views.comment_create, name='comment_create'),
     path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/comments/top_comments',
-         comment_views.list_of_top_comments, name='top-comments'),
+         idea_views.idea_details_top_comments, name='idea_details_top_comments'),
     path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/comments/<int:comment_id>',
          comment_views.comment_details, name='comment_details'),
     path('campaigns/<int:campaign_id>/ideas/<int:idea_id>/comments/<int:comment_id>/like/',

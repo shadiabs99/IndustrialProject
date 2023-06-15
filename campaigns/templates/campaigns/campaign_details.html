@@ -1,7 +1,7 @@
 {% extends "campaigns/base.html" %} {% block content %}
 
 <!DOCTYPE html>
-<html lang="en" dir="Itr">
+<html lang="en" dir="ltr">
   <br />
   <head class="campaign_banner">
     {% load static %}
@@ -218,7 +218,7 @@
               <h4 id="ideas_count">
                 This campaign has
                 <strong><strong>{{ideas.all.count}}</strong></strong>
-                Ideas
+                ideas
               </h4>
               <span class="sorting_options">
                 <li class="dropdown" id="authors-dropdown">
@@ -228,7 +228,6 @@
                     id="dropdownMenu3"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
-                    id="managers_options"
                   >
                     Sort by
                   </button>

@@ -32,7 +32,8 @@ def list_of_soon_campaigns(request):
 def campaign_details(request, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)
     user = request.user
-    ideas = Idea.objects.all().order_by('-idea_created_at')
+    ideas = Idea.objects.all().filter(campaign_id=campaign_id).order_by('-idea_created_at')
+
     if request.method == 'GET':
         form = CampaignForm(instance=campaign)
         context =  {'form': form, 'campaign': campaign, 'user': user, 'ideas': ideas}
