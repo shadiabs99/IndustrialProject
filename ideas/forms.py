@@ -11,7 +11,7 @@ class IdeaForm(ModelForm):
 
     class Meta:
         model = Idea
-        fields = ['idea_title', 'idea_url',
+        fields = ['idea_status','idea_title', 'idea_url',
                   'campaign_id', 'team', 'background', 'impact', 'solution', 'file']
         widgets = {
             'idea_title': forms.TextInput(attrs={'class': 'form-control',

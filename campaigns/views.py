@@ -72,10 +72,6 @@ def campaign_close(request, campaign_id):
     campaign.save()
     return redirect('campaigns:list_of_campaigns')
 
-def request_page(request):
-    if(request.GET.get('mybtn')):
-        mypythoncode.mypythonfunction( int(request.GET.get('mytextbox')) )
-        return render(request,'ideas/ideas_list.html')
 
 def campaign_update(request, campaign_id):
     campaign = Campaign.objects.get(id=campaign_id)

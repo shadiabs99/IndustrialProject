@@ -360,3 +360,19 @@ body {
     text-shadow: 0 0 3px greenyellow;
     color: greenyellow;
 }
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  }
+
+  .material-symbols-outlined1 {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  }

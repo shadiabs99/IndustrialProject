@@ -29,7 +29,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <meta charset="utf-8" />
   </head>
 
@@ -39,13 +39,50 @@
         <div id="campaign_title">
           <strong> <h1>{{ campaign.title }}</h1> </strong>
         </div>
-        {% if user.is_authenticated %}
-          {% if user in campaign.favorites.all %}
-            <a href="{% url 'remove_favorite_campaign' campaign.id %}">Remove from Favorites</a>
+
+
+        {% if user not in campaign.favorites.all %}
+        <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/add_favorite/">
+        <span class="material-symbols-outlined" type="submit">
+          star
+        </span>
+      </a>
+      {% else %}
+      <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/remove_favorite/">
+        <style>
+          .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48
+          }
+        </style>
+        <span class="material-symbols-outlined" type="submit" style="'FILL' 1 !important;">
+          star
+        </span>
+      
+
+      </a>
+
+        {% comment %} <form action="http://127.0.0.1:8000/campaigns/{{campaign.id}}/add_favorite/" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="campaign_id" value="{{campaign.id}}"/>
+          {% if user not in campaign.favorites.all %}
+          <button class="material-symbols-outlined" type="submit">
+          star
+          </button>
           {% else %}
-            <a href="{% url 'add_favorite_campaign' campaign.id %}">Add to Favorites</a>
+          <span class="material-symbols-outlined1" type="submit">
+          star
+          </span>
           {% endif %}
+          <br>
+       </form> {% endcomment %}
+
+
         {% endif %}
+
         {% if campaign.campaign_opened == False %}
         <div class="event_closed">
 
