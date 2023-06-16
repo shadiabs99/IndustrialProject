@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'users',
     'ideas',
     'comments',
-    'participants',
     'django.contrib.sites',
     "allauth",
     "allauth.account",

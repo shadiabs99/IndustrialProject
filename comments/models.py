@@ -1,5 +1,4 @@
 from django.db import models
-from participants.models import Participant
 from ideas.models import Idea
 from author.decorators import with_author
 from django.contrib.auth.models import User

@@ -1,6 +1,5 @@
 from django.db import models
 from campaigns.models import Campaign
-from participants.models import Participant
 from django.contrib.auth.models import User
 from author.decorators import with_author
 
