@@ -60,7 +60,7 @@
          <div class="stage stage-1">Ideation</div>
          {% endif %}
          {% if idea.idea_status == "INREVIEW" %}
-         <div class="stage stage-2">In review</div>
+         <div class="stage stage-2" style="color: black;">In review</div>
          {% endif %}
          {% if idea.idea_status == "CLOSED" %}
          <div class="stage stage-3">Closed</div>
@@ -146,7 +146,9 @@
          <div class="idea_statistics">
             <span class="idea_likes">
                <br>
-               <form action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/like/" method="POST">
+               {% if campaign.campaign_opened == True and idea.idea_status == "IDEATION" %}
+               <form action="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/like/" method="POST">
+               {% endif %}
                   {% csrf_token %}
                   <input type="hidden" name="campaign_id" value="{{campaign.id}}"/>
                   {% if user not in idea.idea_likes.all %}
@@ -187,7 +189,7 @@
             </span>
             <span class="advanced_options">
             {% if user.is_authenticated and user == idea.author %}
-            <a href="http://127.0.0.1:8000/campaigns/{{ campaign_id }}/ideas/{{ idea.id }}/update/" class="btn btn-primary btn-lg" id="update_idea">
+            <a href="http://127.0.0.1:8000/campaigns/{{ campaign.id }}/ideas/{{ idea.id }}/update/" class="btn btn-primary btn-lg" id="update_idea">
             <span class="material-symbols-outlined">
             update
             </span>
@@ -211,12 +213,12 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
                            <li>
-                              <a class="dropdown-item" href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}">
+                              <a class="dropdown-item" href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}">
                               Date added
                               </a>
                            </li>
                            <li>
-                              <a class="dropdown-item" href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/top_comments">
+                              <a class="dropdown-item" href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/comments/top_comments">
                               Popularity
                               </a>
                            </li>
@@ -224,14 +226,16 @@
                      </li>
                   </span>
                   <a
-                     href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/create"
+                     href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/comments/create"
                      style="color: aqua"
                      data-role="button"
                      data-inline="true"
                      >
+                  {% if campaign.campaign_opened == True and idea.idea_status == "IDEATION" %}
                   <button type="button" class="btn btn-outline-dark" id="dropdownMenu4">
                   Add a comment
                   </button>
+                  {% endif %}
                   </a>  
                </div>
             </div>
@@ -249,10 +253,12 @@
                         at: 
                         <span class="comment-date">{{ comment.created_at }}</span>
                         <span style="float: right">
+                           {% if campaign.campaign_opened == True and idea.idea_status == "IDEATION" %}
                            <form
-                              action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/like/"
+                              action="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/comments/{{comment.id}}/like/"
                               method="POST"
                               >
+                           {% endif %}
                               {% csrf_token %}
                               <input
                                  type="hidden"
@@ -267,7 +273,7 @@
                                  >
                               thumb_up
                               </button>
-                              {% else%}
+                              {% else %}
                               <button
                                  id="thumb_down_comment"
                                  class="material-icons"
@@ -287,13 +293,15 @@
                      </div>
                      
                      <span class="our_reply_button">
+                        {% if campaign.campaign_opened == True and idea.idea_status == "IDEATION" %}
                         <a
-                           href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/reply/"
+                           href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/comments/{{comment.id}}/reply/"
                            style="color: aqua"
                            data-role="button"
                            data-inline="true"
                            >
                         <button type="button" class="btn btn-secondary">Reply</button></a>
+                        {% endif %}
                      </span>
 
                      {% if comment.replies.all %}
@@ -321,7 +329,9 @@
                                     at:
                                     <span class="comment-date">{{ reply.created_at }}</span>
                                     <span style="float: right">
-                                      <form action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{reply.id}}/like/" method="POST">
+                                       {% if campaign.campaign_opened == True and idea.idea_status == "IDEATION" %}
+                                      <form action="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/comments/{{reply.id}}/like/" method="POST">
+                                       {% endif %}
                                         {% csrf_token %}
                                         <input type="hidden" name="campaign_id" value="{{campaign.id}}" />
                                         {% if user not in reply.likes.all %}

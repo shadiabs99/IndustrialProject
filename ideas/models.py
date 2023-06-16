@@ -25,8 +25,8 @@ class Idea(models.Model):
         ("IDEATION", "Ideation"),
         ("INREVIEW", "In Review"),
         ("CLOSED", "Closed"),
-        ("INCUBATION", "Incubation"),
         ("POC", "Poc"),
+        ("INCUBATION", "Incubation"),
     )
 
     idea_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="IDEATION")

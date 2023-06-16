@@ -326,10 +326,12 @@
                     Sugegsted by the <strong>{{ idea.team }}</strong> team in
                     <strong>{{ idea.idea_created_at }}</strong>
                     <div style="float: right">
+                      {% if campaign.campaign_opened == True %}
                       <form
                         action="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/like/"
                         method="POST"
                       >
+                      {% endif %}
                         {% csrf_token %}
                         <input
                           type="hidden"
@@ -344,7 +346,7 @@
                         >
                           thumb_up
                         </button>
-                        {% else%}
+                        {% else %}
                         <button
                           id="thumb_down_idea"
                           class="material-icons"
@@ -357,7 +359,7 @@
                     </div>
                     <div
                       class="idea-num-of-likes"
-                      style="float: right; padding-right: 10px"
+                      style="float: right;"
                     >
                       {{ idea.idea_likes.all.count }}
                     </div>
@@ -400,10 +402,13 @@
                     Sugegsted by the <strong>{{ idea.team }}</strong> team in
                     <strong>{{ idea.idea_created_at }}</strong>
                     <div style="float: right">
+                      {% if campaign.campaign_opened == True %}
                       <form
                         action="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/like/"
                         method="POST"
+                        onclick="check_if_open(campaign.campaign_opened)"
                       >
+                      {% endif %}
                         {% csrf_token %}
                         <input
                           type="hidden"
@@ -431,9 +436,9 @@
                     </div>
                     <div
                       class="idea-num-of-likes"
-                      style="float: right; padding-right: 10px"
+                      style="float: right;"
                     >
-                      {{ idea.idea_likes.all.count }} likes
+                      {{ idea.idea_likes.all.count }} 
                     </div>
                   </div>
                 </div>
