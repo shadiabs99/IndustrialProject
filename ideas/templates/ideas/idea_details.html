@@ -27,8 +27,9 @@
          href="https://fonts.cdnfonts.com/css/intelone-display"
          rel="stylesheet"
          />
-         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />      <meta charset="utf-8" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+      <meta charset="utf-8" />
       <script>
          // Get all the accordion headers
          const accordionHeaders = document.querySelectorAll('.accordion-header');
@@ -54,7 +55,6 @@
       </style>
    </head>
    <body>
-
       <div class="progress-bar">
          {% if idea.idea_status == "IDEATION" %}
          <div class="stage stage-1">Ideation</div>
@@ -72,35 +72,33 @@
          <div class="stage stage-5">Incubation</div>
          {% endif %}
       </div>
-
       <div class="idea_container">
-
          <div class="idea_title">
             {% if user not in idea.idea_favorites.all %}
             <div class="not_in_favorites">
-              <a id="not_in_favorites" href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/add_favorite/">
-                <span class="material-symbols-outlined" type="submit" style="font-size: xxx-large;">
-                  star
-                </span>
-                <span class="hover-text-star">
-                  <span class="hover-text-star-inner">
-                    Add idea to favorites
-                  </span>
-                </span>
-              </a>
-            </div>        
+               <a id="not_in_favorites" href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/add_favorite/">
+               <span class="material-symbols-outlined" type="submit" style="font-size: xxx-large;">
+               star
+               </span>
+               <span class="hover-text-star">
+               <span class="hover-text-star-inner">
+               Add idea to favorites
+               </span>
+               </span>
+               </a>
+            </div>
             {% else %}
             <div class="_in_favorites">
-              <a id="_in_favorites" href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/remove_favorite/">
-                <span class="material-symbols-outlined" type="submit" style="font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48; font-size: xxx-large !important;">
-                  star
-                </span>
-                <span class="hover-text-star">
-                  <span class="hover-text-star-inner">
-                    Remove idea from favorites
-                  </span>
-                </span>
-              </a>
+               <a id="_in_favorites" href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/remove_favorite/">
+               <span class="material-symbols-outlined" type="submit" style="font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48; font-size: xxx-large !important;">
+               star
+               </span>
+               <span class="hover-text-star">
+               <span class="hover-text-star-inner">
+               Remove idea from favorites
+               </span>
+               </span>
+               </a>
             </div>
             {% endif %}
             {{ idea.idea_title }}
@@ -148,7 +146,7 @@
                <br>
                {% if campaign.campaign_opened == True and idea.idea_status == "IDEATION" %}
                <form action="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/like/" method="POST">
-               {% endif %}
+                  {% endif %}
                   {% csrf_token %}
                   <input type="hidden" name="campaign_id" value="{{campaign.id}}"/>
                   {% if user not in idea.idea_likes.all %}
@@ -198,7 +196,6 @@
             {% endif %}
             </span>
          </div>
-         
          <div class="idea_comments_container">
             <div class="comments_number_sort">
                <h4 id="comments_count">
@@ -258,7 +255,7 @@
                               action="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/comments/{{comment.id}}/like/"
                               method="POST"
                               >
-                           {% endif %}
+                              {% endif %}
                               {% csrf_token %}
                               <input
                                  type="hidden"
@@ -291,73 +288,65 @@
                         {{ comment.likes.all.count }}
                         </span>
                      </div>
-                     
                      <span class="our_reply_button">
-                        {% if campaign.campaign_opened == True and idea.idea_status == "IDEATION" %}
-                        <a
-                           href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/comments/{{comment.id}}/reply/"
-                           style="color: aqua"
-                           data-role="button"
-                           data-inline="true"
-                           >
-                        <button type="button" class="btn btn-secondary">Reply</button></a>
-                        {% endif %}
+                     {% if campaign.campaign_opened == True and idea.idea_status == "IDEATION" %}
+                     <a
+                        href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/comments/{{comment.id}}/reply/"
+                        style="color: aqua"
+                        data-role="button"
+                        data-inline="true"
+                        >
+                     <button type="button" class="btn btn-secondary">Reply</button></a>
+                     {% endif %}
                      </span>
-
                      {% if comment.replies.all %}
                      <div class="accordion-container">
-
                         <div class="accordion" id="accordionExample">
-
-                          <div class="accordion-item" id="accordion-comment">
-
-                            <h2 class="accordion-header" id="comment{{ forloop.counter }}">
-
-                              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
-                                <strong><span class="reply-count">Show {{ comment.replies.all.count }} replies</span></strong>
-                              </button>
-                            </h2>
-                            <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="comment{{ forloop.counter }}" data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                {% for reply in comment.replies.all%}
-                                <div class="comment" style="margin: -5.0.2/dist/css/bootstrap.min.csspx">
-                                  <div class="comment-content">{{ reply.content }}</div>
-                                  <br>
-                                  <div class="comment-header">
-                                    Created by:
-                                    <span class="comment-author">{{ reply.author }}</span>
-                                    at:
-                                    <span class="comment-date">{{ reply.created_at }}</span>
-                                    <span style="float: right">
-                                       {% if campaign.campaign_opened == True and idea.idea_status == "IDEATION" %}
-                                      <form action="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/comments/{{reply.id}}/like/" method="POST">
-                                       {% endif %}
-                                        {% csrf_token %}
-                                        <input type="hidden" name="campaign_id" value="{{campaign.id}}" />
-                                        {% if user not in reply.likes.all %}
-                                        <button id="thumb_up_comment_reply" class="material-icons" type="submit">
-                                          thumb_up
-                                        </button>
-                                        {% else%}
-                                        <button id="thumb_down_comment_reply" class="material-icons" type="submit">
-                                          thumb_down
-                                        </button>
-                                        {% endif %}
-                                      </form>
-                                    </span>
-                                    <span class="idea-num-of-likes-reply" style="float: right;  font-weight: 500; color: green">
-                                      {{ reply.likes.all.count }}
-                                    </span>
-                                  </div>
-                                </div>
-                                {% endfor %}
+                           <div class="accordion-item" id="accordion-comment">
+                              <h2 class="accordion-header" id="comment{{ forloop.counter }}">
+                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+                                 <strong><span class="reply-count">Show {{ comment.replies.all.count }} replies</span></strong>
+                                 </button>
+                              </h2>
+                              <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="comment{{ forloop.counter }}" data-bs-parent="#accordionExample">
+                                 <div class="accordion-body">
+                                    {% for reply in comment.replies.all%}
+                                    <div class="comment" style="margin: -5.0.2/dist/css/bootstrap.min.csspx">
+                                       <div class="comment-content">{{ reply.content }}</div>
+                                       <br>
+                                       <div class="comment-header">
+                                          Created by:
+                                          <span class="comment-author">{{ reply.author }}</span>
+                                          at:
+                                          <span class="comment-date">{{ reply.created_at }}</span>
+                                          <span style="float: right">
+                                             {% if campaign.campaign_opened == True and idea.idea_status == "IDEATION" %}
+                                             <form action="http://127.0.0.1:8000/campaigns/{{campaign.id}}/ideas/{{idea.id}}/comments/{{reply.id}}/like/" method="POST">
+                                                {% endif %}
+                                                {% csrf_token %}
+                                                <input type="hidden" name="campaign_id" value="{{campaign.id}}" />
+                                                {% if user not in reply.likes.all %}
+                                                <button id="thumb_up_comment_reply" class="material-icons" type="submit">
+                                                thumb_up
+                                                </button>
+                                                {% else%}
+                                                <button id="thumb_down_comment_reply" class="material-icons" type="submit">
+                                                thumb_down
+                                                </button>
+                                                {% endif %}
+                                             </form>
+                                          </span>
+                                          <span class="idea-num-of-likes-reply" style="float: right;  font-weight: 500; color: green">
+                                          {{ reply.likes.all.count }}
+                                          </span>
+                                       </div>
+                                    </div>
+                                    {% endfor %}
+                                 </div>
                               </div>
-                            </div>
-                          </div>
+                           </div>
                         </div>
-                      </div>
-                      
-
+                     </div>
                      {% endif %}
                   </div>
                   {% endif %}

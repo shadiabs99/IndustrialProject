@@ -12,13 +12,10 @@ class Campaign(models.Model):
     end_date = models.DateField()
     image = models.ImageField(null=True, blank=True, upload_to ="images/")
     token = models.CharField(max_length=10)
-    
     likes = models.ManyToManyField(User, default=None, blank=True, related_name="likes")
     participants = models.ManyToManyField(User, default=None, blank=True, related_name="campaign_participants")
-    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
     campaign_opened = models.BooleanField(default=True)
     favorites = models.ManyToManyField(User, related_name='favorite_campaigns')
     

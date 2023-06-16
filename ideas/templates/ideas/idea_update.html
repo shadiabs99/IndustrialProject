@@ -1,19 +1,15 @@
 {% extends "campaigns/base.html" %}
 {% block content %}
 <head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'idea_form.css' %}"> 
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'idea_form.css' %}">
 </head>
 <br><br><br>
-
 <h1 class="form-name"> Update your idea </h1>
 {{ error }}
-
 <form  class = "elias"method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" name="button" class="new_idea_button">Update Idea</button>
-
- </form>
-
+   {% csrf_token %}
+   {{ form.as_p }}
+   <button type="submit" name="button" class="new_idea_button">Update Idea</button>
+</form>
 {% endblock %}

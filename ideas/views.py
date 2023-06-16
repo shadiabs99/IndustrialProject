@@ -42,25 +42,6 @@ def idea_details(request, idea_id, campaign_id):
         except ValueError:
             context = {'form': IdeaForm(), 'error': 'Bad data try again'}
             return render(request, 'ideas/idea_details.html', context)
-
-def idea_details_top_comments(request, idea_id, campaign_id):
-    campaign = get_object_or_404(Campaign, id=campaign_id)
-    idea = get_object_or_404(Idea, id=idea_id)
-    comments = Comment.objects.all().filter(idea_id=idea_id).annotate(q_count=Count('likes')).order_by('-q_count')[:7]
-
-    if request.method == 'GET':
-        form = IdeaForm(instance=idea)
-        context = {'form': form, 'idea': idea,
-                    'campaign': campaign, 'comments': comments}
-        return render(request, 'ideas/idea_details.html', context)
-    else:
-        try:
-            form = IdeaForm(request.POST, instance=idea)
-            form.save()
-            return redirect('ideas:list_of_ideas', campaign_id)
-        except ValueError:
-            context = { 'campaign': campaign, 'form': IdeaForm(), 'error': 'Bad data try again'}
-            return render(request, 'ideas/idea_details.html', context)
         
 @login_required
 def idea_create(request, campaign_id):
@@ -83,12 +64,6 @@ def idea_create(request, campaign_id):
         except ValueError:
             context = {'form': IdeaForm(), 'error': 'Bad data try again', 'campaign': campaign}
             return render(request, 'ideas/idea_form.html', context)
-
-@login_required
-def idea_delete(request, idea_id, campaign_id):
-    idea = get_object_or_404(Idea, id=idea_id)
-    idea.delete()
-    return redirect('ideas:list_of_ideas', campaign_id)
 
 @login_required
 def idea_update(request, idea_id, campaign_id):

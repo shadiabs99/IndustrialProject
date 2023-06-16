@@ -1,68 +1,51 @@
 {% extends "campaigns/base.html" %}
-
 {% block content %}
-
 <!DOCTYPE html>
 <html lang-"en" dir-"Itr">
-   
-   <head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'home.css' %}"> 
-    
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/intelone-display" rel="stylesheet"> 
-    <style> @import url('https://fonts.cdnfonts.com/css/intelone-display'); </style>
-    <meta charset="utf-8">
-    <title>My Campaigns</title>
-   </head>
-
-    <body>
-        <br>
-        <br>
-        <div class="campiagns_layout">
-            {% for campaign in campaigns %}
-            {% if campaign.campaign_opened == False %}
-
-            <div class="campaign">
-
-                {% if campaign.image %}
-        
-                    <a href={% url 'campaigns:campaign_details' campaign.id %}>
-                    <img class="campaign_image"
-                        height="300"
-                        width="300" 
-                        src="{{ campaign.image.url }} ">
-                    </a>
-                {% endif %}
-
-            <div class="campaign_description">
-                {{ campaign.description }}
+<head>
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'home.css' %}">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link href="https://fonts.cdnfonts.com/css/intelone-display" rel="stylesheet">
+   <style> @import url('https://fonts.cdnfonts.com/css/intelone-display'); </style>
+   <meta charset="utf-8">
+   <title>My Campaigns</title>
+</head>
+<body>
+   <br>
+   <br>
+   <div class="campiagns_layout">
+      {% for campaign in campaigns %}
+      {% if campaign.campaign_opened == False %}
+      <div class="campaign">
+         {% if campaign.image %}
+         <a href={% url 'campaigns:campaign_details' campaign.id %}>
+         <img class="campaign_image"
+            height="300"
+            width="300" 
+            src="{{ campaign.image.url }} ">
+         </a>
+         {% endif %}
+         <div class="campaign_description">
+            {{ campaign.description }}
+         </div>
+         <div class="campaign_info">
+            <div>
+               <i class="material-icons" id="likes_number">thumb_up</i>
+               <div class="likes_number">
+                  {{ campaign.likes.all.count}}
+               </div>
             </div>
-
-            <div class="campaign_info">
-                <div>
-                    <i class="material-icons" id="likes_number">thumb_up</i>
-                    <div class="likes_number">
-                    {{ campaign.likes.all.count}}
-                    </div>
-
-                </div>
-                     <a href={% url 'campaigns:campaign_details' campaign.id %}>
-                        <button type="button" class="btn btn-outline-success">
-                            {{ campaign.title }}
-                        </button>
-                     </a>
-            </div>
-
-            
-        
-                
-                
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-        
-    </body> 
+            <a href={% url 'campaigns:campaign_details' campaign.id %}>
+            <button type="button" class="btn btn-outline-success">
+            {{ campaign.title }}
+            </button>
+            </a>
+         </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+   </div>
+</body>
 </html>
 {% endblock %}

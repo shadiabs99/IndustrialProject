@@ -266,14 +266,14 @@ body {
 
 #thumb_down {
     color: white;
-    background-color: #0071c5;
+    background-color: rgb(255, 255, 255, 0) !important;
     border: none;
 }
 
 #thumb_up {
     color: white;
     opacity: 0.3;
-    background-color: #0071c5;
+    background-color: rgb(255, 255, 255, 0) !important;
     border: none;
 }
 
