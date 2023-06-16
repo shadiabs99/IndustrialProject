@@ -331,7 +331,7 @@ body {
 .idea-num-of-likes {
     color: green !important;
     padding-top: 3px;
-    font-size: small;
+    font-size: medium;
     font-weight: 500;
 }
 
@@ -362,17 +362,57 @@ body {
 }
 
 .material-symbols-outlined {
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 48
-  }
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
+}
 
-  .material-symbols-outlined1 {
-    font-variation-settings:
-    'FILL' 1,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 48
-  }
+.material-symbols-outlined1 {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48
+}
+
+.hover-text {
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    /* Position the text to the left of the icon */
+    transform: translateY(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease-in-out;
+    min-width: max-content;
+}
+
+.event_available {
+    position: relative;
+    /* Ensure proper positioning of the absolute text */
+}
+
+.event_available:hover .hover-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.event_closed {
+    position: relative;
+    /* Ensure proper positioning of the absolute text */
+}
+
+.event_closed:hover .hover-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+#thumb_up,
+#thumb_down {
+    font-size: 24px;
+    transition: transform 0.3s ease-in-out;
+}
+
+#thumb_up:hover,
+#thumb_down:hover {
+    transform: scale(1.3);
+}

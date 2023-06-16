@@ -89,14 +89,20 @@
         <span class="material-symbols-outlined" style="font-size: xxx-large;">
           event_busy
         </span>
+        <span class="hover-text">Campaign is closed</span>
       </div>
         {% endif %}
         {% if campaign.campaign_opened == True %}
+        
         <div class="event_available" >
         
         <span class="material-symbols-outlined" style="font-size: xxx-large;">
           event_available
         </span>
+        <span class="hover-text">Campaign is opened</span>
+
+        
+
       </div>
         {% endif %}
         <br />
@@ -370,7 +376,7 @@
                       class="idea-num-of-likes"
                       style="float: right; padding-right: 10px"
                     >
-                      {{ idea.idea_likes.all.count }} likes
+                      {{ idea.idea_likes.all.count }}
                     </div>
                   </div>
                 </div>

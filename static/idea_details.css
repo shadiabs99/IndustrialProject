@@ -384,9 +384,9 @@ body {
 }
 
 .comment {
-    margin-bottom: 10px;
+    margin: 30px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #0071c5;
     border-radius: 5px;
     z-index: -1;
 }
@@ -574,4 +574,53 @@ body {
 
 #accordion-comment {
     border: none;
+    min-width: 300px;
+}
+
+#accordionExample {
+    border: 1px solid #0071c5;
+    border-radius: 0.1rem;
+}
+
+.idea-num-of-likes {
+    font-size: large;
+}
+
+.reply_and_replies {
+    display: flex;
+    justify-content: center;
+}
+
+.accordion-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.reply-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.accordion-button {
+    padding: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.btn.btn-secondary {
+    background-color: rgba(0, 113, 197, 0.8);
 }

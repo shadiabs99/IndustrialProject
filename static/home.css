@@ -13,15 +13,11 @@
     box-shadow: 0 0 3px rgba(0, 0, 0, 1);
     border-radius: 0.9rem 0.9rem 0.9rem 0.9rem;
     background-color: #0071c5;
+    transition: transform 0.3s ease-in-out;
 }
 
 .campaign:hover {
-    box-shadow: 0 0 3px rgba(0, 0, 0, 1);
-    border-radius: 0.9rem 0.9rem 0.9rem 0.9rem;
-    background-color: #0071c5;
     transform: scale(1.1);
-    background-color: #0071c5;
-    color: #0071c5;
 }
 
 .campaign_image {
