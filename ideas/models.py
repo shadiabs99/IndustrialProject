@@ -30,7 +30,8 @@ class Idea(models.Model):
     )
 
     idea_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="IDEATION")
-    
+    idea_favorites = models.ManyToManyField(User, related_name='favorite_ideas')
+
     def __str__(self):
         return self.solution
     

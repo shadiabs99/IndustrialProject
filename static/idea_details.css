@@ -624,3 +624,52 @@ body {
 .btn.btn-secondary {
     background-color: rgba(0, 113, 197, 0.8);
 }
+
+.hover-text-star {
+    position: absolute;
+    top: 55%;
+    left: calc(100% + 10px);
+    transform: translateY(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease-in-out;
+    white-space: nowrap;
+}
+
+#not_in_favorites {
+    float: left;
+    padding-top: 5px;
+    color: yellow;
+    position: relative;
+    padding-top: 5px;
+    margin-top: -7px;
+}
+
+#_in_favorites {
+    float: left;
+    padding-top: 5px;
+    color: yellow;
+    position: relative;
+    padding-top: 5px;
+    margin-top: -7px;
+}
+
+#not_in_favorites:hover .hover-text-star {
+    visibility: visible;
+    opacity: 1;
+}
+
+#_in_favorites:hover .hover-text-star {
+    visibility: visible;
+    opacity: 1;
+}
+
+.hover-text-star-inner {
+    display: inline-block;
+    vertical-align: middle;
+}

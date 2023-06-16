@@ -27,8 +27,8 @@
          href="https://fonts.cdnfonts.com/css/intelone-display"
          rel="stylesheet"
          />
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-      <meta charset="utf-8" />
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />      <meta charset="utf-8" />
       <script>
          // Get all the accordion headers
          const accordionHeaders = document.querySelectorAll('.accordion-header');
@@ -54,6 +54,7 @@
       </style>
    </head>
    <body>
+
       <div class="progress-bar">
          {% if idea.idea_status == "IDEATION" %}
          <div class="stage stage-1">Ideation</div>
@@ -73,7 +74,35 @@
       </div>
 
       <div class="idea_container">
+
          <div class="idea_title">
+            {% if user not in idea.idea_favorites.all %}
+            <div class="not_in_favorites">
+              <a id="not_in_favorites" href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/add_favorite/">
+                <span class="material-symbols-outlined" type="submit" style="font-size: xxx-large;">
+                  star
+                </span>
+                <span class="hover-text-star">
+                  <span class="hover-text-star-inner">
+                    Add idea to favorites
+                  </span>
+                </span>
+              </a>
+            </div>        
+            {% else %}
+            <div class="_in_favorites">
+              <a id="_in_favorites" href="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/remove_favorite/">
+                <span class="material-symbols-outlined" type="submit" style="font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48; font-size: xxx-large !important;">
+                  star
+                </span>
+                <span class="hover-text-star">
+                  <span class="hover-text-star-inner">
+                    Remove idea from favorites
+                  </span>
+                </span>
+              </a>
+            </div>
+            {% endif %}
             {{ idea.idea_title }}
          </div>
          <div class="idea_info">

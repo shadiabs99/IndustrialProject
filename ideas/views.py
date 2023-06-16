@@ -123,3 +123,16 @@ def idea_like(request, campaign_id, idea_id):
     else:
         return redirect('campaigns:campaign_details', campaign_id=campaign_id)
     
+@login_required
+def add_favorite_idea(request, campaign_id, idea_id):
+    idea = get_object_or_404(Idea, pk=idea_id)
+    idea.idea_favorites.add(request.user)
+    comments = Comment.objects.all().filter(idea_id=idea_id)
+    return render(request, 'ideas/idea_details.html', {'idea': idea, 'campaign_id': campaign_id, 'comments': comments})
+
+@login_required
+def remove_favorite_idea(request, campaign_id, idea_id):
+    idea = get_object_or_404(Idea, pk=idea_id)
+    idea.idea_favorites.remove(request.user)
+    comments = Comment.objects.all().filter(idea_id=idea_id)
+    return render(request, 'ideas/idea_details.html', {'idea': idea, 'campaign_id': campaign_id, 'comments': comments})
