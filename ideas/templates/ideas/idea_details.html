@@ -280,7 +280,7 @@
                         </span>
                         <span
                            class="idea-num-of-likes"
-                           style="float: right; padding-right: 10px; font-weight: 500; color: green"
+                           style="float: right; padding-right: 0px; font-weight: 500; color: green"
                            >
                         {{ comment.likes.all.count }}
                         </span>
@@ -321,22 +321,22 @@
                                     at:
                                     <span class="comment-date">{{ reply.created_at }}</span>
                                     <span style="float: right">
-                                      <form action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{comment.id}}/like/" method="POST">
+                                      <form action="http://127.0.0.1:8000/campaigns/{{campaign_id}}/ideas/{{idea.id}}/comments/{{reply.id}}/like/" method="POST">
                                         {% csrf_token %}
                                         <input type="hidden" name="campaign_id" value="{{campaign.id}}" />
-                                        {% if user not in comment.likes.all %}
-                                        <button id="thumb_up_comment" class="material-icons" type="submit">
+                                        {% if user not in reply.likes.all %}
+                                        <button id="thumb_up_comment_reply" class="material-icons" type="submit">
                                           thumb_up
                                         </button>
                                         {% else%}
-                                        <button id="thumb_down_comment" class="material-icons" type="submit">
+                                        <button id="thumb_down_comment_reply" class="material-icons" type="submit">
                                           thumb_down
                                         </button>
                                         {% endif %}
                                       </form>
                                     </span>
-                                    <span class="idea-num-of-likes" style="float: right; padding-right: 10px; font-weight: 500; color: green">
-                                      {{ comment.likes.all.count }}
+                                    <span class="idea-num-of-likes-reply" style="float: right;  font-weight: 500; color: green">
+                                      {{ reply.likes.all.count }}
                                     </span>
                                   </div>
                                 </div>

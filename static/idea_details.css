@@ -553,6 +553,20 @@ body {
     font-size: x-large;
 }
 
+#thumb_up_comment_reply {
+    color: green;
+    background-color: rgba(202, 219, 241, 0);
+    border: none;
+    font-size: large;
+}
+
+#thumb_down_comment_reply {
+    color: green;
+    background-color: rgba(202, 219, 241, 0);
+    border: none;
+    font-size: large;
+}
+
 .our_reply_button {
     display: flex !important;
 }
@@ -584,6 +598,10 @@ body {
 
 .idea-num-of-likes {
     font-size: large;
+}
+
+.idea-num-of-likes-reply {
+    font-size: medium;
 }
 
 .reply_and_replies {
