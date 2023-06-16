@@ -36,74 +36,58 @@
   <body>
     <div class="campaigns_container">
       <div id="campaign-banner">
+        {% if user not in campaign.favorites.all %}
+        <div class="not_in_favorites">
+          <a id="not_in_favorites" href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/add_favorite/">
+            <span class="material-symbols-outlined" type="submit" style="font-size: xxx-large;">
+              star
+            </span>
+            <span class="hover-text-star">
+              <span class="hover-text-star-inner">
+                Add campaign to favorites
+              </span>
+            </span>
+          </a>
+        </div>        
+        {% else %}
+        <div class="_in_favorites">
+          <a id="_in_favorites" href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/remove_favorite/">
+            <span class="material-symbols-outlined" type="submit" style="font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48; font-size: xxx-large !important;">
+              star
+            </span>
+            <span class="hover-text-star">
+              <span class="hover-text-star-inner">
+                Remove campaign from favorites
+              </span>
+            </span>
+          </a>
+        </div>
+        
+        {% endif %}
+
         <div id="campaign_title">
           <strong> <h1>{{ campaign.title }}</h1> </strong>
         </div>
 
-
-        {% if user not in campaign.favorites.all %}
-        <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/add_favorite/">
-        <span class="material-symbols-outlined" type="submit">
-          star
-        </span>
-      </a>
-      {% else %}
-      <a href="http://127.0.0.1:8000/campaigns/{{campaign.id}}/remove_favorite/">
-        <style>
-          .material-symbols-outlined {
-            font-variation-settings:
-            'FILL' 1,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 48
-          }
-        </style>
-        <span class="material-symbols-outlined" type="submit" style="'FILL' 1 !important;">
-          star
-        </span>
-      
-
-      </a>
-
-        {% comment %} <form action="http://127.0.0.1:8000/campaigns/{{campaign.id}}/add_favorite/" method="POST">
-          {% csrf_token %}
-          <input type="hidden" name="campaign_id" value="{{campaign.id}}"/>
-          {% if user not in campaign.favorites.all %}
-          <button class="material-symbols-outlined" type="submit">
-          star
-          </button>
-          {% else %}
-          <span class="material-symbols-outlined1" type="submit">
-          star
-          </span>
-          {% endif %}
-          <br>
-       </form> {% endcomment %}
-
-
-        {% endif %}
-
         {% if campaign.campaign_opened == False %}
-        <div class="event_closed">
-
-        <span class="material-symbols-outlined" style="font-size: xxx-large;">
-          event_busy
-        </span>
-        <span class="hover-text">Campaign is closed</span>
-      </div>
+          <div class="event_closed">
+            <span class="material-symbols-outlined" style="font-size: xxx-large; ">
+              event_busy
+            </span>
+            <span class="hover-text">
+              Campaign is closed
+            </span>
+          </div>
         {% endif %}
         {% if campaign.campaign_opened == True %}
-        
-        <div class="event_available" >
-        
-        <span class="material-symbols-outlined" style="font-size: xxx-large;">
-          event_available
-        </span>
-        <span class="hover-text">Campaign is opened</span>
-
-        
-
-      </div>
+          <div class="event_available" > 
+            <span class="material-symbols-outlined" style="font-size: xxx-large;">
+              event_available
+            </span>
+            <span class="hover-text">
+              Campaign is opened
+            </span>
+          </div>
         {% endif %}
         <br />
 
