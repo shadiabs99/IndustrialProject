@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'campaigns',
     'ideas',
     'comments',
+    'profiles',
     'django.contrib.sites',
     "allauth",
     "allauth.account",
@@ -168,3 +169,4 @@ AUTHENTICATION_BACKENDS = (
 SOCIALACCOUNT_LOGIN_ON_GET=True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

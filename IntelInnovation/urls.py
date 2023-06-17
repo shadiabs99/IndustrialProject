@@ -23,12 +23,16 @@ from ideas import views as idea_views
 from comments import views as comment_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
+from profiles.views import CustomSignupView
+from profiles import views as profile_views
 
 urlpatterns = [
      # Other Views
+     path('accounts/signup/', CustomSignupView.as_view(), name='account_signup'),
      path("accounts/", include("allauth.urls")),
      path('admin/', admin.site.urls),
      path('users/', include('django.contrib.auth.urls')),
+     path('profile/', profile_views.user_profile, name='user_profile'),
 
      # Campaign Views
      path('', campaign_views.list_of_campaigns, name='list_of_campaigns'),
