@@ -103,13 +103,16 @@ body {
 }
 
 .participated_campaigns {
-    overflow-x: auto; /* Change 'scroll' to 'auto' */
-    white-space: nowrap; /* Move 'white-space' property to .participated_campaigns */
-    height: auto; /* Remove fixed height */
+    overflow-x: auto;
+    /* Change 'scroll' to 'auto' */
+    white-space: nowrap;
+    /* Move 'white-space' property to .participated_campaigns */
+    height: auto;
+    /* Remove fixed height */
     width: 100%;
     background-color: aliceblue;
     border-radius: 0.8rem;
-    margin-bottom: 20px;    
+    margin-bottom: 20px;
 }
 
 .participated_campaigns_list {
@@ -117,6 +120,7 @@ body {
     padding-bottom: 0;
     /* Remove 'white-space' property from .participated_campaigns_list */
 }
+
 
 /* .campaign_image {
     display: block;
@@ -129,28 +133,57 @@ body {
 } */
 
 .campaign_image {
-    width: 150px; /* Set the desired width */
-    height: 200px; /* Set the desired height */
-    overflow: hidden; /* Crop the image that exceeds the container */
+    width: 150px;
+    /* Set the desired width */
+    height: 200px;
+    /* Set the desired height */
+    overflow: hidden;
+    /* Crop the image that exceeds the container */
     border-radius: 0.8rem;
     display: block;
     object-fit: cover;
     border: 2px solid;
     border-color: #0071c5;
     margin: 5px;
-  }
-  
-  .campaign_image img {
-    width: 100%; /* Make the image fill the container horizontally */
-    height: 100%; /* Make the image fill the container vertically */
-    object-fit: cover; /* Crop the image as needed while maintaining aspect ratio */
-  }
+}
+
+.campaign_image img {
+    width: 100%;
+    /* Make the image fill the container horizontally */
+    height: 100%;
+    /* Make the image fill the container vertically */
+    object-fit: cover;
+    /* Crop the image as needed while maintaining aspect ratio */
+}
 
 .participated_campaigns_list li {
     display: inline-block;
 }
 
-.profile_titles{
+.profile_titles {
     color: aliceblue;
-    font-size: large;
+    font-size: x-large;
+}
+
+.favorite_campaigns_list {
+    padding: 15px;
+    padding-bottom: 0;
+    /* Remove 'white-space' property from .participated_campaigns_list */
+}
+
+.favorite_campaigns_list li {
+    display: inline-block;
+}
+
+.favorite_campaigns {
+    overflow-x: auto;
+    /* Change 'scroll' to 'auto' */
+    white-space: nowrap;
+    /* Move 'white-space' property to .participated_campaigns */
+    height: auto;
+    /* Remove fixed height */
+    width: 100%;
+    background-color: aliceblue;
+    border-radius: 0.8rem;
+    margin-bottom: 20px;
 }

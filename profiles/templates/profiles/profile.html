@@ -62,22 +62,24 @@
             </span>
          </div>
          <div class="profile_left_banner"></div>
-
-
-
          <div class="profile_favorites">
-            <span class="profile_titles">Currently participated campaigns:</span>
+            <span class="profile_titles">
+               Campaigns {{profile.user.first_name}} is participating in:
+            </span>
             <div class="participated_campaigns">
-               
-            <ul class="participated_campaigns_list">
-               {% for campaign in participated_campaigns %}
-               <li>
-                  <span><img class="campaign_image"
-                     src="{{ campaign.image.url }} "></span>
-               </li>
-               {% endfor %}
-            </ul>
+               <ul class="participated_campaigns_list">
+                  {% for campaign in participated_campaigns %}
+                  <li>
+                     <span>
+                        <img class="campaign_image" src="{{ campaign.image.url }} ">
+                     </span>
+                  </li>
+                  {% endfor %}
+               </ul>
             </div>
+            <span class="profile_titles">
+               {{profile.user.first_name}}'s <span style="color: yellow">favorite</span> ideas:
+            </span>
             {% for idea in favorite_ideas %}
                   <div class="accordion" id="accordionExample">
                      {% if forloop.counter == 1 %}
@@ -237,6 +239,20 @@
                      <br />
                   </div>
                   {% endfor %}
+                  <span class="profile_titles">
+                     {{profile.user.first_name}}'s' <span style="color: yellow">favorite</span> campaigns:
+                  </span>
+                  <div class="favorite_campaigns">
+                     <ul class="favorite_campaigns_list">
+                        {% for campaign in favorite_campaigns %}
+                        <li>
+                           <span>
+                              <img class="campaign_image" src="{{ campaign.image.url }} ">
+                           </span>
+                        </li>
+                        {% endfor %}
+                     </ul>
+                  </div>
          </div>
 
 
