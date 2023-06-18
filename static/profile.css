@@ -4,18 +4,20 @@ body {
 }
 
 .profile_picture img {
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    padding: 10px;
+    border: 1px solid aliceblue;
+    padding: 3px;
+    aspect-ratio: 1;
 }
 
 .profile_container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    gap: 5px 5px;
+    gap: 10px 10px;
     grid-auto-flow: row;
     border-radius: 0.9rem;
     min-height: 600px;
@@ -25,31 +27,40 @@ body {
 .profile_info {
     grid-area: 2 / 1 / 4 / 2;
     background-color: black;
-    background-color: rgb(240, 248, 255, 0.8) !important;
+    background-color: rgb(240, 248, 255, 0.5) !important;
     border-radius: 0.999rem;
+    text-align: left;
+    padding: 20px;
 }
 
 .profile_left_banner {
     grid-area: 1 / 1 / 4 / 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .profile_favorites {
     grid-area: 1 / 2 / 3 / 5;
-    background-color: rgb(240, 248, 255, 0.8) !important;
+    background-color: rgb(240, 248, 255, 0.5) !important;
     border-radius: 0.999rem;
 }
 
 .profile_latest_comments {
     grid-area: 3 / 2 / 4 / 5;
-    background-color: rgb(240, 248, 255, 0.8) !important;
+    background-color: rgb(240, 248, 255, 0.5) !important;
     border-radius: 0.999rem;
 }
 
 .profile_picture {
     grid-area: 1 / 1 / 2 / 2;
     background-color: #0071c5;
-    width: 250px;
-    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    flex-direction: column;
+    margin: 20px;
 }
 
 @media (max-width: 600px) {
@@ -57,7 +68,7 @@ body {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
-        gap: 2px 2px;
+        gap: 5px 5px;
         grid-auto-flow: row;
     }
     .profile_picture {
@@ -75,4 +86,17 @@ body {
     .profile_latest_comments {
         grid-area: 3 / 1 / 4 / 5;
     }
+}
+
+.info_body {
+    font-weight: 500;
+}
+
+.username {
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: aliceblue;
+    text-align: center;
+    font-size: xx-large;
 }

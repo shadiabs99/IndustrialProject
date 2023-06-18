@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
    <br />
-   <br>
+   
    <head class="campaign_banner">
       {% load static %}
       <link rel="stylesheet" href="{% static 'profile.css' %}" />
@@ -33,13 +33,60 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       <meta charset="utf-8" />
    </head>
+
    <body>
       <div class="profile_container">
-         <div class="profile_info"></div>
+         <div class="profile_picture">
+            <img src="{{ profile.image.url }} "/>
+            <div class="username">
+               {{profile.user.username}}            
+            </div>
+         </div>
+         <div class="profile_info">
+            <span class="info_title">
+               Full Name:
+            </span>
+            <br>
+            <span class="info_body">
+               {{profile.user.first_name}} {{profile.user.last_name}}
+            </span>
+            <br>
+            <br>
+            <span class="info_title">
+               Email:
+            </span>
+            <br>
+            <span class="info_body">
+               {{profile.user.email}}            
+            </span>
+         </div>
          <div class="profile_left_banner"></div>
-         <div class="profile_favorites"></div>
-         <div class="profile_latest_comments"></div>
-         <div class="profile_picture"></div>
+         <div class="profile_favorites">
+            {% for campaign in favorite_campaigns %}
+               <div>
+                  <p>{{ campaign.title }}</p>
+                  <p>Created at: {{ campaign.created_at }}</p>
+                  <!-- Add more HTML elements or data from the comment object as needed -->
+               </div>
+            {% endfor %}
+            {% for idea in favorite_ideas %}
+            <div>
+               <p>{{ idea.idea_title }}</p>
+               <p>Created at: {{ idea.created_at }}</p>
+               <!-- Add more HTML elements or data from the comment object as needed -->
+            </div>
+         {% endfor %}
+         </div>
+         <div class="profile_latest_comments">
+            {% for comment in latest_comments %}
+               <div>
+                  <p>{{ comment.content }}</p>
+                  <p>Created at: {{ comment.created_at }}</p>
+                  <!-- Add more HTML elements or data from the comment object as needed -->
+               </div>
+            {% endfor %}
+         </div>
+         
       </div>
    </body>
 </html>
