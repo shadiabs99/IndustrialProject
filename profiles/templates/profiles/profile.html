@@ -36,13 +36,6 @@
    </head>
 
    <body>
-      {% for campaign in participated_campaigns %}
-      <div>
-         <p>{{ campaign.title }}</p>
-         {% comment %} <p>Created at: {{ comment.created_at }}</p> {% endcomment %}
-         <!-- Add more HTML elements or data from the comment object as needed -->
-      </div>
-   {% endfor %}
       <div class="profile_container">
          <div class="profile_picture">
             <img src="{{ profile.image.url }} "/>
@@ -73,13 +66,18 @@
 
 
          <div class="profile_favorites">
-            {% for campaign in favorite_campaigns %}
-               <div>
-                  <p>{{ campaign.title }}</p>
-                  <p>Created at: {{ campaign.created_at }}</p>
-                  <!-- Add more HTML elements or data from the comment object as needed -->
-               </div>
-            {% endfor %}
+            <span class="profile_titles">Currently participated campaigns:</span>
+            <div class="participated_campaigns">
+               
+            <ul class="participated_campaigns_list">
+               {% for campaign in participated_campaigns %}
+               <li>
+                  <span><img class="campaign_image"
+                     src="{{ campaign.image.url }} "></span>
+               </li>
+               {% endfor %}
+            </ul>
+            </div>
             {% for idea in favorite_ideas %}
                   <div class="accordion" id="accordionExample">
                      {% if forloop.counter == 1 %}
