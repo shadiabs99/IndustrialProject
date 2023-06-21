@@ -18,7 +18,7 @@ def user_profile(request):
     profile = Profile.objects.get(user_id=user.id)
     favorite_campaigns = Campaign.objects.filter(favorites=user)
     favorite_ideas = Idea.objects.filter(idea_favorites=user)
-    latest_comments = Comment.objects.filter(author=user).order_by('-created_at')[:3]
+    latest_comments = Comment.objects.filter(author=user).order_by('created_at')[:3]
     participated_campaigns = Campaign.objects.filter(participants=user)
     context = {'participated_campaigns': participated_campaigns, 'profile': profile, 'favorite_campaigns': favorite_campaigns, 'favorite_ideas': favorite_ideas, 'latest_comments': latest_comments,}
     return render(request, 'profiles/profile.html', context)

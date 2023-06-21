@@ -3,94 +3,40 @@ body {
     font-family: 'IntelOne Display', sans-serif !important;
 }
 
+.profile_container {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr 1fr 1fr 1fr;
+    grid-template-rows: 1.1fr 0.9fr 1fr 1fr;
+    gap: 10px 10px;
+    grid-auto-flow: row;
+    grid-template-areas: "profile_left_banner participated_campaigns participated_campaigns participated_campaigns participated_campaigns" "profile_left_banner profile_favorites profile_favorites profile_favorites profile_favorites" "profile_left_banner profile_favorites profile_favorites profile_favorites profile_favorites" "profile_left_banner latest_comments latest_comments latest_comments latest_comments";
+}
+
+.profile_left_banner {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1.1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas: "profile_picture" "profile_info" "profile_info";
+    grid-area: profile_left_banner;
+    height: fit-content;
+}
+
+.profile_picture {
+    grid-area: profile_picture;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+}
+
 .profile_picture img {
-    width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid aliceblue;
     padding: 3px;
-    aspect-ratio: 1;
-}
-
-.profile_container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 10px 10px;
-    grid-auto-flow: row;
-    border-radius: 0.9rem;
-    min-height: 600px;
-    z-index: 999;
-}
-
-.profile_info {
-    grid-area: 2 / 1 / 4 / 2;
-    background-color: black;
-    background-color: rgb(240, 248, 255, 0.5) !important;
-    border-radius: 0.999rem;
-    text-align: left;
-    padding: 20px;
-}
-
-.profile_left_banner {
-    grid-area: 1 / 1 / 4 / 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.profile_favorites {
-    grid-area: 1 / 2 / 3 / 5;
-    background-color: rgb(240, 248, 255, 0.5) !important;
-    border-radius: 0.999rem;
-    padding: 20px;
-}
-
-.profile_latest_comments {
-    grid-area: 3 / 2 / 4 / 5;
-    background-color: rgb(240, 248, 255, 0.5) !important;
-    border-radius: 0.999rem;
-}
-
-.profile_picture {
-    grid-area: 1 / 1 / 2 / 2;
-    background-color: #0071c5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    aspect-ratio: 1;
-    flex-direction: column;
-    margin: 20px;
-}
-
-@media (max-width: 600px) {
-    .profile_container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
-        gap: 5px 5px;
-        grid-auto-flow: row;
-    }
-    .profile_picture {
-        grid-area: 1 / 1 / 2 / 2;
-    }
-    .profile_left_banner {
-        grid-area: 1 / 1 / 2 / 5;
-    }
-    .profile_info {
-        grid-area: 1 / 2 / 2 / 5;
-    }
-    .profile_favorites {
-        grid-area: 2 / 1 / 3 / 5;
-    }
-    .profile_latest_comments {
-        grid-area: 3 / 1 / 4 / 5;
-    }
-}
-
-.info_body {
-    font-weight: 500;
+    width: 200px;
 }
 
 .username {
@@ -102,43 +48,61 @@ body {
     font-size: xx-large;
 }
 
+.profile_info {
+    grid-area: profile_info;
+    background-color: rgb(240, 248, 255, 0.7) !important;
+    border-radius: 0.999rem;
+    text-align: left;
+    padding: 20px;
+    height: fit-content;
+    margin-top: 30px;
+}
+
 .participated_campaigns {
-    overflow-x: auto;
-    /* Change 'scroll' to 'auto' */
-    white-space: nowrap;
-    /* Move 'white-space' property to .participated_campaigns */
-    height: auto;
-    /* Remove fixed height */
-    width: 100%;
+    grid-area: participated_campaigns;
+    background-color: rgb(240, 248, 255, 0.7) !important;
+}
+
+.profile_favorites {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-flow: row;
+    grid-template-areas: "favorite_ideas favorite_ideas favorite_campaigns favorite_campaigns" "favorite_ideas favorite_ideas favorite_campaigns favorite_campaigns" "favorite_ideas favorite_ideas favorite_campaigns favorite_campaigns";
+    grid-area: profile_favorites;
+    background-color: rgb(240, 248, 255, 0.7) !important;
+    border-radius: 0.8rem;
+    max-height: 400px;
+}
+
+.favorite_ideas {
+    grid-area: favorite_ideas;
     background-color: aliceblue;
+    margin: 10px;
+    overflow-y: auto;
     border-radius: 0.8rem;
-    margin-bottom: 20px;
 }
 
-.participated_campaigns_list {
-    padding: 15px;
-    padding-bottom: 0;
-    /* Remove 'white-space' property from .participated_campaigns_list */
+.favorite_campaigns {
+    grid-area: favorite_campaigns;
+    background-color: aliceblue;
+    margin: 10px;
+    overflow-y: auto;
+    border-radius: 0.8rem;
 }
 
-
-/* .campaign_image {
-    display: block;
-    padding: 5px;
-    max-width: 150px;
-    min-height: 160px;
+.latest_comments {
+    grid-area: latest_comments;
+    background-color: rgb(240, 248, 255, 0.7) !important;
     border-radius: 0.8rem;
-    width: 100%;
-    overflow: hidden;
-} */
+    display: flex;
+    justify-content: center;
+}
 
 .campaign_image {
     width: 150px;
-    /* Set the desired width */
     height: 200px;
-    /* Set the desired height */
     overflow: hidden;
-    /* Crop the image that exceeds the container */
     border-radius: 0.8rem;
     display: block;
     object-fit: cover;
@@ -147,43 +111,67 @@ body {
     margin: 5px;
 }
 
-.campaign_image img {
-    width: 100%;
-    /* Make the image fill the container horizontally */
-    height: 100%;
-    /* Make the image fill the container vertically */
-    object-fit: cover;
-    /* Crop the image as needed while maintaining aspect ratio */
+.info_body {
+    font-weight: 500;
 }
 
-.participated_campaigns_list li {
-    display: inline-block;
-}
-
-.profile_titles {
-    color: aliceblue;
-    font-size: x-large;
-}
-
-.favorite_campaigns_list {
-    padding: 15px;
-    padding-bottom: 0;
-    /* Remove 'white-space' property from .participated_campaigns_list */
-}
-
-.favorite_campaigns_list li {
-    display: inline-block;
-}
-
-.favorite_campaigns {
-    overflow-x: auto;
-    /* Change 'scroll' to 'auto' */
-    white-space: nowrap;
-    /* Move 'white-space' property to .participated_campaigns */
-    height: auto;
-    /* Remove fixed height */
+.participated_campaigns {
+    height: 280px;
     width: 100%;
     background-color: aliceblue;
     border-radius: 0.8rem;
-    margin-bottom: 20px;
+    padding-top: 10px;
+}
+
+.participated_campaigns_list {
+    padding: 15px;
+    padding-bottom: 0;
+    list-style-type: none;
+    overflow-x: auto;
+    white-space: nowrap;
+    height: fit-content;
+}
+
+.campaign_image {
+    width: 120px;
+    height: 170px;
+    overflow: hidden;
+    border-radius: 0.8rem;
+    display: block;
+    object-fit: cover;
+    border: 2px solid;
+    border-color: #0071c5;
+    margin: 5px;
+}
+
+.profile_titles {
+    color: #0071c5;
+    font-size: x-large;
+}
+
+#campaign_thumbnail {
+    display: block;
+    display: inline-block;
+    border-radius: 0.8rem;
+    word-wrap: break-word;
+    max-width: 500px;
+    width: 310px;
+    border: 2px solid transparent;
+    height: fit-content;
+}
+
+#campaign_thumbnail:hover {
+    border: 2px solid #0071c5;
+}
+
+#idea_thumbnail:hover {
+    border: 2px solid #0071c5;
+}
+
+#favorite_campaign_thumbnail:hover {
+    border: 2px solid #0071c5;
+}
+
+#ideas_ul_list {
+    list-style-type: none;
 }

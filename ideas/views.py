@@ -18,7 +18,8 @@ def list_of_ideas(request, campaign_id):
 
 def list_of_top_ideas(request, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)
-    top_ideas = Idea.objects.annotate(q_count=Count('idea_likes')).order_by('-q_count')[:7]
+    top_ideas = Idea.objects.all().filter(campaign_id=campaign_id)
+    top_ideas = top_ideas.annotate(q_count=Count('idea_likes')).order_by('-q_count')[:7]
     context = {'ideas': top_ideas, 'campaign': campaign}
     return render(request, 'campaigns/campaign_details.html', context)
 
