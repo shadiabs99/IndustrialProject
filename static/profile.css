@@ -6,7 +6,7 @@ body {
 .profile_container {
     display: grid;
     grid-template-columns: 1.4fr 0.6fr 1fr 1fr 1fr;
-    grid-template-rows: 1.1fr 0.9fr 1fr 1fr;
+    grid-template-rows: 1.1fr 0.9fr 1fr 0fr;
     gap: 10px 10px;
     grid-auto-flow: row;
     grid-template-areas: "profile_left_banner participated_campaigns participated_campaigns participated_campaigns participated_campaigns" "profile_left_banner profile_favorites profile_favorites profile_favorites profile_favorites" "profile_left_banner profile_favorites profile_favorites profile_favorites profile_favorites" "profile_left_banner latest_comments latest_comments latest_comments latest_comments";
@@ -158,10 +158,15 @@ body {
     width: 310px;
     border: 2px solid transparent;
     height: fit-content;
+    margin: 0px 10px 0px 10px;
 }
 
 #campaign_thumbnail:hover {
     border: 2px solid #0071c5;
+}
+
+#idea_thumbnail {
+    margin: 7px;
 }
 
 #idea_thumbnail:hover {
@@ -172,6 +177,20 @@ body {
     border: 2px solid #0071c5;
 }
 
+#favorite_campaign_thumbnail {
+    margin: 7px;
+}
+
 #ideas_ul_list {
     list-style-type: none;
+}
+
+#comment_card {
+    width: 600px;
+    border-radius: 0.8rem;
+}
+
+#comment_col {
+    width: 600px;
+    border-radius: 0.8rem;
 }

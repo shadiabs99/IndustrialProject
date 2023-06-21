@@ -6,7 +6,10 @@
     gap: 40px;
     font-family: 'IntelOne Display', sans-serif;
     place-content: center;
-    padding-top: 20px;
+    padding-top: 30px;
+    border: 3px solid aliceblue;
+    border-radius: 0.8rem;
+    padding-bottom: 30px;
 }
 
 .campaign {
@@ -17,7 +20,7 @@
 }
 
 .campaign:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .campaign_image {
