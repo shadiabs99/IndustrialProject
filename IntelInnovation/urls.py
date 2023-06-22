@@ -31,7 +31,8 @@ urlpatterns = [
      path("accounts/", include("allauth.urls")),
      path('admin/', admin.site.urls),
      path('users/', include('django.contrib.auth.urls')),
-     path('profile/', profile_views.user_profile, name='user_profile'),
+     path('profile/<str:username>/', profile_views.user_profile, name='user_profile'),
+     path('profile/', profile_views.my_user_profile, name='my_user_profile'),
 
      # Campaign Views
      path('', campaign_views.list_of_campaigns, name='list_of_campaigns'),
