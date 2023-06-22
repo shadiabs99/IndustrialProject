@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['127.0.0.1:8000', '127.0.0.1']
 
 # Application definition
 
-SITE_ID=3
+SITE_ID=4
 
 INSTALLED_APPS = [
     'django_extensions',
@@ -170,6 +170,4 @@ SOCIALACCOUNT_LOGIN_ON_GET=True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'http://562551701384-313nl6m8e5ol622mam81puo71r8k1n1r.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
