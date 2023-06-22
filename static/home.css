@@ -13,6 +13,7 @@
     border: 3px solid aliceblue;
     border-radius: 0.8rem;
     padding-bottom: 30px;
+    background-color: rgba(240, 248, 255, 0.5);
 }
 
 .campaign {

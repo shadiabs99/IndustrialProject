@@ -120,3 +120,9 @@ def remove_favorite_idea(request, campaign_id, idea_id):
     idea.idea_favorites.remove(request.user)
     comments = Comment.objects.all().filter(idea_id=idea_id)
     return render(request, 'ideas/idea_details.html', {'idea': idea, 'campaign': campaign, 'comments': comments})
+
+@login_required
+def idea_delete(request, campaign_id, idea_id):
+    idea = get_object_or_404(Idea, id=idea_id)
+    idea.delete()
+    return redirect('campaigns:campaign_details', campaign_id=campaign_id)

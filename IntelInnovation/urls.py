@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-# from users import views as users_views
 from campaigns import views as campaign_views
 from ideas import views as idea_views
 from comments import views as comment_views

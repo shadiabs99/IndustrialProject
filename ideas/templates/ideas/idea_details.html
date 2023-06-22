@@ -186,14 +186,24 @@
             {% endif %}
             </span>
             <span class="advanced_options">
-            {% if user.is_authenticated and user == idea.author %}
-            <a href="http://127.0.0.1:8000/campaigns/{{ campaign.id }}/ideas/{{ idea.id }}/update/" class="btn btn-primary btn-lg" id="update_idea">
-            <span class="material-symbols-outlined">
-            update
+               {% if user.is_authenticated and user == idea.author %}
+                  <a href="http://127.0.0.1:8000/campaigns/{{ campaign.id }}/ideas/{{ idea.id }}/update/" class="btn btn-primary btn-lg" id="update_idea">
+                     <span class="material-symbols-outlined">
+                     update
+                     </span>
+                     <span class="hover-text">Update idea</span>
+                  </a>
+               {% endif %}
             </span>
-            <span class="hover-text">Update idea</span>
-            </a>
-            {% endif %}
+            <span class="advanced_options">
+               {% if user.is_authenticated and user == idea.author %}
+                  <a onclick="return confirm('Are you sure you want to delete this idea?\n\nThis action is IRREVERSABLE!')" href="http://127.0.0.1:8000/campaigns/{{ campaign.id }}/ideas/{{ idea.id }}/delete/" class="btn btn-primary btn-lg" id="update_idea">
+                     <span class="material-symbols-outlined">
+                     delete
+                     </span>
+                     <span class="hover-text">Delete idea</span>
+                  </a>
+               {% endif %}
             </span>
          </div>
          <div class="idea_comments_container">
