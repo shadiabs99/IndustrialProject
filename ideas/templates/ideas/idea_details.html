@@ -102,6 +102,9 @@
             </div>
             {% endif %}
             {{ idea.idea_title }}
+            <span class="idea_author_name">
+               by: <strong>{{ idea.author }}</strong>
+            </span>
          </div>
          <div class="idea_info">
             <div class="back_sol_impact">
@@ -130,13 +133,13 @@
                   </span>
                   team at:&nbsp;
                   <span id="start_date">
-                  {{ idea.idea_created_at }}
+                  {{ idea.idea_created_at|date }}
                   </span>
                </div>
                <div  class="campaign_info_end">
-                  Updated at:&nbsp;
+                  &nbsp;&nbsp;last updated at:&nbsp;
                   <span id="end_date">
-                  {{ idea.idea_updated_at }}&nbsp;&nbsp;
+                  {{ idea.idea_updated_at|date }}&nbsp;&nbsp;
                   </span>
                </div>
             </div>
