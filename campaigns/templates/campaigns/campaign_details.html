@@ -121,9 +121,9 @@
          <div id="author">
             <div id="author_info">Managed by:</div>
             <h4 id="managers-names">{{ campaign.manager }}</h4>
-            <div id="author_info">Last edited by:</div>
+            <div id="author_info">Created by:</div>
             <h4 id="managers-names">{{ campaign.author }}</h4>
-            {% if user.is_authenticated and user == campaign.author or user == campaign.manager %}
+            {% if user == campaign.author or user == campaign.manager %}
             <li class="dropdown" id="authors-dropdown">
                <button
                   class="btn btn-secondary dropdown-toggle"
@@ -305,7 +305,12 @@
                               <strong>Impact:</strong> {{ idea.impact }}
                               <br />
                               <br />
-                              Sugegsted by the <strong>{{ idea.team }}</strong> team in
+                              Sugegsted by <strong>{{ idea.author }}</strong>
+                              {% if user == campaign.author or user == campaign.manager %}
+                                 <span class="material-symbols-outlined" style="position: relative; top: 5px;">
+                                    supervisor_account
+                                 </span>
+                              {% endif %} at
                               <strong>{{ idea.idea_created_at }}</strong>
                               <div style="float: right">
                                  {% if campaign.campaign_opened == True %}
@@ -381,7 +386,12 @@
                               <strong>Impact:</strong> {{ idea.impact }}
                               <br />
                               <br />
-                              Sugegsted by the <strong>{{ idea.team }}</strong> team in
+                              Sugegsted by <strong>{{ idea.author }}</strong>
+                              {% if user == campaign.author or user == campaign.manager %}
+                                 <span class="material-symbols-outlined" style="position: relative; top: 5px;">
+                                    supervisor_account
+                                 </span>
+                              {% endif %} at
                               <strong>{{ idea.idea_created_at }}</strong>
                               <div style="float: right">
                                  {% if campaign.campaign_opened == True %}
