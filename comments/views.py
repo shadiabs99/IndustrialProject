@@ -4,14 +4,16 @@ from .models import Comment, CommentLike
 from django.shortcuts import get_object_or_404, redirect
 from ideas.models import Idea
 from campaigns.models import Campaign
-
+from profiles.models import Profile
 import re
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 
 @login_required
 def comment_create(request, idea_id, campaign_id, comment_id=0):
-    if comment_id is 0:
+    user = request.user
+    profile = Profile.objects.get(user_id=user.id)
+    if comment_id == 0:
         if request.method == 'GET':
             form = CommentForm(initial={'idea_id': idea_id})
             field = form.fields['idea_id']
@@ -20,6 +22,7 @@ def comment_create(request, idea_id, campaign_id, comment_id=0):
             return render(request, 'comments/comment_form.html', {'form': form})
         else:
             try:
+                profile.score = profile.score + 2
                 form = CommentForm(request.POST, request.FILES,
                                    initial={'idea_id': idea_id})
                 form.save()
@@ -42,6 +45,7 @@ def comment_create(request, idea_id, campaign_id, comment_id=0):
             return render(request, 'comments/comment_form.html', {'form': form})
         else:
             try:
+                profile.score = profile.score + 2
                 form = CommentForm(request.POST, request.FILES,
                                    initial={'idea_id': idea_id, 'comment_id': comment_id})
                 comment = form.save(commit=False)
@@ -51,6 +55,7 @@ def comment_create(request, idea_id, campaign_id, comment_id=0):
                 field = form.fields['comment_id']
                 field.widget = field.hidden_widget()
                 form.save()
+                profile.save()
                 return redirect('idea_details', campaign_id, idea_id)
             except ValueError:
                 context = {'form': CommentForm(

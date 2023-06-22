@@ -9,6 +9,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=30, null=True, blank=True)
     last_name = models.CharField(max_length=30, null=True, blank=True)
     image = models.ImageField(upload_to='media/profile_pics/', null=True, blank=True, default='media/profile_pics/default_profile_picture.png')    
+    score = models.IntegerField(default=0)
     
     class Meta:
         unique_together = ('user',)

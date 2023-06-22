@@ -8,6 +8,7 @@ from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 import re
+from profiles.models import Profile
 
 
 def list_of_ideas(request, campaign_id):
@@ -48,7 +49,7 @@ def idea_details(request, idea_id, campaign_id):
 def idea_create(request, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)
     user = request.user
-
+    profile = Profile.objects.get(user_id=user.id)
     if request.method == 'GET':
         form = IdeaForm(initial={'campaign_id': campaign_id})
         field = form.fields['campaign_id']
@@ -56,6 +57,8 @@ def idea_create(request, campaign_id):
         return render(request, 'ideas/idea_form.html', {'form': form, 'campaign': campaign})
     else:
         try:
+            profile.score = profile.score + 5
+            profile.save()
             form = IdeaForm(request.POST, request.FILES,
                             initial={'campaign_id': campaign_id})
             field = form.fields['campaign_id']

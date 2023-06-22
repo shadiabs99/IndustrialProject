@@ -7,6 +7,7 @@ import ideas.views
 from ideas.models import Idea
 from django.db.models import Count
 import os
+from profiles.models import Profile
 
 
 def list_of_top_campaigns(request):
@@ -50,10 +51,13 @@ def campaign_details(request, campaign_id):
 @login_required
 def campaign_create(request):
     user = request.user
+    profile = Profile.objects.get(user_id=user.id)
     if request.method == 'GET':
         return render(request, 'campaigns/campaign_form.html', {'form': CampaignForm()})
     else:
         try:
+            profile.score = profile.score + 10
+            profile.save()
             form = CampaignForm(request.POST, request.FILES)
             form.save()
             return redirect('campaigns:list_of_campaigns')
