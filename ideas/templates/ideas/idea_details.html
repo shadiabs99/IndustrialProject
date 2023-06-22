@@ -178,16 +178,16 @@
             </a>
             {% endif %}
             </span>
-            <span class="idea_file">
             {% if idea.file %}
+            <span class="idea_file">
             <a href="{{ idea.file.url }}" class="btn btn-primary btn-lg">
             <span class="material-symbols-outlined" >
             attach_file
             </span>
             <span class="hover-text">Download the attached file</span>
             </a>
-            {% endif %}
             </span>
+            {% endif %}
             <span class="advanced_options">
                {% if user.is_authenticated and user == idea.author %}
                   <a href="http://127.0.0.1:8000/campaigns/{{ campaign.id }}/ideas/{{ idea.id }}/update/" class="btn btn-primary btn-lg" id="update_idea">
