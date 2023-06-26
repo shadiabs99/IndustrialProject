@@ -194,3 +194,58 @@ body {
     width: 600px;
     border-radius: 0.8rem;
 }
+
+.profile_picture {
+    grid-area: profile_picture;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    /* Add position relative to the container */
+}
+
+.profile_picture img {
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid aliceblue;
+    padding: 3px;
+    width: 200px;
+}
+
+.profile_badge {
+    position: absolute;
+    bottom: 0px;
+    right: 80px;
+    width: 60px;
+    height: 60px;
+    background-color: gold;
+    color: #0071c5;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.hover-text {
+    position: absolute;
+    top: -45px;
+    left: 110%;
+    transform: translateX(-50%);
+    background-color: aliceblue !important;
+    color: #0071c5 !important;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease-in-out;
+    min-width: max-content;
+}
+
+.profile_badge:hover .hover-text {
+    visibility: visible;
+    opacity: 1;
+}

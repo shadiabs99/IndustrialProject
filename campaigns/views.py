@@ -8,7 +8,7 @@ from ideas.models import Idea
 from django.db.models import Count
 import os
 from profiles.models import Profile
-
+from IntelInnovation.common import Score
 
 def list_of_top_campaigns(request):
     top_campaigns = Campaign.objects.annotate(q_count=Count('likes')).order_by('-q_count')[:7]
@@ -56,7 +56,7 @@ def campaign_create(request):
         return render(request, 'campaigns/campaign_form.html', {'form': CampaignForm()})
     else:
         try:
-            profile.score = profile.score + 10
+            profile.score = profile.score + Score.NEW_CAMOAIGN.value
             profile.save()
             form = CampaignForm(request.POST, request.FILES)
             form.save()

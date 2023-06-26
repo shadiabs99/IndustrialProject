@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 import re
 from profiles.models import Profile
+from IntelInnovation.common import Score
 
 
 def list_of_ideas(request, campaign_id):
@@ -57,7 +58,7 @@ def idea_create(request, campaign_id):
         return render(request, 'ideas/idea_form.html', {'form': form, 'campaign': campaign})
     else:
         try:
-            profile.score = profile.score + 5
+            profile.score = profile.score + Score.NEW_IDEA.value
             profile.save()
             form = IdeaForm(request.POST, request.FILES,
                             initial={'campaign_id': campaign_id})

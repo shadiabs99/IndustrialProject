@@ -8,6 +8,7 @@ from profiles.models import Profile
 import re
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
+from IntelInnovation.common import Score
 
 @login_required
 def comment_create(request, idea_id, campaign_id, comment_id=0):
@@ -22,10 +23,11 @@ def comment_create(request, idea_id, campaign_id, comment_id=0):
             return render(request, 'comments/comment_form.html', {'form': form})
         else:
             try:
-                profile.score = profile.score + 2
+                profile.score = profile.score + Score.NEW_COMMENT.value
                 form = CommentForm(request.POST, request.FILES,
                                    initial={'idea_id': idea_id})
                 form.save()
+                profile.save()
                 return redirect('idea_details', campaign_id, idea_id)
             except ValueError:
                 context = {'form': CommentForm(
@@ -45,7 +47,7 @@ def comment_create(request, idea_id, campaign_id, comment_id=0):
             return render(request, 'comments/comment_form.html', {'form': form})
         else:
             try:
-                profile.score = profile.score + 2
+                profile.score = profile.score + Score.NEW_COMMENT.value
                 form = CommentForm(request.POST, request.FILES,
                                    initial={'idea_id': idea_id, 'comment_id': comment_id})
                 comment = form.save(commit=False)
