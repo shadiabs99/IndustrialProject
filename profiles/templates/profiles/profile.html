@@ -41,7 +41,11 @@
       <div class="profile_container">
          <div class="profile_left_banner">
            <div class="profile_picture">
+               {% if profile.image %}
                <img src="{{ profile.image.url }} "/>
+               {% else %}
+               <img src="/media/profile_pics/default_profile_picture.png" class="circle-img mb-2" alt="User Img">
+               {% endif%}
                <div class="profile_badge" >
                   <h5 style="padding-top: 6px;">{{ profile.score }}</h5><span class="material-symbols-outlined">
                   workspace_premium
@@ -58,7 +62,7 @@
                </span>
                <br>
                <span class="info_body">
-                  {{profile.user.username}}            
+                  @{{profile.user.username}}            
                </span>
                <br>
                <br>

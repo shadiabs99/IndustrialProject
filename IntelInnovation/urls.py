@@ -33,6 +33,7 @@ urlpatterns = [
      path('users/', include('django.contrib.auth.urls')),
      path('profile/<str:username>/', profile_views.user_profile, name='user_profile'),
      path('profile/', profile_views.my_user_profile, name='my_user_profile'),
+     path('top_users/', profile_views.top_users, name='top_users'),
 
      # Campaign Views
      path('', campaign_views.list_of_campaigns, name='list_of_campaigns'),

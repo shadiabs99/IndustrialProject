@@ -103,7 +103,7 @@
             {% endif %}
             {{ idea.idea_title }}
             <span class="idea_author_name">
-               by: <a href="http://127.0.0.1:8000/profile/{{idea.author.username}}" style="color: aliceblue;"><strong>{{ idea.author }}</strong></a>
+               by: <a href="http://127.0.0.1:8000/profile/{{idea.author.username}}" style="color: aliceblue;"><strong>@{{ idea.author }}</strong></a>
             </span>
          </div>
          <div class="idea_info">
@@ -259,7 +259,7 @@
                      <br>
                      <div class="comment-header">
                         Created by: 
-                        <span class="comment-author"><a href="http://127.0.0.1:8000/profile/{{comment.author.username}}">{{ comment.author }}</a></span>
+                        <span class="comment-author"><a href="http://127.0.0.1:8000/profile/{{comment.author.username}}">@{{ comment.author }}</a></span>
                         at: 
                         <span class="comment-date">{{ comment.created_at }}</span>
                         <span style="float: right">
@@ -329,7 +329,7 @@
                                        <br>
                                        <div class="comment-header">
                                           Created by:
-                                          <span class="comment-author"><a href="http://127.0.0.1:8000/profile/{{reply.author.username}}">{{ reply.author }}</a></span>
+                                          <span class="comment-author"><a href="http://127.0.0.1:8000/profile/{{reply.author.username}}">@{{ reply.author }}</a></span>
                                           at:
                                           <span class="comment-date">{{ reply.created_at }}</span>
                                           <span style="float: right">

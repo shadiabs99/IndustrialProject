@@ -121,10 +121,10 @@
          <div id="author">
             <div id="author_info">Managed by:</div>
             <a href="http://127.0.0.1:8000/profile/{{campaign.manager.username}}">
-            <h4 id="managers-names">{{ campaign.manager }}</h4></a>
+            <h4 id="managers-names">@{{ campaign.manager }}</h4></a>
             <div id="author_info">Created by:</div>
             <a href="http://127.0.0.1:8000/profile/{{campaign.author.username}}">
-            <h4 id="managers-names">{{ campaign.author }}</h4></a>
+            <h4 id="managers-names">@{{ campaign.author }}</h4></a>
             {% if user == campaign.author or user == campaign.manager %}
             <li class="dropdown" id="authors-dropdown">
                <button
@@ -307,7 +307,7 @@
                               <strong>Impact:</strong> {{ idea.impact }}
                               <br />
                               <br />
-                              Sugegsted by <a href="http://127.0.0.1:8000/profile/{{idea.author.username}}"><strong>{{ idea.author }}</strong></a>
+                              Sugegsted by <a href="http://127.0.0.1:8000/profile/{{idea.author.username}}"><strong>@{{ idea.author }}</strong></a>
                               {% if user == campaign.author or user == campaign.manager %}
                                  <span class="material-symbols-outlined" style="position: relative; top: 5px;">
                                     supervisor_account
@@ -388,7 +388,7 @@
                               <strong>Impact:</strong> {{ idea.impact }}
                               <br />
                               <br />
-                              Sugegsted by <a href="http://127.0.0.1:8000/profile/{{idea.author.username}}"><strong>{{ idea.author }}</strong></a>
+                              Suggested by <a href="http://127.0.0.1:8000/profile/{{idea.author.username}}"><strong>@{{ idea.author }}</strong></a>
                               {% if user == campaign.author or user == campaign.manager %}
                                  <span class="material-symbols-outlined" style="position: relative; top: 5px;">
                                     supervisor_account

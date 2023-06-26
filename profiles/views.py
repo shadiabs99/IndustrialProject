@@ -33,3 +33,8 @@ def my_user_profile(request):
     participated_campaigns = Campaign.objects.filter(participants=user)
     context = {'participated_campaigns': participated_campaigns, 'profile': profile, 'favorite_campaigns': favorite_campaigns, 'favorite_ideas': favorite_ideas, 'latest_comments': latest_comments,}
     return render(request, 'profiles/profile.html', context)
+
+@login_required
+def top_users(request):
+    top_profiles = Profile.objects.order_by('-score')[:10]
+    return render(request, 'profiles/top_users.html', {'top_profiles': top_profiles})
