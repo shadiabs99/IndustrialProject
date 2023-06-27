@@ -10,6 +10,7 @@ from django.urls import reverse
 import re
 from profiles.models import Profile
 from IntelInnovation.common import Score
+from django.core.exceptions import PermissionDenied
 
 
 def list_of_ideas(request, campaign_id):
@@ -75,14 +76,17 @@ def idea_update(request, idea_id, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)
     comments = Comment.objects.all().filter(idea_id=idea_id)
     idea = Idea.objects.get(id=idea_id)
-    form = IdeaForm(request.POST if request.POST else None, instance=idea)
-    field = form.fields['campaign_id']
-    field.widget = field.hidden_widget()
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return render(request, 'ideas/idea_details.html', {'idea': idea, 'campaign': campaign, 'comments': comments})
-    return render(request, 'ideas/idea_update.html', {'form': form})
+    if idea.author == request.user:
+        form = IdeaForm(request.POST if request.POST else None, instance=idea)
+        field = form.fields['campaign_id']
+        field.widget = field.hidden_widget()
+        if request.method == 'POST':
+            if form.is_valid():
+                form.save()
+                return render(request, 'ideas/idea_details.html', {'idea': idea, 'campaign': campaign, 'comments': comments})
+        return render(request, 'ideas/idea_update.html', {'form': form})
+    else:
+        raise PermissionDenied
 
 @login_required
 def idea_like(request, campaign_id, idea_id):
@@ -128,5 +132,8 @@ def remove_favorite_idea(request, campaign_id, idea_id):
 @login_required
 def idea_delete(request, campaign_id, idea_id):
     idea = get_object_or_404(Idea, id=idea_id)
-    idea.delete()
-    return redirect('campaigns:campaign_details', campaign_id=campaign_id)
+    if idea.author == request.user:
+        idea.delete()
+        return redirect('campaigns:campaign_details', campaign_id=campaign_id)
+    else:
+        raise PermissionDenied

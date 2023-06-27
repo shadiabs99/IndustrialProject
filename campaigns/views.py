@@ -9,6 +9,7 @@ from django.db.models import Count
 import os
 from profiles.models import Profile
 from IntelInnovation.common import Score
+from django.core.exceptions import PermissionDenied
 
 def list_of_top_campaigns(request):
     top_campaigns = Campaign.objects.annotate(q_count=Count('likes')).order_by('-q_count')[:7]
@@ -67,29 +68,38 @@ def campaign_create(request):
 
 @login_required
 def campaign_delete(request, campaign_id):
-    campaign = get_object_or_404(Campaign, id=campaign_id)
-    campaign.delete()
-    return redirect('campaigns:list_of_campaigns')
-
+    if campaign.manager == request.user or campaign.author == request.user:
+        campaign = get_object_or_404(Campaign, id=campaign_id)
+        campaign.delete()
+        return redirect('campaigns:list_of_campaigns')
+    else:
+        raise PermissionDenied
+    
 @login_required
 def campaign_close(request, campaign_id):
-    campaign = get_object_or_404(Campaign, id=campaign_id)
-    campaign.campaign_opened = False
-    campaign.save()
-    return redirect('campaigns:list_of_campaigns')
+    if campaign.manager == request.user or campaign.author == request.user:
+        campaign = get_object_or_404(Campaign, id=campaign_id)
+        campaign.campaign_opened = False
+        campaign.save()
+        return redirect('campaigns:list_of_campaigns')
+    else:
+        raise PermissionDenied
 
 @login_required
 def campaign_update(request, campaign_id):
     campaign = Campaign.objects.get(id=campaign_id)
-    form = CampaignForm(request.POST if request.POST else None, instance=campaign)
-    if request.method == 'POST':
-        if form.is_valid():
-            image_path = campaign.image.url
-            if os.path.exists(image_path):
-                os.remove(image_path)
-            form.save()
-            return redirect('campaigns:campaign_details', campaign.id)
-    return render(request, 'campaigns/campaign_update.html', {'form': form})
+    if campaign.manager == request.user or campaign.author == request.user:
+        form = CampaignForm(request.POST if request.POST else None, instance=campaign)
+        if request.method == 'POST':
+            if form.is_valid():
+                image_path = campaign.image.url
+                if os.path.exists(image_path):
+                    os.remove(image_path)
+                form.save()
+                return redirect('campaigns:campaign_details', campaign.id)
+        return render(request, 'campaigns/campaign_update.html', {'form': form})
+    else:
+        raise PermissionDenied
 
 @login_required()
 def campaign_like(request, campaign_id):
