@@ -29,8 +29,10 @@
 
 .campaign_image {
     width: 100%;
-    display: block;
     border-radius: 0.9rem 0.9rem 0 0;
+    height: 300px;
+    display: block;
+    object-fit: cover;
 }
 
 .campaign_description {

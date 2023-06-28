@@ -20,10 +20,7 @@
       <div class="campaign">
          {% if campaign.image %}
          <a href={% url 'campaigns:campaign_details' campaign.id %}>
-         <img class="campaign_image"
-            height="300"
-            width="300" 
-            src="{{ campaign.image.url }} ">
+         <img class="campaign_image" src="{{ campaign.image.url }} ">
          </a>
          {% endif %}
          <div class="campaign_description">

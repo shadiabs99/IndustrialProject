@@ -4121,8 +4121,8 @@ fieldset:disabled .btn {
     text-align: center
 }
 
-.nav-bar-one-item:hover {
-    font-weight: bold;
+.nav-item:hover .nav-bar-one-item {
+    text-shadow: 0 0 1px rgb(9, 82, 165);
     color: rgb(9, 82, 165);
 }
 
