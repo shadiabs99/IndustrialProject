@@ -68,8 +68,8 @@ def campaign_create(request):
 
 @login_required
 def campaign_delete(request, campaign_id):
+    campaign = get_object_or_404(Campaign, id=campaign_id)
     if campaign.manager == request.user or campaign.author == request.user:
-        campaign = get_object_or_404(Campaign, id=campaign_id)
         campaign.delete()
         return redirect('campaigns:list_of_campaigns')
     else:
@@ -77,8 +77,8 @@ def campaign_delete(request, campaign_id):
     
 @login_required
 def campaign_close(request, campaign_id):
+    campaign = get_object_or_404(Campaign, id=campaign_id)
     if campaign.manager == request.user or campaign.author == request.user:
-        campaign = get_object_or_404(Campaign, id=campaign_id)
         campaign.campaign_opened = False
         campaign.save()
         return redirect('campaigns:list_of_campaigns')
