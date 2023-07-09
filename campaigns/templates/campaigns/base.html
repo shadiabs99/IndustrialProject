@@ -28,7 +28,7 @@
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                      <li class="nav-item">
-                        <a class="nav-link active" id="nav_bar_tab" aria-current="page" href="http://127.0.0.1:8000/profile/">
+                        <a class="nav-link active" id="nav_bar_tab" aria-current="page" href="http://intetinnovation.pythonanywhere.com/profile/">
                         <span class="nav-bar-one-item">
                         My Profile</a>
                         </span>
@@ -40,32 +40,32 @@
                         </span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                           <li><a class="dropdown-item" href="http://127.0.0.1:8000/top_campaigns">Sort by popularity</a></li>
-                           <li><a class="dropdown-item" href="http://127.0.0.1:8000/">Sort by creation date</a></li>
-                           <li><a class="dropdown-item" href="http://127.0.0.1:8000/soon_campaigns">Sort by starting date</a></li>
+                           <li><a class="dropdown-item" href="http://intetinnovation.pythonanywhere.com/top_campaigns">Sort by popularity</a></li>
+                           <li><a class="dropdown-item" href="http://intetinnovation.pythonanywhere.com/">Sort by creation date</a></li>
+                           <li><a class="dropdown-item" href="http://intetinnovation.pythonanywhere.com/soon_campaigns">Sort by starting date</a></li>
                            <li>
                               <hr class="dropdown-divider">
                            </li>
-                           <li><a class="dropdown-item" href="http://127.0.0.1:8000/create">
+                           <li><a class="dropdown-item" href="http://intetinnovation.pythonanywhere.com/create">
                               Add new campaign
                               </a>
                            </li>
                         </ul>
                      <li class="nav-item" >
-                        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/create">
+                        <a class="nav-link active" aria-current="page" href="http://intetinnovation.pythonanywhere.com/create">
                         <span class="nav-bar-one-item">
                         Create Campaign
                         </span>
                         </a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link active" id="nav_bar_tab" aria-current="page" href="http://127.0.0.1:8000/top_users/">
+                        <a class="nav-link active" id="nav_bar_tab" aria-current="page" href="http://intetinnovation.pythonanywhere.com/top_users/">
                         <span class="nav-bar-one-item">
                         Top Users</a>
                         </span>
                      </li>
                      <li class="nav-item" >
-                        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/archived_campaigns">
+                        <a class="nav-link active" aria-current="page" href="http://intetinnovation.pythonanywhere.com/archived_campaigns">
                         <span class="nav-bar-one-item">
                         Archive
                         </span>
@@ -76,7 +76,7 @@
                   {% if user.is_authenticated %}
                   Logged in as {{ user.username }} &nbsp;<a href={% url 'logout' %}>Logout</a>
                   {% else %}
-                  Logged Out &nbsp;<a href="http://127.0.0.1:8000/accounts/login/">Login&nbsp;</a> or &nbsp;<a href="http://127.0.0.1:8000/accounts/signup/">SignUp</a>
+                  Logged Out &nbsp;<a href="http://intetinnovation.pythonanywhere.com/accounts/login/">Login&nbsp;</a> or &nbsp;<a href="http://intetinnovation.pythonanywhere.com/accounts/signup/">SignUp</a>
                   {% endif %}
                </div>
             </div>
